@@ -1,133 +1,114 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osman Kemal Tunalı | Mimari Portfolyo</title>
+    <title>Archituna | Mimari Tasarım</title>
     <style>
+        /* === VİDEODAKİ SİYAH LOADING EKRANI STİLLERİ === */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111; /* Koyu siyah arka plan */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out; /* Yumuşakça kaybolma efekti */
+        }
+        
+        #loading-screen h1 {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 2em;
+            letter-spacing: 12px; /* Harflerin arasını açar */
+            animation: nefes-al 2s infinite; /* Yanıp sönme animasyonu */
+        }
+
+        @keyframes nefes-al {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        /* === ANA SİTE STİLLERİ === */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            overflow-x: hidden;
         }
+
         header {
             background-color: #222;
             color: #fff;
-            padding: 20px 0;
+            padding: 50px 0 30px;
             text-align: center;
         }
-        header h1 {
+
+        /* Logo Ayarları */
+        .logo {
+            max-width: 250px; /* Logonun büyüklüğünü buradan ayarlayabilirsin */
+            margin-bottom: 20px;
+        }
+
+        header h2 {
             margin: 0;
-            font-size: 2.5em;
-            letter-spacing: 2px;
+            font-size: 2em;
+            letter-spacing: 3px;
         }
+
         header p {
-            margin: 5px 0 0;
+            color: #aaa;
             font-weight: 300;
-            color: #ccc;
         }
+
         .container {
             width: 80%;
             margin: 40px auto;
-        }
-        .section-title {
-            border-bottom: 2px solid #222;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .project-card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        .project-card h3 {
-            margin-top: 0;
-        }
-        .skills {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .skill-tag {
-            background-color: #ddd;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #222;
-            color: #fff;
-            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
+    <!-- Yükleme Ekranı -->
+    <div id="loading-screen">
+        <h1>LOADING</h1>
+    </div>
+
+    <!-- Sitenin Ana İçeriği -->
     <header>
-        <h1>Osman Kemal Tunalı</h1>
-        <p>Mimar & 3D Görselleştirme Uzmanı</p>
+        <!-- DİKKAT: Yüklediğin logonun adıyla buradaki 'logo.png' birebir aynı olmalı -->
+        <img src="logo.png" alt="Archituna Logo" class="logo">
+        <h2>ARCHITUNA</h2>
+        <p>Yaratıcı Mimari Çözümler</p>
     </header>
 
     <div class="container">
-        
-        <section>
-            <h2 class="section-title">Hakkımda</h2>
-            <p>Mimari tasarım, 2D planlama ve fotogerçekçi 3D görselleştirme alanlarında çalışmalar yapıyorum. Konsept tasarımdan uygulama projelerine kadar tüm süreci dijital ortama aktarıyorum.</p>
-        </section>
-
-        <section>
-            <h2 class="section-title">Yazılım & Yetkinlikler</h2>
-            <div class="skills">
-                <span class="skill-tag">AutoCAD</span>
-                <span class="skill-tag">Revit</span>
-                <span class="skill-tag">SketchUp</span>
-                <span class="skill-tag">3ds Max & Corona</span>
-                <span class="skill-tag">Lumion & Enscape</span>
-                <span class="skill-tag">Photoshop</span>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Seçili Projeler</h2>
-            <div class="projects-grid">
-                
-                <div class="project-card">
-                    <h3>Senato Binası İç Mekan</h3>
-                    <p>Bilim kurgu evrenlerinden ilham alan, geniş açıklıklı ve anıtsal ölçekli iç mekan tasarımı ve Enscape ile alınmış fotogerçekçi render çalışmaları.</p>
-                </div>
-
-                <div class="project-card">
-                    <h3>Tarihi Doku Görselleştirmesi</h3>
-                    <p>Ayasofya ve Bizans Hipodromu çevresindeki tarihi dokunun 3D modellenmesi ve çevresel bağlamın görselleştirilmesi.</p>
-                </div>
-
-                <div class="project-card">
-                    <h3>Mimari Uygulama Projeleri</h3>
-                    <p>AutoCAD kullanılarak hazırlanmış detaylı vaziyet planları, sistem kesitleri ve görünüş çizimleri.</p>
-                </div>
-
-            </div>
-        </section>
-
+        <!-- Daha önceki projelerin veya eklenecek renderlar buraya gelecek -->
+        <p style="text-align: center; margin-top: 50px;">Portfolyo içerikleri buraya eklenecektir.</p>
     </div>
 
-    <footer>
-        <p> İletişim: osmankemal68@... | İstanbul, Türkiye</p>
-    </footer>
+    <!-- === YÜKLEME EKRANINI GİZLEYEN JAVASCRIPT KODU === -->
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loading = document.getElementById('loading-screen');
+                loading.style.opacity = '0'; // Önce saydamlaştır
+                
+                setTimeout(function() {
+                    loading.style.display = 'none'; // Sonra tamamen kaldır
+                }, 1000); // 1 saniyelik erime süresi
+                
+            }, 2500); // Yükleme ekranı 2.5 saniye ekranda kalır
+        });
+    </script>
 
 </body>
 </html>
