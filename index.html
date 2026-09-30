@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archituna | Çağının Ötesinde Fikirler</title>
     <style>
-        /* === GENEL AYARLAR === */
+        /* === GENEL AYARLAR VE ARKA PLAN === */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: #e9e9e9;
+            background-color: #f0f0f0; /* Açık ve ferah bir galeri grisi */
             color: #222;
             overflow-x: hidden;
-            height: 100vh;
+            min-height: 100vh; 
         }
 
         /* === OTOMATİK VİDEOLU AÇILIŞ EKRANI === */
@@ -31,7 +31,6 @@
             transition: opacity 1.5s ease-in-out;
         }
 
-        /* Ziyaretçiyi karşılayan geçici metin */
         #loading-text {
             position: absolute;
             z-index: 10001;
@@ -50,7 +49,6 @@
             100% { opacity: 0; }
         }
 
-        /* Sessiz ve otomatik başlayan video */
         #intro-video {
             position: absolute;
             top: 0;
@@ -67,33 +65,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            padding-top: 15vh; 
             min-height: 100vh;
             text-align: center;
             opacity: 0; 
             transition: opacity 2s ease-in;
         }
 
-        /* Dev Filigran Logo Arka Planı */
+        /* Dev Filigran Logo Arka Planı (Sabit ve Hafif) */
         .watermark {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(2.5);
-            opacity: 0.04; 
+            transform: translate(-50%, -50%) scale(2.8);
+            opacity: 0.03; /* Sayfayı boğmaması için saydamlık düşürüldü */
             z-index: 1;
             pointer-events: none;
         }
 
-        /* İkili Kimlik: ARCHITUNA -> TUNALI MİMARLIK Geçişi */
+        /* İkili Kimlik: ARCHITUNA -> TUNALI MİMARLIK */
         .brand-name {
-            font-size: 3em;
-            letter-spacing: 8px;
+            font-size: 3.5em;
+            letter-spacing: 10px;
             margin-bottom: 10px;
             cursor: default;
             transition: color 0.4s ease;
             position: relative;
             z-index: 20;
+            font-weight: 800;
         }
 
         .brand-name::after {
@@ -104,14 +103,98 @@
             content: "TUNALI MİMARLIK"; 
         }
 
-        /* Manifesto */
         .manifesto {
-            font-size: 1.5em;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-size: 1.3em;
+            font-weight: 400;
+            letter-spacing: 3px;
             color: #555;
-            margin-top: 20px;
+            margin-top: 10px;
             z-index: 20;
+            text-transform: uppercase;
+        }
+
+        /* === KATEGORİ VE GALERİ ALANI === */
+        .portfolio-section {
+            width: 90%;
+            max-width: 1400px;
+            margin: 60px auto 100px auto;
+            z-index: 20;
+            text-align: left;
+        }
+
+        /* Kategori Başlıkları */
+        .category-title {
+            font-size: 2em;
+            color: #111;
+            letter-spacing: 4px;
+            margin: 80px 0 30px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .project-media {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            display: block;
+        }
+
+        .project-card:hover .project-media {
+            transform: scale(1.06);
+        }
+
+        .project-info {
+            padding: 25px 30px;
+            text-align: left;
+            background: #fff;
+            position: relative;
+        }
+
+        .project-title {
+            font-size: 1.3em;
+            margin: 0 0 8px 0;
+            letter-spacing: 1px;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            margin-top: 15px;
+            font-size: 0.75em;
+            letter-spacing: 1px;
+            color: #999;
+            text-transform: uppercase;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -120,8 +203,6 @@
     <!-- AÇILIŞ EKRANI -->
     <div id="intro-screen">
         <div id="loading-text">Vizyonunuz Yükleniyor...</div>
-        
-        <!-- Video adı 'intro.mp4' olarak ayarlandı -->
         <video id="intro-video" src="intro.mp4" muted autoplay playsinline></video>
     </div>
 
@@ -133,9 +214,108 @@
         <h1 class="brand-name"></h1>
         <p class="manifesto">Çağının Ötesinde Fikirler. Sarsılmaz Temeller.</p>
         
-        <p style="margin-top: 50px; font-size: 0.9em; color: #888; letter-spacing: 1px;">
-            Tasarım • Proje • 3D Render
-        </p>
+        <div class="portfolio-section">
+
+            <!-- KATEGORİ 1: KAMUSAL & EĞİTİM VİZYONU -->
+            <h2 class="category-title">Kamusal Vizyon & Kentsel Tasarım</h2>
+            <div class="grid-container">
+                
+                <div class="project-card">
+                    <img src="universitevaziyet.jpg" alt="Üniversite Masterplan" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Üniversite Masterplan Önerisi</h3>
+                        <p class="project-desc">Kentsel ölçekte ele alınan, öğrenci sirkülasyonunu ve topoğrafyayı merkeze alan çağdaş yerleşke vizyonu.</p>
+                        <div class="project-tags">Revit • Enscape • Kentsel Tasarım</div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="universite.jpg" alt="Üniversite Fakülte" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Eğitim Kompleksi</h3>
+                        <p class="project-desc">Geleneksel eğitim sınırlarını yıkan, doğal ışık kontrollü esnek iç mekanlara sahip fakülte konsepti.</p>
+                        <div class="project-tags">Mimari Proje • Dış Mekan Render</div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="genclikmerkezi.jpg" alt="Gençlik Merkezi" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Sosyal Etkileşim & Gençlik Merkezi</h3>
+                        <p class="project-desc">Kullanıcıları bir araya getiren dinamik formlar ve amfi düzeniyle kurgulanmış sosyokültürel cazibe merkezi.</p>
+                        <div class="project-tags">Kavramsal Tasarım • 3ds Max</div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="kutuphane.jpg" alt="Kütüphane" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Yeni Nesil Bilgi Merkezi</h3>
+                        <p class="project-desc">Akustik konforun ve odaklanmanın ön planda tutulduğu, sıcak malzeme paletiyle donatılmış modern kütüphane projesi.</p>
+                        <div class="project-tags">İç Mekan Kurgusu • Lumion</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KATEGORİ 2: TİCARİ MEKANLAR -->
+            <h2 class="category-title">Ticari & Sosyal Mekanlar</h2>
+            <div class="grid-container">
+
+                <div class="project-card">
+                    <img src="kafe.jpg" alt="Kafe Tasarımı" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Gastronomi Deneyimi</h3>
+                        <p class="project-desc">Müşteri psikolojisini yönlendiren, endüstriyel detaylar ile ahşap dokusunun harmanlandığı butik kafe tasarımı.</p>
+                        <div class="project-tags">İç Mekan • 3ds Max • Corona Render</div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="kafe3.jpg" alt="Lounge Alanı" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Premium Lounge & Cafe</h3>
+                        <p class="project-desc">Mekansal derinliğin aydınlatma armatürleri ile sağlandığı elit buluşma noktası.</p>
+                        <div class="project-tags">Ticari Proje • Aydınlatma Analizi</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KATEGORİ 3: KONUT VE YAŞAM -->
+            <h2 class="category-title">Konut Kompleksleri & Yaşam Alanları</h2>
+            <div class="grid-container">
+
+                <div class="project-card">
+                    <img src="villa.jpg" alt="Özel Konut" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Premium Villa Tasarımı</h3>
+                        <p class="project-desc">İç-dış mekan sınırlarını saydamlaştıran, doğayla entegre ve minimal çizgilere sahip özel mülk mimarisi.</p>
+                        <div class="project-tags">Uygulama Projesi • Lumion</div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="site.jpg" alt="Toplu Konut" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Kentsel Yaşam Kompleksi</h3>
+                        <p class="project-desc">Geniş yeşil alanlara ve rekreasyon akslarına sahip, insan ölçeğine duyarlı toplu konut yerleşkesi.</p>
+                        <div class="project-tags">Vaziyet Planlaması • Dış Mekan</div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="yeniapartman.jpg" alt="Apartman Bloğu" class="project-media">
+                    <div class="project-info">
+                        <h3 class="project-title">Çağdaş Konut Bloğu</h3>
+                        <p class="project-desc">Şehir dokusuyla uyumlu, modern cephe proporsiyonlarına ve malzeme hiyerarşisine sahip apartman tasarımı.</p>
+                        <div class="project-tags">Kentsel Dönüşüm • Cephe Tasarımı</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
     <!-- JAVASCRIPT: VİDEO VE GEÇİŞ KONTROLÜ -->
@@ -144,7 +324,6 @@
         const introScreen = document.getElementById('intro-screen');
         const mainContent = document.getElementById('main-content');
 
-        // Ana sayfaya geçiş fonksiyonu
         function switchToMain() {
             introScreen.style.opacity = '0'; 
             setTimeout(function() {
@@ -153,10 +332,8 @@
             }, 1500); 
         }
 
-        // 1. Durum: Video sorunsuz oynar ve biterse geçiş yap
         introVideo.addEventListener('ended', switchToMain);
 
-        // 2. Durum (Güvenlik Koruması): Eğer video bulunamazsa veya hata verirse, sonsuza kadar siyah ekranda kalmamak için 5 saniye sonra otomatik geçiş yap
         setTimeout(function() {
             if (introVideo.readyState === 0 || introVideo.paused) {
                 switchToMain();
