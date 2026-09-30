@@ -47,7 +47,10 @@ a { color: inherit; text-decoration: none; }
     transform: translate(-50%, -50%) scale(1); z-index: 0; pointer-events: none;
     opacity: .032; filter: grayscale(1) contrast(1.15); mix-blend-mode: difference; transition: opacity 1s ease;
 }
-.site-logo-bg img { display: block; width: 100%; height: auto; }
+.site-logo-bg img { 
+    display: block; width: 100%; height: auto; 
+    transition: transform 0.2s ease-out; /* Farenin akıcı hareketi için eklendi */
+}
 
 /* =========================================================
    AÇILIŞ
@@ -95,7 +98,6 @@ body.site-loaded main { opacity: 1; }
    HERO
 ========================================================= */
 .hero { position: relative; min-height: 100vh; padding: 120px 8vw 80px; display: flex; align-items: center; overflow: hidden; }
-.hero-watermark { position: absolute; width: min(75vw, 900px); left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1); opacity: .045; pointer-events: none; transition: transform 1s cubic-bezier(.16,1,.3,1); }
 .hero-grid {
     position: absolute; inset: 0; opacity: .12; pointer-events: none;
     background-image: linear-gradient(to right, transparent calc(20% - 1px), rgba(255,255,255,.15) 20%, transparent calc(20% + 1px)),
@@ -232,8 +234,8 @@ footer { position: relative; z-index: 2; padding: 35px 8vw; border-top: 1px soli
 <!-- =====================================================
      GLOBAL LOGO
 ===================================================== -->
-<div class="site-logo-bg">
-    <img src="logo.png" alt="ARCHITUNA">
+<div class="site-logo-bg" id="global-logo-wrapper">
+    <img src="logo.png" id="global-logo-img" alt="ARCHITUNA">
 </div>
 
 <!-- =====================================================
@@ -246,7 +248,6 @@ footer { position: relative; z-index: 2; padding: 35px 8vw; border-top: 1px soli
      AÇILIŞ
 ===================================================== -->
 <div id="intro">
-    <!-- VİDEO BURADA giris.mp4 OLARAK GÜNCELLENDİ -->
     <video
         id="intro-video"
         src="giris.mp4"
@@ -292,7 +293,6 @@ footer { position: relative; z-index: 2; padding: 35px 8vw; border-top: 1px soli
 ===================================================== -->
 <section class="hero" id="vizyon">
     <div class="hero-grid"></div>
-    <img src="logo.png" class="hero-watermark" id="watermark" alt="ARCHITUNA Logo">
 
     <div class="hero-content">
         <div class="eyebrow">ARCHITUNA / TUNALI MİMARLIK</div>
@@ -642,14 +642,12 @@ footer { position: relative; z-index: 2; padding: 35px 8vw; border-top: 1px soli
 ========================================================= */
 const intro = document.getElementById("intro");
 const video = document.getElementById("intro-video");
-
 let introFinished = false;
 
 function finishIntro() {
     if (introFinished) return;
     introFinished = true;
     intro.style.opacity = "0";
-
     setTimeout(function() {
         intro.style.display = "none";
         document.body.classList.add("site-loaded");
@@ -657,8 +655,6 @@ function finishIntro() {
 }
 
 video.addEventListener("ended", finishIntro);
-
-/* VİDEO AÇILMAZSA */
 setTimeout(function() {
     if (intro.style.display !== "none") {
         finishIntro();
@@ -689,25 +685,25 @@ function animateCursor() {
 animateCursor();
 
 /* =========================================================
-   HERO LOGO PARALLAX
+   GLOBAL LOGO (SCROLL + PARALLAX)
 ========================================================= */
-const watermark = document.getElementById("watermark");
-document.addEventListener("mousemove", function(e) {
-    const x = (e.clientX / window.innerWidth - .5) * 25;
-    const y = (e.clientY / window.innerHeight - .5) * 25;
-    watermark.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1.05)`;
-});
+const logoWrapper = document.getElementById("global-logo-wrapper");
+const logoImg = document.getElementById("global-logo-img");
 
-/* =========================================================
-   GLOBAL LOGO SCROLL
-========================================================= */
-const globalLogo = document.querySelector(".site-logo-bg");
+// Kaydırma (Scroll) Efekti
 window.addEventListener("scroll", function() {
     const scrollY = window.scrollY;
     const movement = scrollY * .035;
     const scale = 1 + Math.min(scrollY / 18000, .12);
-    globalLogo.style.transform = `translate(-50%, calc(-50% + ${movement}px)) scale(${scale})`;
+    logoWrapper.style.transform = `translate(-50%, calc(-50% + ${movement}px)) scale(${scale})`;
 }, { passive: true });
+
+// Fare Hareket (Parallax) Efekti
+document.addEventListener("mousemove", function(e) {
+    const x = (e.clientX / window.innerWidth - .5) * 35;
+    const y = (e.clientY / window.innerHeight - .5) * 35;
+    logoImg.style.transform = `translate(${x}px, ${y}px)`;
+});
 
 /* =========================================================
    SCROLL REVEAL
@@ -741,5 +737,6 @@ document.querySelectorAll("a, .project-card, .service").forEach(function(element
     });
 });
 </script>
+
 </body>
 </html>
