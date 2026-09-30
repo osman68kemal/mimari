@@ -5,211 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archituna | Çağının Ötesinde Fikirler</title>
     <style>
-        /* === GENEL AYARLAR VE ARKA PLAN === */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: #f0f0f0; 
-            color: #222;
-            overflow-x: hidden;
-            min-height: 100vh; 
-        }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f0f0f0; color: #222; overflow-x: hidden; min-height: 100vh; }
+        #intro-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #111; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 1.5s ease-in-out; }
+        #loading-text { position: absolute; z-index: 10001; color: #fff; font-size: 1.2em; letter-spacing: 5px; text-transform: uppercase; font-weight: 300; animation: fadeOut 3s forwards; pointer-events: none; }
+        @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+        #intro-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        
+        #main-content { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; padding-top: 15vh; min-height: 100vh; text-align: center; opacity: 0; transition: opacity 2s ease-in; }
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(2.8); opacity: 0.03; z-index: 1; pointer-events: none; }
+        .brand-name { font-size: 3.5em; letter-spacing: 10px; margin-bottom: 10px; cursor: default; transition: color 0.4s ease; position: relative; z-index: 20; font-weight: 800; }
+        .brand-name::after { content: "ARCHITUNA"; }
+        .brand-name:hover::after { content: "TUNALI MİMARLIK"; }
+        .manifesto { font-size: 1.3em; font-weight: 400; letter-spacing: 3px; color: #555; margin-top: 10px; z-index: 20; text-transform: uppercase; }
 
-        /* === OTOMATİK VİDEOLU AÇILIŞ EKRANI === */
-        #intro-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #111;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        #loading-text {
-            position: absolute;
-            z-index: 10001;
-            color: #fff;
-            font-size: 1.2em;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-weight: 300;
-            animation: fadeOut 3s forwards;
-            pointer-events: none;
-        }
-
-        @keyframes fadeOut {
-            0% { opacity: 1; }
-            70% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        #intro-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* === ANA SAYFA (MARJİNAL TASARIM) === */
-        #main-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 15vh; 
-            min-height: 100vh;
-            text-align: center;
-            opacity: 0; 
-            transition: opacity 2s ease-in;
-        }
-
-        /* Dev Filigran Logo Arka Planı */
-        .watermark {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(2.8);
-            opacity: 0.03; 
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* İkili Kimlik: ARCHITUNA -> TUNALI MİMARLIK */
-        .brand-name {
-            font-size: 3.5em;
-            letter-spacing: 10px;
-            margin-bottom: 10px;
-            cursor: default;
-            transition: color 0.4s ease;
-            position: relative;
-            z-index: 20;
-            font-weight: 800;
-        }
-
-        .brand-name::after {
-            content: "ARCHITUNA"; 
-        }
-
-        .brand-name:hover::after {
-            content: "TUNALI MİMARLIK"; 
-        }
-
-        .manifesto {
-            font-size: 1.3em;
-            font-weight: 400;
-            letter-spacing: 3px;
-            color: #555;
-            margin-top: 10px;
-            z-index: 20;
-            text-transform: uppercase;
-        }
-
-        /* === KATEGORİ VE GALERİ ALANI === */
-        .portfolio-section {
-            width: 90%;
-            max-width: 1400px;
-            margin: 60px auto 100px auto;
-            z-index: 20;
-            text-align: left;
-        }
-
-        .category-title {
-            font-size: 2em;
-            color: #111;
-            letter-spacing: 4px;
-            margin: 80px 0 30px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ccc;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 40px;
-        }
-
-        .project-card {
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 2px;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-        }
-
-        .project-media {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            transition: transform 0.7s ease;
-            display: block;
-        }
-
-        .project-card:hover .project-media {
-            transform: scale(1.06);
-        }
-
-        .project-info {
-            padding: 25px 30px;
-            text-align: left;
-            background: #fff;
-            position: relative;
-        }
-
-        .project-title {
-            font-size: 1.3em;
-            margin: 0 0 8px 0;
-            letter-spacing: 1px;
-            color: #111;
-            font-weight: 600;
-        }
-
-        .project-desc {
-            font-size: 0.95em;
-            color: #666;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            margin-top: 15px;
-            font-size: 0.75em;
-            letter-spacing: 1px;
-            color: #999;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
+        .portfolio-section { width: 90%; max-width: 1400px; margin: 60px auto 100px auto; z-index: 20; text-align: left; }
+        .category-title { font-size: 2em; color: #111; letter-spacing: 4px; margin: 80px 0 30px 0; padding-bottom: 10px; border-bottom: 2px solid #ccc; text-transform: uppercase; font-weight: 300; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; }
+        .project-card { background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease; cursor: pointer; overflow: hidden; border-radius: 2px; }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+        .project-media { width: 100%; height: 320px; object-fit: cover; transition: transform 0.7s ease; display: block; }
+        .project-card:hover .project-media { transform: scale(1.06); }
+        .project-info { padding: 25px 30px; text-align: left; background: #fff; position: relative; }
+        .project-title { font-size: 1.3em; margin: 0 0 8px 0; letter-spacing: 1px; color: #111; font-weight: 600; }
+        .project-desc { font-size: 0.95em; color: #666; margin: 0; line-height: 1.6; }
+        .project-tags { margin-top: 15px; font-size: 0.75em; letter-spacing: 1px; color: #999; text-transform: uppercase; font-weight: 600; }
     </style>
 </head>
 <body>
 
-    <!-- AÇILIŞ EKRANI -->
     <div id="intro-screen">
         <div id="loading-text">Vizyonunuz Yükleniyor...</div>
         <!-- VİDEO ADI EŞLEŞTİRİLDİ -->
         <video id="intro-video" src="giriş.mp4" muted autoplay playsinline></video>
     </div>
 
-    <!-- ARKA PLAN FİLİGRAN LOGOSU -->
+    <!-- LOGO EŞLEŞTİRİLDİ -->
     <img src="logo.png" class="watermark" alt="Filigran">
 
-    <!-- ANA SAYFA İÇERİĞİ -->
     <div id="main-content">
         <h1 class="brand-name"></h1>
         <p class="manifesto">Çağının Ötesinde Fikirler. Sarsılmaz Temeller.</p>
@@ -219,9 +51,7 @@
             <!-- KATEGORİ 1: KAMUSAL & EĞİTİM VİZYONU -->
             <h2 class="category-title">Kamusal Vizyon & Kentsel Tasarım</h2>
             <div class="grid-container">
-                
                 <div class="project-card">
-                    <!-- DOSYA UZANTISI PNG YAPILDI -->
                     <img src="universitevaziyet.png" alt="Üniversite Masterplan" class="project-media">
                     <div class="project-info">
                         <h3 class="project-title">Üniversite Masterplan Önerisi</h3>
@@ -229,9 +59,8 @@
                         <div class="project-tags">Revit • Enscape • Kentsel Tasarım</div>
                     </div>
                 </div>
-
                 <div class="project-card">
-                    <!-- DOSYA ADI VE UZANTISI BİREBİR EŞLEŞTİRİLDİ -->
+                    <!-- ÜNİVERSİTE GÖRSELİ EŞLEŞTİRİLDİ -->
                     <img src="üniversite.png" alt="Üniversite Fakülte" class="project-media">
                     <div class="project-info">
                         <h3 class="project-title">Eğitim Kompleksi</h3>
@@ -239,7 +68,6 @@
                         <div class="project-tags">Mimari Proje • Dış Mekan Render</div>
                     </div>
                 </div>
-
                 <div class="project-card">
                     <img src="genclikmerkezi.png" alt="Gençlik Merkezi" class="project-media">
                     <div class="project-info">
@@ -248,7 +76,6 @@
                         <div class="project-tags">Kavramsal Tasarım • 3ds Max</div>
                     </div>
                 </div>
-
                 <div class="project-card">
                     <img src="kutuphane.png" alt="Kütüphane" class="project-media">
                     <div class="project-info">
@@ -257,13 +84,11 @@
                         <div class="project-tags">İç Mekan Kurgusu • Lumion</div>
                     </div>
                 </div>
-
             </div>
 
             <!-- KATEGORİ 2: TİCARİ MEKANLAR -->
             <h2 class="category-title">Ticari & Sosyal Mekanlar</h2>
             <div class="grid-container">
-
                 <div class="project-card">
                     <img src="kafe.png" alt="Kafe Tasarımı" class="project-media">
                     <div class="project-info">
@@ -272,7 +97,6 @@
                         <div class="project-tags">İç Mekan • 3ds Max • Corona Render</div>
                     </div>
                 </div>
-
                 <div class="project-card">
                     <img src="kafe3.png" alt="Lounge Alanı" class="project-media">
                     <div class="project-info">
@@ -281,13 +105,11 @@
                         <div class="project-tags">Ticari Proje • Aydınlatma Analizi</div>
                     </div>
                 </div>
-
             </div>
 
             <!-- KATEGORİ 3: KONUT VE YAŞAM -->
             <h2 class="category-title">Konut Kompleksleri & Yaşam Alanları</h2>
             <div class="grid-container">
-
                 <div class="project-card">
                     <img src="villa.png" alt="Özel Konut" class="project-media">
                     <div class="project-info">
@@ -296,7 +118,6 @@
                         <div class="project-tags">Uygulama Projesi • Lumion</div>
                     </div>
                 </div>
-
                 <div class="project-card">
                     <img src="site.png" alt="Toplu Konut" class="project-media">
                     <div class="project-info">
@@ -305,7 +126,6 @@
                         <div class="project-tags">Vaziyet Planlaması • Dış Mekan</div>
                     </div>
                 </div>
-
                 <div class="project-card">
                     <img src="yeniapartman.png" alt="Apartman Bloğu" class="project-media">
                     <div class="project-info">
@@ -314,13 +134,11 @@
                         <div class="project-tags">Kentsel Dönüşüm • Cephe Tasarımı</div>
                     </div>
                 </div>
-
             </div>
 
         </div>
     </div>
 
-    <!-- JAVASCRIPT: VİDEO VE GEÇİŞ KONTROLÜ -->
     <script>
         const introVideo = document.getElementById('intro-video');
         const introScreen = document.getElementById('intro-screen');
