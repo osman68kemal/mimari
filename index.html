@@ -4,12 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ARCHITUNA.COM | Tunalı Mimarlık</title>
+<title>ARCHITUNA | Tunalı Mimarlık</title>
 
 <meta name="description"
-content="ARCHITUNA.COM — Tunalı Mimarlık. Çağının ötesinde fikirler. Sarsılmaz temeller.">
+content="ARCHITUNA — Tunalı Mimarlık. Çağının ötesinde fikirler. Sarsılmaz temeller.">
 
 <style>
+
+/* =========================================================
+   GENEL
+========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap');
 
@@ -74,7 +78,7 @@ a {
 
 
 /* =========================================================
-   AÇILIŞ
+   AÇILIŞ EKRANI
 ========================================================= */
 
 #intro {
@@ -92,6 +96,9 @@ a {
         opacity 1.6s cubic-bezier(.16,1,.3,1);
 }
 
+
+/* AÇILIŞ VİDEOSU */
+
 #intro-video {
     position: absolute;
     inset: 0;
@@ -103,6 +110,9 @@ a {
 
     opacity: .72;
 }
+
+
+/* VİDEO ÜZERİ KARARTMA */
 
 .intro-overlay {
     position: absolute;
@@ -116,6 +126,9 @@ a {
             rgba(0,0,0,.85) 100%
         );
 }
+
+
+/* MİMARİ GRID */
 
 .intro-grid {
     position: absolute;
@@ -139,9 +152,13 @@ a {
     pointer-events: none;
 }
 
+
+/* AÇILIŞ METNİ */
+
 .intro-content {
     position: relative;
     z-index: 5;
+
     text-align: center;
 }
 
@@ -149,6 +166,7 @@ a {
     font-size: 10px;
     letter-spacing: 6px;
     color: #aaa;
+
     margin-bottom: 25px;
 }
 
@@ -162,6 +180,7 @@ a {
     );
 
     font-weight: 300;
+
     letter-spacing: .08em;
 
     animation:
@@ -180,6 +199,7 @@ a {
     color: #888;
 }
 
+
 @keyframes introZoom {
 
     0% {
@@ -197,6 +217,7 @@ a {
         transform: scale(1.7);
         letter-spacing: .08em;
     }
+
 }
 
 
@@ -241,6 +262,7 @@ body.site-loaded main {
     mix-blend-mode: difference;
 }
 
+
 .logo-text {
     font-family: 'Manrope', sans-serif;
 
@@ -250,6 +272,7 @@ body.site-loaded main {
 
     font-weight: 500;
 }
+
 
 .logo-sub {
     margin-top: 5px;
@@ -261,6 +284,7 @@ body.site-loaded main {
     opacity: .6;
 }
 
+
 .nav-links {
     list-style: none;
 
@@ -268,6 +292,7 @@ body.site-loaded main {
 
     gap: 35px;
 }
+
 
 .nav-links a {
     font-size: 10px;
@@ -298,6 +323,9 @@ body.site-loaded main {
     overflow: hidden;
 }
 
+
+/* BÜYÜK LOGO */
+
 .hero-watermark {
     position: absolute;
 
@@ -318,6 +346,9 @@ body.site-loaded main {
         transform 1s
         cubic-bezier(.16,1,.3,1);
 }
+
+
+/* GRID */
 
 .hero-grid {
     position: absolute;
@@ -358,6 +389,7 @@ body.site-loaded main {
     pointer-events: none;
 }
 
+
 .hero-content {
     position: relative;
 
@@ -365,6 +397,7 @@ body.site-loaded main {
 
     max-width: 1000px;
 }
+
 
 .eyebrow {
     font-size: 10px;
@@ -375,6 +408,7 @@ body.site-loaded main {
 
     margin-bottom: 30px;
 }
+
 
 .hero-title {
     font-family: 'Manrope', sans-serif;
@@ -393,9 +427,11 @@ body.site-loaded main {
     letter-spacing: -.06em;
 }
 
+
 .hero-title span {
     display: block;
 }
+
 
 .hero-title .outline {
     color: transparent;
@@ -404,6 +440,7 @@ body.site-loaded main {
         1px
         rgba(255,255,255,.8);
 }
+
 
 .hero-description {
     max-width: 520px;
@@ -416,6 +453,7 @@ body.site-loaded main {
 
     color: #999;
 }
+
 
 .hero-bottom {
     position: absolute;
@@ -449,6 +487,7 @@ section {
         8vw;
 }
 
+
 .section-number {
     font-size: 9px;
 
@@ -458,6 +497,7 @@ section {
 
     margin-bottom: 40px;
 }
+
 
 .section-title {
     font-family: 'Manrope', sans-serif;
@@ -475,6 +515,7 @@ section {
 
     letter-spacing: -.04em;
 }
+
 
 .section-title em {
     font-style: normal;
@@ -497,6 +538,7 @@ section {
     background: #101010;
 }
 
+
 .manifesto-grid {
     display: grid;
 
@@ -508,6 +550,7 @@ section {
 
     align-items: end;
 }
+
 
 .manifesto-text {
     font-size:
@@ -521,6 +564,7 @@ section {
 
     color: #c8c8c3;
 }
+
 
 .manifesto-text strong {
     color: white;
@@ -536,6 +580,7 @@ section {
 .projects {
     background: #090909;
 }
+
 
 .project {
     position: relative;
@@ -553,6 +598,7 @@ section {
     padding-top: 25px;
 }
 
+
 .project-image {
     position: absolute;
 
@@ -566,6 +612,7 @@ section {
 
     background: #151515;
 }
+
 
 .project-image::after {
     content: "";
@@ -581,6 +628,7 @@ section {
             rgba(0,0,0,.8)
         );
 }
+
 
 .project-image img {
     width: 100%;
@@ -599,11 +647,13 @@ section {
         filter 1s ease;
 }
 
+
 .project:hover img {
     transform: scale(1.09);
 
     filter: grayscale(0%);
 }
+
 
 .project-info {
     position: absolute;
@@ -614,6 +664,7 @@ section {
     bottom: 45px;
 }
 
+
 .project-number {
     font-size: 9px;
 
@@ -623,6 +674,7 @@ section {
 
     margin-bottom: 15px;
 }
+
 
 .project-name {
     font-family: 'Manrope';
@@ -636,6 +688,7 @@ section {
 
     font-weight: 300;
 }
+
 
 .project-location {
     margin-top: 12px;
@@ -658,9 +711,11 @@ section {
     color: #111;
 }
 
+
 .services .section-number {
     color: #777;
 }
+
 
 .services-list {
     margin-top: 100px;
@@ -669,6 +724,7 @@ section {
         1px solid
         #bbb;
 }
+
 
 .service {
     padding: 30px 0;
@@ -687,11 +743,13 @@ section {
         padding .4s ease;
 }
 
+
 .service:hover {
     padding-left: 25px;
 
     padding-right: 25px;
 }
+
 
 .service-name {
     font-family: 'Manrope';
@@ -705,6 +763,7 @@ section {
 
     font-weight: 300;
 }
+
 
 .service-number {
     font-size: 10px;
@@ -733,6 +792,7 @@ section {
     overflow: hidden;
 }
 
+
 .brand-section::before {
     content: "ARCHITUNA";
 
@@ -748,11 +808,13 @@ section {
     white-space: nowrap;
 }
 
+
 .brand-main {
     position: relative;
 
     z-index: 2;
 }
+
 
 .brand-main h2 {
     font-family: 'Manrope';
@@ -769,6 +831,7 @@ section {
     letter-spacing: -.07em;
 }
 
+
 .brand-switch {
     margin-top: 25px;
 
@@ -776,6 +839,7 @@ section {
 
     overflow: hidden;
 }
+
 
 .brand-switch span {
     display: block;
@@ -792,6 +856,7 @@ section {
         infinite;
 }
 
+
 @keyframes brandChange {
 
     0%,
@@ -807,6 +872,7 @@ section {
     100% {
         transform: translateY(0);
     }
+
 }
 
 
@@ -819,6 +885,7 @@ section {
 
     background: #151515;
 }
+
 
 .contact-title {
     font-family: 'Manrope';
@@ -837,9 +904,11 @@ section {
     letter-spacing: -.06em;
 }
 
+
 .contact-title span {
     color: #666;
 }
+
 
 .contact-bottom {
     margin-top: 100px;
@@ -853,6 +922,7 @@ section {
     gap: 40px;
 }
 
+
 .contact-item {
     font-size: 11px;
 
@@ -860,6 +930,7 @@ section {
 
     color: #aaa;
 }
+
 
 .contact-item strong {
     display: block;
@@ -900,7 +971,7 @@ footer {
 
 
 /* =========================================================
-   SCROLL
+   SCROLL ANİMASYONLARI
 ========================================================= */
 
 .reveal {
@@ -916,6 +987,7 @@ footer {
         1s
         cubic-bezier(.16,1,.3,1);
 }
+
 
 .reveal.visible {
     opacity: 1;
@@ -1025,24 +1097,30 @@ footer {
 <div class="cursor-ring"></div>
 
 
+
 <!-- =====================================================
-     AÇILIŞ
+     AÇILIŞ EKRANI
+     
+     DOSYA:
+     gırıs.mp4
 ===================================================== -->
 
 <div id="intro">
 
     <video
         id="intro-video"
-        src="giris.mp4"
+        src="gırıs.mp4"
         muted
         autoplay
         playsinline
         preload="auto">
     </video>
 
+
     <div class="intro-overlay"></div>
 
     <div class="intro-grid"></div>
+
 
     <div class="intro-content">
 
@@ -1050,9 +1128,11 @@ footer {
             TUNALI MİMARLIK
         </div>
 
+
         <div class="intro-title">
             ARCHITUNA
         </div>
+
 
         <div class="intro-sub">
             FİKİR → MEKÂN
@@ -1061,6 +1141,7 @@ footer {
     </div>
 
 </div>
+
 
 
 <!-- =====================================================
@@ -1113,11 +1194,13 @@ footer {
 </nav>
 
 
+
 <!-- =====================================================
      ANA SAYFA
 ===================================================== -->
 
 <main>
+
 
 
 <!-- =====================================================
@@ -1128,19 +1211,31 @@ footer {
     class="hero"
     id="vizyon">
 
+
     <div class="hero-grid"></div>
+
+
+    <!--
+        ARKA PLAN LOGOSU
+
+        DOSYA:
+        logo.png
+    -->
 
     <img
         src="logo.png"
         class="hero-watermark"
         id="watermark"
-        alt="ARCHITUNA Tunalı Mimarlık Logo">
+        alt="ARCHITUNA Logo">
+
 
     <div class="hero-content">
+
 
         <div class="eyebrow">
             ARCHITUNA / TUNALI MİMARLIK
         </div>
+
 
         <h1 class="hero-title">
 
@@ -1158,6 +1253,7 @@ footer {
 
         </h1>
 
+
         <p class="hero-description">
 
             Mekânı yalnızca tasarlamıyor,
@@ -1168,7 +1264,9 @@ footer {
 
         </p>
 
+
     </div>
+
 
     <div class="hero-bottom">
 
@@ -1182,7 +1280,9 @@ footer {
 
     </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1191,13 +1291,16 @@ footer {
 
 <section class="manifesto">
 
+
     <div class="manifesto-grid">
+
 
         <div>
 
             <div class="section-number">
                 02 — MANİFESTO
             </div>
+
 
             <h2 class="section-title reveal">
 
@@ -1240,9 +1343,12 @@ footer {
 
         </div>
 
+
     </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1253,9 +1359,11 @@ footer {
     class="projects"
     id="projeler">
 
+
     <div class="section-number">
         03 — SEÇİLİ PROJELER
     </div>
+
 
     <h2 class="section-title reveal">
 
@@ -1266,17 +1374,25 @@ footer {
     </h2>
 
 
-    <!-- PROJE 01 -->
+
+    <!-- =================================================
+         PROJE 01
+         
+         DOSYA:
+         villa.png
+    ================================================== -->
 
     <div class="project reveal">
+
 
         <div class="project-image">
 
             <img
-                src="proje1.jpg"
-                alt="ARCHITUNA Mimari Proje 01">
+                src="villa.png"
+                alt="Villa Projesi">
 
         </div>
+
 
         <div class="project-info">
 
@@ -1284,9 +1400,11 @@ footer {
                 01 / KONUT
             </div>
 
+
             <div class="project-name">
                 VİLLA 01
             </div>
+
 
             <div class="project-location">
                 İSTANBUL — 2026
@@ -1294,20 +1412,29 @@ footer {
 
         </div>
 
+
     </div>
 
 
-    <!-- PROJE 02 -->
+
+    <!-- =================================================
+         PROJE 02
+         
+         DOSYA:
+         üniversite.png
+    ================================================== -->
 
     <div class="project reveal">
+
 
         <div class="project-image">
 
             <img
-                src="proje2.jpg"
-                alt="ARCHITUNA Mimari Proje 02">
+                src="üniversite.png"
+                alt="Mimari Proje">
 
         </div>
+
 
         <div class="project-info">
 
@@ -1315,9 +1442,11 @@ footer {
                 02 / MİMARİ
             </div>
 
+
             <div class="project-name">
                 PROJECT 02
             </div>
+
 
             <div class="project-location">
                 İSTANBUL — 2026
@@ -1325,20 +1454,29 @@ footer {
 
         </div>
 
+
     </div>
 
 
-    <!-- PROJE 03 -->
+
+    <!-- =================================================
+         PROJE 03
+         
+         DOSYA:
+         kutuphane.png
+    ================================================== -->
 
     <div class="project reveal">
+
 
         <div class="project-image">
 
             <img
-                src="proje3.jpg"
-                alt="ARCHITUNA 3D Görselleştirme">
+                src="kutuphane.png"
+                alt="3D Görselleştirme">
 
         </div>
+
 
         <div class="project-info">
 
@@ -1346,9 +1484,11 @@ footer {
                 03 / 3D GÖRSELLEŞTİRME
             </div>
 
+
             <div class="project-name">
                 PROJECT 03
             </div>
+
 
             <div class="project-location">
                 ARCHITUNA STUDIO
@@ -1356,9 +1496,12 @@ footer {
 
         </div>
 
+
     </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1369,9 +1512,11 @@ footer {
     class="services"
     id="hizmetler">
 
+
     <div class="section-number">
         04 — NE YAPIYORUZ?
     </div>
+
 
     <h2 class="section-title reveal">
 
@@ -1382,6 +1527,7 @@ footer {
 
 
     <div class="services-list">
+
 
         <div class="service reveal">
 
@@ -1447,9 +1593,12 @@ footer {
 
         </div>
 
+
     </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1458,11 +1607,14 @@ footer {
 
 <section class="brand-section">
 
+
     <div class="brand-main reveal">
+
 
         <h2>
             ARCHITUNA
         </h2>
+
 
         <div class="brand-switch">
 
@@ -1476,9 +1628,12 @@ footer {
 
         </div>
 
+
     </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1489,9 +1644,11 @@ footer {
     class="contact"
     id="iletisim">
 
+
     <div class="section-number">
         05 — İLETİŞİM
     </div>
+
 
     <h2 class="contact-title reveal">
 
@@ -1506,6 +1663,7 @@ footer {
 
 
     <div class="contact-bottom">
+
 
         <div class="contact-item">
 
@@ -1532,16 +1690,19 @@ footer {
         <div class="contact-item">
 
             <strong>
-                WEB
+                SOSYAL
             </strong>
 
-            ARCHITUNA.COM
+            Instagram / Behance
 
         </div>
 
+
     </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1551,12 +1712,14 @@ footer {
 <footer>
 
     <span>
-        © 2026 ARCHITUNA.COM
+        © 2026 ARCHITUNA
     </span>
+
 
     <span>
         TUNALI MİMARLIK
     </span>
+
 
     <span>
         SARSILMAZ TEMELLER.
@@ -1566,6 +1729,7 @@ footer {
 
 
 </main>
+
 
 
 <script>
@@ -1581,16 +1745,10 @@ const video =
     document.getElementById("intro-video");
 
 
-let introFinished = false;
-
-
 function finishIntro() {
 
-    if (introFinished) return;
-
-    introFinished = true;
-
     intro.style.opacity = "0";
+
 
     setTimeout(function() {
 
@@ -1605,7 +1763,9 @@ function finishIntro() {
 }
 
 
-/* Video bittiğinde */
+/*
+    Video tamamen bittiğinde
+*/
 
 video.addEventListener(
     "ended",
@@ -1613,28 +1773,24 @@ video.addEventListener(
 );
 
 
-/* Video yüklenemezse / sorun olursa */
-
-video.addEventListener(
-    "error",
-    function() {
-
-        setTimeout(
-            finishIntro,
-            1500
-        );
-
-    }
-);
-
-
-/* Güvenlik zamanlayıcısı */
+/*
+    Video herhangi bir sebeple
+    çalışmazsa 9 saniye sonra
+    siteyi aç
+*/
 
 setTimeout(function() {
 
-    finishIntro();
+    if (
+        intro.style.display !== "none"
+    ) {
+
+        finishIntro();
+
+    }
 
 }, 9000);
+
 
 
 /* =========================================================
@@ -1661,6 +1817,7 @@ document.addEventListener(
 
         mouseX = e.clientX;
         mouseY = e.clientY;
+
 
         cursor.style.left =
             mouseX + "px";
@@ -1694,7 +1851,9 @@ function animateCursor() {
 
 }
 
+
 animateCursor();
+
 
 
 /* =========================================================
@@ -1710,9 +1869,6 @@ const watermark =
 document.addEventListener(
     "mousemove",
     function(e) {
-
-        if (!watermark) return;
-
 
         const x =
             (
@@ -1741,6 +1897,7 @@ document.addEventListener(
 
     }
 );
+
 
 
 /* =========================================================
@@ -1785,8 +1942,9 @@ document
     );
 
 
+
 /* =========================================================
-   CURSOR HOVER
+   HOVER CURSOR
 ========================================================= */
 
 document
@@ -1795,6 +1953,7 @@ document
     )
     .forEach(
         function(element) {
+
 
             element.addEventListener(
                 "mouseenter",
@@ -1823,28 +1982,9 @@ document
                 }
             );
 
+
         }
     );
-
-
-/* =========================================================
-   SAYFA YÜKLENDİĞİNDE
-========================================================= */
-
-window.addEventListener(
-    "load",
-    function() {
-
-        video.play().catch(
-            function() {
-                /* Tarayıcı otomatik oynatmayı engellerse
-                   video yine sessiz olduğu için normalde
-                   çalışacaktır. */
-            }
-        );
-
-    }
-);
 
 </script>
 
