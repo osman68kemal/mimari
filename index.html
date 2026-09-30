@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ARCHITUNA | Tunalı Mimarlık</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>ARCHITUNA.COM | Tunalı Mimarlık</title>
 
 <meta name="description"
-content="ARCHITUNA — Tunalı Mimarlık. Çağının ötesinde fikirler. Sarsılmaz temeller.">
+content="ARCHITUNA.COM — Tunalı Mimarlık. Çağının ötesinde fikirler. Sarsılmaz temeller.">
 
 <style>
 
@@ -17,36 +21,60 @@ content="ARCHITUNA — Tunalı Mimarlık. Çağının ötesinde fikirler. Sarsı
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap');
 
+
 :root {
+
     --siyah: #090909;
     --siyah-2: #111111;
+
     --beyaz: #eeeeea;
+
     --gri: #888884;
     --gri-acik: #bdbdb7;
-    --cizgi: rgba(255,255,255,.12);
+
+    --cizgi:
+        rgba(255,255,255,.12);
 }
 
+
 * {
+
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
 }
 
+
 html {
+
     scroll-behavior: smooth;
 }
 
+
 body {
-    background: var(--siyah);
-    color: var(--beyaz);
-    font-family: 'Inter', sans-serif;
+
+    background:
+        var(--siyah);
+
+    color:
+        var(--beyaz);
+
+    font-family:
+        'Inter',
+        sans-serif;
+
     overflow-x: hidden;
 }
 
+
 a {
+
     color: inherit;
+
     text-decoration: none;
 }
+
 
 
 /* =========================================================
@@ -54,53 +82,138 @@ a {
 ========================================================= */
 
 .cursor {
+
     position: fixed;
+
     width: 8px;
     height: 8px;
+
     background: white;
+
     border-radius: 50%;
+
     pointer-events: none;
+
     z-index: 99999;
-    transform: translate(-50%, -50%);
+
+    transform:
+        translate(-50%, -50%);
+
     mix-blend-mode: difference;
 }
 
+
 .cursor-ring {
+
     position: fixed;
+
     width: 38px;
     height: 38px;
-    border: 1px solid rgba(255,255,255,.55);
+
+    border:
+        1px solid
+        rgba(255,255,255,.55);
+
     border-radius: 50%;
+
     pointer-events: none;
+
     z-index: 99998;
-    transform: translate(-50%, -50%);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        width .35s ease,
+        height .35s ease;
 }
+
 
 
 /* =========================================================
-   AÇILIŞ EKRANI
+   GLOBAL ARCHITUNA LOGO
+   SAYFANIN TAMAMINDA HİSSEDİLEN LOGO
 ========================================================= */
 
-#intro {
-    position: fixed;
-    inset: 0;
-    background: #050505;
-    z-index: 90000;
-    overflow: hidden;
+.site-logo-bg {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    width:
+        min(75vw, 1100px);
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    opacity: .032;
+
+    filter:
+        grayscale(1)
+        contrast(1.15);
+
+    mix-blend-mode:
+        difference;
 
     transition:
-        opacity 1.6s cubic-bezier(.16,1,.3,1);
+        opacity 1s ease;
 }
 
 
-/* AÇILIŞ VİDEOSU */
+.site-logo-bg img {
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* =========================================================
+   AÇILIŞ
+========================================================= */
+
+#intro {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        #050505;
+
+    z-index: 90000;
+
+    overflow: hidden;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    transition:
+        opacity
+        1.6s
+        cubic-bezier(.16,1,.3,1);
+}
+
+
+
+/* VİDEO */
 
 #intro-video {
+
     position: absolute;
+
     inset: 0;
 
     width: 100%;
@@ -112,40 +225,57 @@ a {
 }
 
 
-/* VİDEO ÜZERİ KARARTMA */
+
+/* KARARTMA */
 
 .intro-overlay {
+
     position: absolute;
+
     inset: 0;
 
     background:
+
         radial-gradient(
             circle at center,
+
             transparent 0%,
+
             rgba(0,0,0,.15) 35%,
+
             rgba(0,0,0,.85) 100%
         );
 }
 
 
-/* MİMARİ GRID */
+
+/* GRID */
 
 .intro-grid {
+
     position: absolute;
+
     inset: 0;
 
     opacity: .12;
 
     background-image:
+
         linear-gradient(
             90deg,
+
             transparent 49.8%,
+
             rgba(255,255,255,.4) 50%,
+
             transparent 50.2%
         ),
+
         linear-gradient(
             transparent 49.8%,
+
             rgba(255,255,255,.4) 50%,
+
             transparent 50.2%
         );
 
@@ -153,47 +283,66 @@ a {
 }
 
 
-/* AÇILIŞ METNİ */
+
+/* INTRO METİN */
 
 .intro-content {
+
     position: relative;
+
     z-index: 5;
 
     text-align: center;
 }
 
+
 .intro-small {
+
     font-size: 10px;
+
     letter-spacing: 6px;
+
     color: #aaa;
 
     margin-bottom: 25px;
 }
 
-.intro-title {
-    font-family: 'Manrope', sans-serif;
 
-    font-size: clamp(
-        45px,
-        10vw,
-        150px
-    );
+.intro-title {
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        clamp(
+            45px,
+            10vw,
+            150px
+        );
 
     font-weight: 300;
 
     letter-spacing: .08em;
 
     animation:
+
         introZoom
+
         5s
+
         cubic-bezier(.16,1,.3,1)
+
         forwards;
 }
 
+
 .intro-sub {
+
     margin-top: 25px;
 
     font-size: 10px;
+
     letter-spacing: 5px;
 
     color: #888;
@@ -203,22 +352,34 @@ a {
 @keyframes introZoom {
 
     0% {
+
         opacity: 0;
-        transform: scale(.65);
-        letter-spacing: .25em;
+
+        transform:
+            scale(.65);
+
+        letter-spacing:
+            .25em;
     }
 
     20% {
+
         opacity: 1;
     }
 
     100% {
+
         opacity: 0;
-        transform: scale(1.7);
-        letter-spacing: .08em;
+
+        transform:
+            scale(1.7);
+
+        letter-spacing:
+            .08em;
     }
 
 }
+
 
 
 /* =========================================================
@@ -226,15 +387,24 @@ a {
 ========================================================= */
 
 main {
+
+    position: relative;
+
+    z-index: 1;
+
     opacity: 0;
 
     transition:
-        opacity 1.5s ease;
+        opacity
+        1.5s ease;
 }
 
+
 body.site-loaded main {
+
     opacity: 1;
 }
+
 
 
 /* =========================================================
@@ -242,6 +412,7 @@ body.site-loaded main {
 ========================================================= */
 
 .navbar {
+
     position: fixed;
 
     top: 0;
@@ -254,17 +425,23 @@ body.site-loaded main {
         5vw;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     z-index: 5000;
 
-    mix-blend-mode: difference;
+    mix-blend-mode:
+        difference;
 }
 
 
 .logo-text {
-    font-family: 'Manrope', sans-serif;
+
+    font-family:
+        'Manrope',
+        sans-serif;
 
     font-size: 14px;
 
@@ -275,6 +452,7 @@ body.site-loaded main {
 
 
 .logo-sub {
+
     margin-top: 5px;
 
     font-size: 8px;
@@ -286,6 +464,7 @@ body.site-loaded main {
 
 
 .nav-links {
+
     list-style: none;
 
     display: flex;
@@ -295,6 +474,7 @@ body.site-loaded main {
 
 
 .nav-links a {
+
     font-size: 10px;
 
     letter-spacing: 2px;
@@ -303,11 +483,13 @@ body.site-loaded main {
 }
 
 
+
 /* =========================================================
    HERO
 ========================================================= */
 
 .hero {
+
     position: relative;
 
     min-height: 100vh;
@@ -318,18 +500,21 @@ body.site-loaded main {
         80px;
 
     display: flex;
+
     align-items: center;
 
     overflow: hidden;
 }
 
 
-/* BÜYÜK LOGO */
+/* HERO LOGO */
 
 .hero-watermark {
+
     position: absolute;
 
-    width: min(75vw, 900px);
+    width:
+        min(75vw, 900px);
 
     left: 50%;
     top: 50%;
@@ -343,15 +528,19 @@ body.site-loaded main {
     pointer-events: none;
 
     transition:
-        transform 1s
+        transform
+        1s
         cubic-bezier(.16,1,.3,1);
 }
 
 
-/* GRID */
+
+/* HERO GRID */
 
 .hero-grid {
+
     position: absolute;
+
     inset: 0;
 
     opacity: .12;
@@ -360,30 +549,54 @@ body.site-loaded main {
 
         linear-gradient(
             to right,
-            transparent calc(20% - 1px),
-            rgba(255,255,255,.15) 20%,
-            transparent calc(20% + 1px)
+
+            transparent
+            calc(20% - 1px),
+
+            rgba(255,255,255,.15)
+            20%,
+
+            transparent
+            calc(20% + 1px)
         ),
 
         linear-gradient(
             to right,
-            transparent calc(40% - 1px),
-            rgba(255,255,255,.15) 40%,
-            transparent calc(40% + 1px)
+
+            transparent
+            calc(40% - 1px),
+
+            rgba(255,255,255,.15)
+            40%,
+
+            transparent
+            calc(40% + 1px)
         ),
 
         linear-gradient(
             to right,
-            transparent calc(60% - 1px),
-            rgba(255,255,255,.15) 60%,
-            transparent calc(60% + 1px)
+
+            transparent
+            calc(60% - 1px),
+
+            rgba(255,255,255,.15)
+            60%,
+
+            transparent
+            calc(60% + 1px)
         ),
 
         linear-gradient(
             to right,
-            transparent calc(80% - 1px),
-            rgba(255,255,255,.15) 80%,
-            transparent calc(80% + 1px)
+
+            transparent
+            calc(80% - 1px),
+
+            rgba(255,255,255,.15)
+            80%,
+
+            transparent
+            calc(80% + 1px)
         );
 
     pointer-events: none;
@@ -391,6 +604,7 @@ body.site-loaded main {
 
 
 .hero-content {
+
     position: relative;
 
     z-index: 10;
@@ -400,18 +614,23 @@ body.site-loaded main {
 
 
 .eyebrow {
+
     font-size: 10px;
 
     letter-spacing: 5px;
 
-    color: var(--gri);
+    color:
+        var(--gri);
 
     margin-bottom: 30px;
 }
 
 
 .hero-title {
-    font-family: 'Manrope', sans-serif;
+
+    font-family:
+        'Manrope',
+        sans-serif;
 
     font-size:
         clamp(
@@ -429,11 +648,13 @@ body.site-loaded main {
 
 
 .hero-title span {
+
     display: block;
 }
 
 
 .hero-title .outline {
+
     color: transparent;
 
     -webkit-text-stroke:
@@ -443,6 +664,7 @@ body.site-loaded main {
 
 
 .hero-description {
+
     max-width: 520px;
 
     margin-top: 55px;
@@ -456,6 +678,7 @@ body.site-loaded main {
 
 
 .hero-bottom {
+
     position: absolute;
 
     bottom: 35px;
@@ -475,12 +698,16 @@ body.site-loaded main {
 }
 
 
+
 /* =========================================================
    GENEL SECTION
 ========================================================= */
 
 section {
+
     position: relative;
+
+    z-index: 1;
 
     padding:
         160px
@@ -489,6 +716,7 @@ section {
 
 
 .section-number {
+
     font-size: 9px;
 
     letter-spacing: 4px;
@@ -500,7 +728,10 @@ section {
 
 
 .section-title {
-    font-family: 'Manrope', sans-serif;
+
+    font-family:
+        'Manrope',
+        sans-serif;
 
     font-size:
         clamp(
@@ -518,10 +749,12 @@ section {
 
 
 .section-title em {
+
     font-style: normal;
 
     color: #666;
 }
+
 
 
 /* =========================================================
@@ -529,22 +762,24 @@ section {
 ========================================================= */
 
 .manifesto {
+
     min-height: 80vh;
 
     display: flex;
 
     align-items: center;
 
-    background: #101010;
+    background:
+        #101010;
 }
 
 
 .manifesto-grid {
+
     display: grid;
 
     grid-template-columns:
-        1fr
-        1fr;
+        1fr 1fr;
 
     gap: 10vw;
 
@@ -553,6 +788,7 @@ section {
 
 
 .manifesto-text {
+
     font-size:
         clamp(
             20px,
@@ -562,15 +798,18 @@ section {
 
     line-height: 1.5;
 
-    color: #c8c8c3;
+    color:
+        #c8c8c3;
 }
 
 
 .manifesto-text strong {
+
     color: white;
 
     font-weight: 400;
 }
+
 
 
 /* =========================================================
@@ -578,43 +817,159 @@ section {
 ========================================================= */
 
 .projects {
-    background: #090909;
+
+    background:
+        #090909;
+
+    overflow: hidden;
 }
 
 
-.project {
+.projects-heading {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-end;
+
+    gap: 60px;
+}
+
+
+.projects-intro {
+
+    max-width: 250px;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+
+    letter-spacing: 3px;
+
+    color: #666;
+
+    padding-bottom: 8px;
+}
+
+
+
+/* =========================================================
+   PROJE ARŞİVİ
+========================================================= */
+
+.project-archive {
+
+    margin-top: 110px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(12, 1fr);
+
+    gap:
+        110px 24px;
+
+    align-items: start;
+}
+
+
+
+/* =========================================================
+   PROJE KARTLARI
+========================================================= */
+
+.project-card {
+
     position: relative;
 
-    min-height: 75vh;
+    grid-column:
+        span 4;
 
-    margin-top: 100px;
+    min-height:
+        500px;
 
     overflow: hidden;
 
     border-top:
         1px solid
-        var(--cizgi);
+        rgba(255,255,255,.18);
 
-    padding-top: 25px;
+    padding-top: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform
+        .7s
+        cubic-bezier(.16,1,.3,1);
 }
 
 
-.project-image {
-    position: absolute;
+.project-card.project-wide {
 
-    inset:
-        60px
-        0
-        0
-        0;
+    grid-column:
+        span 7;
+}
+
+
+.project-card.project-tall {
+
+    grid-column:
+        span 5;
+
+    min-height:
+        650px;
+}
+
+
+.project-card:hover {
+
+    transform:
+        translateY(-12px);
+}
+
+
+
+/* =========================================================
+   PROJE GÖRSELLERİ
+========================================================= */
+
+.project-card
+.project-image {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 430px;
 
     overflow: hidden;
 
-    background: #151515;
+    background:
+        #151515;
 }
 
 
+.project-card.project-wide
+.project-image {
+
+    height: 520px;
+}
+
+
+.project-card.project-tall
+.project-image {
+
+    height: 610px;
+}
+
+
+.project-card
 .project-image::after {
+
     content: "";
 
     position: absolute;
@@ -622,78 +977,119 @@ section {
     inset: 0;
 
     background:
+
         linear-gradient(
             180deg,
+
             transparent 45%,
-            rgba(0,0,0,.8)
+
+            rgba(0,0,0,.82)
         );
+
+    z-index: 2;
+
+    pointer-events: none;
 }
 
 
+.project-card
 .project-image img {
+
     width: 100%;
     height: 100%;
 
     object-fit: cover;
 
-    filter: grayscale(20%);
+    filter:
+        grayscale(30%)
+        contrast(1.05);
 
-    transform: scale(1.03);
+    transform:
+        scale(1.04);
 
     transition:
-        transform 1.2s
+
+        transform
+        1.4s
         cubic-bezier(.16,1,.3,1),
 
-        filter 1s ease;
+        filter
+        1s ease;
 }
 
 
-.project:hover img {
-    transform: scale(1.09);
+.project-card:hover
+.project-image img {
 
-    filter: grayscale(0%);
+    transform:
+        scale(1.11);
+
+    filter:
+        grayscale(0%)
+        contrast(1.08);
 }
 
 
+
+/* =========================================================
+   PROJE BİLGİLERİ
+========================================================= */
+
+.project-card
 .project-info {
+
     position: absolute;
 
-    z-index: 5;
+    left: 30px;
+    right: 30px;
 
-    left: 45px;
-    bottom: 45px;
+    bottom: 30px;
+
+    z-index: 5;
 }
 
 
+.project-card
 .project-number {
-    font-size: 9px;
+
+    font-size: 8px;
 
     letter-spacing: 4px;
 
-    color: #aaa;
+    color: #bbb;
 
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 
+.project-card
 .project-name {
-    font-family: 'Manrope';
+
+    font-family:
+        'Manrope',
+        sans-serif;
 
     font-size:
         clamp(
-            35px,
-            5vw,
-            75px
+            28px,
+            4vw,
+            60px
         );
 
+    line-height: .95;
+
     font-weight: 300;
+
+    letter-spacing: -.04em;
 }
 
 
+.project-card
 .project-location {
+
     margin-top: 12px;
 
-    font-size: 10px;
+    font-size: 8px;
 
     letter-spacing: 3px;
 
@@ -701,23 +1097,65 @@ section {
 }
 
 
+
+/* =========================================================
+   MİMARİ ÇİZGİ
+========================================================= */
+
+.project-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 35px;
+    height: 1px;
+
+    background: white;
+
+    z-index: 10;
+
+    transition:
+
+        width
+        .7s
+        cubic-bezier(.16,1,.3,1);
+}
+
+
+.project-card:hover::before {
+
+    width: 100%;
+}
+
+
+
 /* =========================================================
    HİZMETLER
 ========================================================= */
 
 .services {
-    background: #e8e7e2;
 
-    color: #111;
+    background:
+        #e8e7e2;
+
+    color:
+        #111;
 }
 
 
 .services .section-number {
-    color: #777;
+
+    color:
+        #777;
 }
 
 
 .services-list {
+
     margin-top: 100px;
 
     border-top:
@@ -727,7 +1165,9 @@ section {
 
 
 .service {
-    padding: 30px 0;
+
+    padding:
+        30px 0;
 
     border-bottom:
         1px solid
@@ -735,16 +1175,20 @@ section {
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    align-items: center;
+    align-items:
+        center;
 
     transition:
-        padding .4s ease;
+        padding
+        .4s ease;
 }
 
 
 .service:hover {
+
     padding-left: 25px;
 
     padding-right: 25px;
@@ -752,7 +1196,9 @@ section {
 
 
 .service-name {
-    font-family: 'Manrope';
+
+    font-family:
+        'Manrope';
 
     font-size:
         clamp(
@@ -766,6 +1212,7 @@ section {
 
 
 .service-number {
+
     font-size: 10px;
 
     letter-spacing: 3px;
@@ -774,12 +1221,15 @@ section {
 }
 
 
+
 /* =========================================================
    MARKA
 ========================================================= */
 
 .brand-section {
-    min-height: 90vh;
+
+    min-height:
+        90vh;
 
     display: flex;
 
@@ -794,22 +1244,27 @@ section {
 
 
 .brand-section::before {
-    content: "ARCHITUNA";
+
+    content:
+        "ARCHITUNA";
 
     position: absolute;
 
-    font-size: 20vw;
+    font-size:
+        20vw;
 
     font-weight: 700;
 
     color:
         rgba(255,255,255,.025);
 
-    white-space: nowrap;
+    white-space:
+        nowrap;
 }
 
 
 .brand-main {
+
     position: relative;
 
     z-index: 2;
@@ -817,7 +1272,9 @@ section {
 
 
 .brand-main h2 {
-    font-family: 'Manrope';
+
+    font-family:
+        'Manrope';
 
     font-size:
         clamp(
@@ -828,11 +1285,13 @@ section {
 
     font-weight: 300;
 
-    letter-spacing: -.07em;
+    letter-spacing:
+        -.07em;
 }
 
 
 .brand-switch {
+
     margin-top: 25px;
 
     height: 25px;
@@ -842,6 +1301,7 @@ section {
 
 
 .brand-switch span {
+
     display: block;
 
     font-size: 11px;
@@ -851,8 +1311,11 @@ section {
     color: #777;
 
     animation:
+
         brandChange
+
         5s
+
         infinite;
 }
 
@@ -861,19 +1324,26 @@ section {
 
     0%,
     42% {
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 
     50%,
     92% {
-        transform: translateY(-25px);
+
+        transform:
+            translateY(-25px);
     }
 
     100% {
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 
 }
+
 
 
 /* =========================================================
@@ -881,14 +1351,19 @@ section {
 ========================================================= */
 
 .contact {
-    min-height: 80vh;
 
-    background: #151515;
+    min-height:
+        80vh;
+
+    background:
+        #151515;
 }
 
 
 .contact-title {
-    font-family: 'Manrope';
+
+    font-family:
+        'Manrope';
 
     font-size:
         clamp(
@@ -901,48 +1376,65 @@ section {
 
     line-height: .9;
 
-    letter-spacing: -.06em;
+    letter-spacing:
+        -.06em;
 }
 
 
 .contact-title span {
-    color: #666;
+
+    color:
+        #666;
 }
 
 
 .contact-bottom {
-    margin-top: 100px;
+
+    margin-top:
+        100px;
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    flex-wrap: wrap;
+    flex-wrap:
+        wrap;
 
     gap: 40px;
 }
 
 
 .contact-item {
-    font-size: 11px;
 
-    letter-spacing: 2px;
+    font-size:
+        11px;
 
-    color: #aaa;
+    letter-spacing:
+        2px;
+
+    color:
+        #aaa;
 }
 
 
 .contact-item strong {
+
     display: block;
 
-    color: white;
+    color:
+        white;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    margin-bottom: 10px;
+    margin-bottom:
+        10px;
 
-    font-weight: 400;
+    font-weight:
+        400;
 }
+
 
 
 /* =========================================================
@@ -950,6 +1442,11 @@ section {
 ========================================================= */
 
 footer {
+
+    position: relative;
+
+    z-index: 2;
+
     padding:
         35px
         8vw;
@@ -960,28 +1457,36 @@ footer {
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    font-size: 9px;
+    font-size:
+        9px;
 
-    letter-spacing: 3px;
+    letter-spacing:
+        3px;
 
-    color: #666;
+    color:
+        #666;
 }
 
 
+
 /* =========================================================
-   SCROLL ANİMASYONLARI
+   SCROLL REVEAL
 ========================================================= */
 
 .reveal {
+
     opacity: 0;
 
     transform:
         translateY(60px);
 
     transition:
-        opacity 1s ease,
+
+        opacity
+        1s ease,
 
         transform
         1s
@@ -990,11 +1495,13 @@ footer {
 
 
 .reveal.visible {
+
     opacity: 1;
 
     transform:
         translateY(0);
 }
+
 
 
 /* =========================================================
@@ -1003,65 +1510,168 @@ footer {
 
 @media (max-width: 700px) {
 
+
     .navbar {
-        padding: 20px;
+
+        padding:
+            20px;
     }
+
 
     .nav-links {
-        display: none;
+
+        display:
+            none;
     }
 
+
     .hero {
+
         padding:
             120px
             25px
             80px;
     }
 
+
     .hero-bottom {
-        left: 25px;
-        right: 25px;
+
+        left:
+            25px;
+
+        right:
+            25px;
     }
 
+
     section {
+
         padding:
             100px
             25px;
     }
 
+
     .manifesto-grid {
-        grid-template-columns: 1fr;
 
-        gap: 50px;
+        grid-template-columns:
+            1fr;
+
+        gap:
+            50px;
     }
 
-    .project {
-        min-height: 65vh;
+
+    /* PROJE BAŞLIK */
+
+    .projects-heading {
+
+        display:
+            block;
     }
 
+
+    .projects-intro {
+
+        margin-top:
+            40px;
+    }
+
+
+    /* PROJE GRID */
+
+    .project-archive {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            70px;
+
+        margin-top:
+            70px;
+    }
+
+
+    .project-card,
+    .project-card.project-wide,
+    .project-card.project-tall {
+
+        grid-column:
+            span 1;
+
+        min-height:
+            520px;
+    }
+
+
+    .project-card
+    .project-image,
+
+    .project-card.project-wide
+    .project-image,
+
+    .project-card.project-tall
+    .project-image {
+
+        height:
+            520px;
+    }
+
+
+    .project-card
     .project-info {
-        left: 25px;
-        bottom: 25px;
+
+        left:
+            22px;
+
+        right:
+            22px;
+
+        bottom:
+            22px;
     }
+
 
     .service {
-        gap: 20px;
+
+        gap:
+            20px;
     }
+
 
     footer {
-        padding: 25px;
 
-        flex-direction: column;
+        padding:
+            25px;
 
-        gap: 15px;
+        flex-direction:
+            column;
+
+        gap:
+            15px;
     }
+
 
     .cursor,
     .cursor-ring {
-        display: none;
+
+        display:
+            none;
+    }
+
+
+    .site-logo-bg {
+
+        width:
+            105vw;
+
+        opacity:
+            .025;
     }
 
 }
+
 
 
 /* =========================================================
@@ -1074,19 +1684,36 @@ footer {
     *::before,
     *::after {
 
-        animation-duration: .01ms !important;
+        animation-duration:
+            .01ms !important;
 
-        transition-duration: .01ms !important;
-
+        transition-duration:
+            .01ms !important;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
+
+
+
+<!-- =====================================================
+     GLOBAL LOGO
+===================================================== -->
+
+<div class="site-logo-bg">
+
+    <img
+        src="logo.png"
+        alt="ARCHITUNA">
+
+</div>
+
 
 
 <!-- =====================================================
@@ -1094,22 +1721,21 @@ footer {
 ===================================================== -->
 
 <div class="cursor"></div>
+
 <div class="cursor-ring"></div>
 
 
 
 <!-- =====================================================
-     AÇILIŞ EKRANI
-     
-     DOSYA:
-     gırıs.mp4
+     AÇILIŞ
 ===================================================== -->
 
 <div id="intro">
 
+
     <video
         id="intro-video"
-        src="gırıs.mp4"
+        src="giris.mp4"
         muted
         autoplay
         playsinline
@@ -1124,19 +1750,27 @@ footer {
 
     <div class="intro-content">
 
+
         <div class="intro-small">
+
             TUNALI MİMARLIK
+
         </div>
 
 
         <div class="intro-title">
+
             ARCHITUNA
+
         </div>
 
 
         <div class="intro-sub">
+
             FİKİR → MEKÂN
+
         </div>
+
 
     </div>
 
@@ -1150,53 +1784,84 @@ footer {
 
 <nav class="navbar">
 
+
     <div>
 
+
         <div class="logo-text">
-            ARCHITUNA
+
+            ARCHITUNA.COM
+
         </div>
 
+
         <div class="logo-sub">
+
             TUNALI MİMARLIK
+
         </div>
+
 
     </div>
 
 
+
     <ul class="nav-links">
 
+
         <li>
+
             <a href="#vizyon">
+
                 Vizyon
+
             </a>
+
         </li>
 
+
         <li>
+
             <a href="#projeler">
+
                 Projeler
+
             </a>
+
         </li>
 
+
         <li>
+
             <a href="#hizmetler">
+
                 Hizmetler
+
             </a>
+
         </li>
 
+
         <li>
+
             <a href="#iletisim">
+
                 İletişim
+
             </a>
+
         </li>
+
 
     </ul>
+
 
 </nav>
 
 
 
 <!-- =====================================================
-     ANA SAYFA
+     ANA
 ===================================================== -->
 
 <main>
@@ -1215,13 +1880,6 @@ footer {
     <div class="hero-grid"></div>
 
 
-    <!--
-        ARKA PLAN LOGOSU
-
-        DOSYA:
-        logo.png
-    -->
-
     <img
         src="logo.png"
         class="hero-watermark"
@@ -1233,23 +1891,35 @@ footer {
 
 
         <div class="eyebrow">
+
             ARCHITUNA / TUNALI MİMARLIK
+
         </div>
 
 
         <h1 class="hero-title">
 
+
             <span>
+
                 ÇAĞININ
+
             </span>
+
 
             <span class="outline">
+
                 ÖTESİNDE
+
             </span>
 
+
             <span>
+
                 FİKİRLER.
+
             </span>
+
 
         </h1>
 
@@ -1270,13 +1940,20 @@ footer {
 
     <div class="hero-bottom">
 
-        <span>
-            01 — VİZYON
-        </span>
 
         <span>
-            SCROLL ↓
+
+            01 — VİZYON
+
         </span>
+
+
+        <span>
+
+            SCROLL ↓
+
+        </span>
+
 
     </div>
 
@@ -1297,49 +1974,69 @@ footer {
 
         <div>
 
+
             <div class="section-number">
+
                 02 — MANİFESTO
+
             </div>
 
 
-            <h2 class="section-title reveal">
+            <h2
+                class="section-title reveal">
 
                 SADECE YAPI
                 <em>TASARLAMIYORUZ.</em>
 
             </h2>
 
+
         </div>
 
 
-        <div class="manifesto-text reveal">
+        <div
+            class="manifesto-text reveal">
+
 
             <p>
 
+
                 <strong>
+
                     Bir fikir inşa ediyoruz.
+
                 </strong>
 
+
                 <br><br>
+
 
                 Her proje bir çizgiyle başlar.
                 Her çizgi bir fikre dönüşür.
                 Her fikir ise yaşanacak bir mekâna.
 
+
                 <br><br>
+
 
                 Bizim için mimarlık;
                 estetik, işlev ve teknolojinin
                 aynı noktada buluştuğu yerdir.
 
+
                 <br><br>
 
+
                 <strong>
+
                     Sarsılmaz temeller üzerine,
                     çağının ötesinde fikirler.
+
                 </strong>
 
+
             </p>
+
 
         </div>
 
@@ -1361,54 +2058,33 @@ footer {
 
 
     <div class="section-number">
-        03 — SEÇİLİ PROJELER
+
+        03 — ARCHITUNA PROJECT ARCHIVE
+
     </div>
 
 
-    <h2 class="section-title reveal">
-
-        FİKİRLERİN
-        <em>MEKÂNA</em>
-        DÖNÜŞTÜĞÜ YER.
-
-    </h2>
+    <div class="projects-heading">
 
 
+        <h2
+            class="section-title reveal">
 
-    <!-- =================================================
-         PROJE 01
-         
-         DOSYA:
-         villa.png
-    ================================================== -->
+            FİKİRLERİN
+            <em>MEKÂNA</em>
+            DÖNÜŞTÜĞÜ YER.
 
-    <div class="project reveal">
-
-
-        <div class="project-image">
-
-            <img
-                src="villa.png"
-                alt="Villa Projesi">
-
-        </div>
+        </h2>
 
 
-        <div class="project-info">
+        <div
+            class="projects-intro reveal">
 
-            <div class="project-number">
-                01 / KONUT
-            </div>
+            24 PROJE.<br>
 
+            FARKLI MEKÂNLAR.<br>
 
-            <div class="project-name">
-                VİLLA 01
-            </div>
-
-
-            <div class="project-location">
-                İSTANBUL — 2026
-            </div>
+            TEK BİR TASARIM DİLİ.
 
         </div>
 
@@ -1417,88 +2093,994 @@ footer {
 
 
 
-    <!-- =================================================
-         PROJE 02
-         
-         DOSYA:
-         üniversite.png
-    ================================================== -->
-
-    <div class="project reveal">
+    <div class="project-archive">
 
 
-        <div class="project-image">
 
-            <img
-                src="üniversite.png"
-                alt="Mimari Proje">
+        <!-- 01 -->
+
+        <div class="project-card project-wide reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="1.png"
+                    alt="Beyaz Cephe Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    01 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    WHITE FRAME
+
+                </div>
+
+
+                <div class="project-location">
+
+                    BEYAZ CEPHE APARTMAN
+
+                </div>
+
+            </div>
 
         </div>
 
 
-        <div class="project-info">
 
-            <div class="project-number">
-                02 / MİMARİ
+        <!-- 02 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="2.png"
+                    alt="Beyaz Cephe Apartman">
+
             </div>
 
 
-            <div class="project-name">
-                PROJECT 02
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    02 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    WHITE FRAME II
+
+                </div>
+
+
+                <div class="project-location">
+
+                    BEYAZ CEPHE APARTMAN
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 03 -->
+
+        <div class="project-card project-tall reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="3.png"
+                    alt="Gençlik Merkezi">
+
             </div>
 
 
-            <div class="project-location">
-                İSTANBUL — 2026
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    03 / KAMUSAL
+
+                </div>
+
+
+                <div class="project-name">
+
+                    YOUTH
+
+                </div>
+
+
+                <div class="project-location">
+
+                    GENÇLİK MERKEZİ
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 04 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="4.png"
+                    alt="Gençlik Merkezi">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    04 / KAMUSAL
+
+                </div>
+
+
+                <div class="project-name">
+
+                    YOUTH II
+
+                </div>
+
+
+                <div class="project-location">
+
+                    GENÇLİK MERKEZİ
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 05 -->
+
+        <div class="project-card project-wide reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="5.png"
+                    alt="Kafe">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    05 / TİCARİ
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAFÉ 05
+
+                </div>
+
+
+                <div class="project-location">
+
+                    KAFE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 06 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="6.png"
+                    alt="Kafe">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    06 / TİCARİ
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAFÉ 06
+
+                </div>
+
+
+                <div class="project-location">
+
+                    KAFE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 07 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="7.png"
+                    alt="Kafe">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    07 / TİCARİ
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAFÉ 07
+
+                </div>
+
+
+                <div class="project-location">
+
+                    KAFE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 08 -->
+
+        <div class="project-card project-tall reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="8.png"
+                    alt="Kafe">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    08 / TİCARİ
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAFÉ 08
+
+                </div>
+
+
+                <div class="project-location">
+
+                    KAFE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 09 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="9.png"
+                    alt="Kafe">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    09 / TİCARİ
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAFÉ 09
+
+                </div>
+
+
+                <div class="project-location">
+
+                    KAFE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 10 -->
+
+        <div class="project-card project-wide reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="10.png"
+                    alt="Kütüphane">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    10 / KAMUSAL
+
+                </div>
+
+
+                <div class="project-name">
+
+                    LIBRARY
+
+                </div>
+
+
+                <div class="project-location">
+
+                    KÜTÜPHANE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 11 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="11.png"
+                    alt="Kütüphane">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    11 / KAMUSAL
+
+                </div>
+
+
+                <div class="project-name">
+
+                    LIBRARY II
+
+                </div>
+
+
+                <div class="project-location">
+
+                    KÜTÜPHANE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 12 -->
+
+        <div class="project-card project-tall reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="12.png"
+                    alt="Kahverengi Cephe Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    12 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    BROWN LINE
+
+                </div>
+
+
+                <div class="project-location">
+
+                    UZUN APARTMAN
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 13 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="13.png"
+                    alt="Kahverengi Cephe Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    13 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    BROWN LINE II
+
+                </div>
+
+
+                <div class="project-location">
+
+                    UZUN APARTMAN
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 14 -->
+
+        <div class="project-card project-wide reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="14.png"
+                    alt="Kahverengi Cephe Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    14 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    BROWN LINE III
+
+                </div>
+
+
+                <div class="project-location">
+
+                    UZUN APARTMAN
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 15 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="15.png"
+                    alt="Üniversite">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    15 / EĞİTİM
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAMPUS
+
+                </div>
+
+
+                <div class="project-location">
+
+                    ÜNİVERSİTE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 16 -->
+
+        <div class="project-card project-tall reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="16.png"
+                    alt="Üniversite">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    16 / EĞİTİM
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAMPUS II
+
+                </div>
+
+
+                <div class="project-location">
+
+                    ÜNİVERSİTE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 17 -->
+
+        <div class="project-card project-wide reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="17.png"
+                    alt="Üniversite Vaziyet">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    17 / MASTERPLAN
+
+                </div>
+
+
+                <div class="project-name">
+
+                    CAMPUS PLAN
+
+                </div>
+
+
+                <div class="project-location">
+
+                    ÜNİVERSİTE VAZİYET
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 18 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="18.png"
+                    alt="Villa">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    18 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    VILLA 01
+
+                </div>
+
+
+                <div class="project-location">
+
+                    VİLLA
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 19 -->
+
+        <div class="project-card project-tall reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="19.png"
+                    alt="Villa">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    19 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    VILLA 02
+
+                </div>
+
+
+                <div class="project-location">
+
+                    VİLLA
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 20 -->
+
+        <div class="project-card project-wide reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="20.png"
+                    alt="Villa">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    20 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    VILLA 03
+
+                </div>
+
+
+                <div class="project-location">
+
+                    VİLLA
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 21 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="21.png"
+                    alt="Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    21 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    RESIDENTIAL
+
+                </div>
+
+
+                <div class="project-location">
+
+                    APARTMAN PROJESİ
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 22 -->
+
+        <div class="project-card project-tall reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="22.png"
+                    alt="Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    22 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    RESIDENTIAL II
+
+                </div>
+
+
+                <div class="project-location">
+
+                    APARTMAN PROJESİ
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 23 -->
+
+        <div class="project-card reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="23.png"
+                    alt="Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    23 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    RESIDENTIAL III
+
+                </div>
+
+
+                <div class="project-location">
+
+                    APARTMAN PROJESİ
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 24 -->
+
+        <div class="project-card project-wide reveal">
+
+            <div class="project-image">
+
+                <img
+                    src="24.png"
+                    alt="Apartman">
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+
+                    24 / KONUT
+
+                </div>
+
+
+                <div class="project-name">
+
+                    RESIDENTIAL IV
+
+                </div>
+
+
+                <div class="project-location">
+
+                    APARTMAN PROJESİ
+
+                </div>
+
             </div>
 
         </div>
 
 
     </div>
-
-
-
-    <!-- =================================================
-         PROJE 03
-         
-         DOSYA:
-         kutuphane.png
-    ================================================== -->
-
-    <div class="project reveal">
-
-
-        <div class="project-image">
-
-            <img
-                src="kutuphane.png"
-                alt="3D Görselleştirme">
-
-        </div>
-
-
-        <div class="project-info">
-
-            <div class="project-number">
-                03 / 3D GÖRSELLEŞTİRME
-            </div>
-
-
-            <div class="project-name">
-                PROJECT 03
-            </div>
-
-
-            <div class="project-location">
-                ARCHITUNA STUDIO
-            </div>
-
-        </div>
-
-
-    </div>
-
 
 </section>
 
@@ -1514,11 +3096,14 @@ footer {
 
 
     <div class="section-number">
+
         04 — NE YAPIYORUZ?
+
     </div>
 
 
-    <h2 class="section-title reveal">
+    <h2
+        class="section-title reveal">
 
         TASARIMDAN
         <em>GERÇEKLİĞE.</em>
@@ -1532,11 +3117,15 @@ footer {
         <div class="service reveal">
 
             <div class="service-name">
+
                 Mimari Tasarım
+
             </div>
 
             <div class="service-number">
+
                 01
+
             </div>
 
         </div>
@@ -1545,11 +3134,15 @@ footer {
         <div class="service reveal">
 
             <div class="service-name">
+
                 Mimari Proje
+
             </div>
 
             <div class="service-number">
+
                 02
+
             </div>
 
         </div>
@@ -1558,11 +3151,15 @@ footer {
         <div class="service reveal">
 
             <div class="service-name">
+
                 3D Modelleme
+
             </div>
 
             <div class="service-number">
+
                 03
+
             </div>
 
         </div>
@@ -1571,11 +3168,15 @@ footer {
         <div class="service reveal">
 
             <div class="service-name">
+
                 Fotogerçekçi Render
+
             </div>
 
             <div class="service-number">
+
                 04
+
             </div>
 
         </div>
@@ -1584,11 +3185,15 @@ footer {
         <div class="service reveal">
 
             <div class="service-name">
+
                 Görsel Anlatım
+
             </div>
 
             <div class="service-number">
+
                 05
+
             </div>
 
         </div>
@@ -1608,23 +3213,33 @@ footer {
 <section class="brand-section">
 
 
-    <div class="brand-main reveal">
+    <div
+        class="brand-main reveal">
 
 
         <h2>
+
             ARCHITUNA
+
         </h2>
 
 
         <div class="brand-switch">
 
-            <span>
-                TUNALI MİMARLIK
-            </span>
 
             <span>
-                ARCHITECTURE STUDIO
+
+                TUNALI MİMARLIK
+
             </span>
+
+
+            <span>
+
+                ARCHITECTURE STUDIO
+
+            </span>
+
 
         </div>
 
@@ -1646,18 +3261,30 @@ footer {
 
 
     <div class="section-number">
+
         05 — İLETİŞİM
+
     </div>
 
 
-    <h2 class="contact-title reveal">
+    <h2
+        class="contact-title reveal">
+
 
         BİR FİKRİNİZ
-        <span>VARSA,</span>
+
+        <span>
+
+            VARSA,
+
+        </span>
+
 
         <br>
 
+
         KONUŞALIM.
+
 
     </h2>
 
@@ -1667,33 +3294,48 @@ footer {
 
         <div class="contact-item">
 
+
             <strong>
+
                 E-POSTA
+
             </strong>
+
 
             info@archituna.com
 
+
         </div>
 
 
         <div class="contact-item">
 
+
             <strong>
+
                 STÜDYO
+
             </strong>
+
 
             TUNALI MİMARLIK
 
+
         </div>
 
 
         <div class="contact-item">
 
+
             <strong>
-                SOSYAL
+
+                WEB
+
             </strong>
 
-            Instagram / Behance
+
+            ARCHITUNA.COM
+
 
         </div>
 
@@ -1711,21 +3353,30 @@ footer {
 
 <footer>
 
+
     <span>
-        © 2026 ARCHITUNA
+
+        © 2026 ARCHITUNA.COM
+
     </span>
 
 
     <span>
+
         TUNALI MİMARLIK
+
     </span>
 
 
     <span>
+
         SARSILMAZ TEMELLER.
+
     </span>
+
 
 </footer>
+
 
 
 </main>
@@ -1735,37 +3386,51 @@ footer {
 <script>
 
 /* =========================================================
-   AÇILIŞ VİDEOSU
+   INTRO VİDEO
 ========================================================= */
 
 const intro =
     document.getElementById("intro");
 
+
 const video =
     document.getElementById("intro-video");
 
 
+let introFinished =
+    false;
+
+
 function finishIntro() {
 
-    intro.style.opacity = "0";
+    if (introFinished)
+        return;
 
 
-    setTimeout(function() {
+    introFinished = true;
 
-        intro.style.display = "none";
 
-        document.body.classList.add(
-            "site-loaded"
-        );
+    intro.style.opacity =
+        "0";
 
-    }, 1600);
+
+    setTimeout(
+        function() {
+
+            intro.style.display =
+                "none";
+
+
+            document.body.classList.add(
+                "site-loaded"
+            );
+
+        },
+        1600
+    );
 
 }
 
-
-/*
-    Video tamamen bittiğinde
-*/
 
 video.addEventListener(
     "ended",
@@ -1773,23 +3438,23 @@ video.addEventListener(
 );
 
 
-/*
-    Video herhangi bir sebeple
-    çalışmazsa 9 saniye sonra
-    siteyi aç
-*/
+/* VİDEO AÇILMAZSA */
 
-setTimeout(function() {
+setTimeout(
+    function() {
 
-    if (
-        intro.style.display !== "none"
-    ) {
+        if (
+            intro.style.display !==
+            "none"
+        ) {
 
-        finishIntro();
+            finishIntro();
 
-    }
+        }
 
-}, 9000);
+    },
+    9000
+);
 
 
 
@@ -1798,10 +3463,15 @@ setTimeout(function() {
 ========================================================= */
 
 const cursor =
-    document.querySelector(".cursor");
+    document.querySelector(
+        ".cursor"
+    );
+
 
 const ring =
-    document.querySelector(".cursor-ring");
+    document.querySelector(
+        ".cursor-ring"
+    );
 
 
 let mouseX = 0;
@@ -1815,12 +3485,16 @@ document.addEventListener(
     "mousemove",
     function(e) {
 
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+        mouseX =
+            e.clientX;
+
+        mouseY =
+            e.clientY;
 
 
         cursor.style.left =
             mouseX + "px";
+
 
         cursor.style.top =
             mouseY + "px";
@@ -1832,14 +3506,22 @@ document.addEventListener(
 function animateCursor() {
 
     ringX +=
-        (mouseX - ringX) * .12;
+        (
+            mouseX -
+            ringX
+        ) * .12;
+
 
     ringY +=
-        (mouseY - ringY) * .12;
+        (
+            mouseY -
+            ringY
+        ) * .12;
 
 
     ring.style.left =
         ringX + "px";
+
 
     ring.style.top =
         ringY + "px";
@@ -1857,7 +3539,7 @@ animateCursor();
 
 
 /* =========================================================
-   LOGO PARALLAX
+   HERO LOGO PARALLAX
 ========================================================= */
 
 const watermark =
@@ -1887,6 +3569,7 @@ document.addEventListener(
 
 
         watermark.style.transform =
+
             `
             translate(
                 calc(-50% + ${x}px),
@@ -1901,44 +3584,112 @@ document.addEventListener(
 
 
 /* =========================================================
-   SCROLL ANİMASYONLARI
+   GLOBAL LOGO SCROLL
+========================================================= */
+
+const globalLogo =
+    document.querySelector(
+        ".site-logo-bg"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    function() {
+
+        const scrollY =
+            window.scrollY;
+
+
+        const movement =
+            scrollY * .035;
+
+
+        const scale =
+            1 +
+            Math.min(
+                scrollY / 18000,
+                .12
+            );
+
+
+        globalLogo.style.transform =
+
+            `
+            translate(
+                -50%,
+                calc(
+                    -50% +
+                    ${movement}px
+                )
+            )
+            scale(${scale})
+            `;
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+
+/* =========================================================
+   SCROLL REVEAL
 ========================================================= */
 
 const observer =
+
     new IntersectionObserver(
+
         function(entries) {
 
             entries.forEach(
+
                 function(entry) {
+
 
                     if (
                         entry.isIntersecting
                     ) {
 
+
                         entry.target
                             .classList
-                            .add("visible");
+                            .add(
+                                "visible"
+                            );
+
 
                     }
 
                 }
+
             );
 
         },
+
         {
             threshold: .12
         }
+
     );
 
 
 document
-    .querySelectorAll(".reveal")
+    .querySelectorAll(
+        ".reveal"
+    )
     .forEach(
+
         function(element) {
 
-            observer.observe(element);
+            observer.observe(
+                element
+            );
 
         }
+
     );
 
 
@@ -1949,14 +3700,17 @@ document
 
 document
     .querySelectorAll(
-        "a, .project, .service"
+        "a, .project-card, .service"
     )
     .forEach(
+
         function(element) {
 
 
             element.addEventListener(
+
                 "mouseenter",
+
                 function() {
 
                     ring.style.width =
@@ -1966,11 +3720,14 @@ document
                         "65px";
 
                 }
+
             );
 
 
             element.addEventListener(
+
                 "mouseleave",
+
                 function() {
 
                     ring.style.width =
@@ -1980,13 +3737,17 @@ document
                         "38px";
 
                 }
+
             );
 
 
         }
+
     );
 
 </script>
 
+
 </body>
+
 </html>
