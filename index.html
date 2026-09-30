@@ -40,7 +40,7 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             font-weight: 300;
-            animation: fadeOut 3s forwards; /* 3 saniye sonra yavaşça kaybolur */
+            animation: fadeOut 3s forwards;
             pointer-events: none;
         }
 
@@ -70,7 +70,7 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
-            opacity: 0; /* Video bitince JavaScript ile görünür olacak */
+            opacity: 0; 
             transition: opacity 2s ease-in;
         }
 
@@ -113,7 +113,6 @@
             margin-top: 20px;
             z-index: 20;
         }
-
     </style>
 </head>
 <body>
@@ -121,8 +120,9 @@
     <!-- AÇILIŞ EKRANI -->
     <div id="intro-screen">
         <div id="loading-text">Vizyonunuz Yükleniyor...</div>
-        <!-- Muted (Sessiz) ve Autoplay (Otomatik) eklendi, dosya adı giris.mp4 yapıldı -->
-        <video id="intro-video" src="giris.mp4" muted autoplay playsinline></video>
+        
+        <!-- Video adı 'intro.mp4' olarak ayarlandı -->
+        <video id="intro-video" src="intro.mp4" muted autoplay playsinline></video>
     </div>
 
     <!-- ARKA PLAN FİLİGRAN LOGOSU -->
@@ -144,15 +144,24 @@
         const introScreen = document.getElementById('intro-screen');
         const mainContent = document.getElementById('main-content');
 
-        // Video tamamen bittiğinde çalışacak otomatik geçiş
-        introVideo.addEventListener('ended', function() {
-            introScreen.style.opacity = '0'; // Siyah ekranı yavaşça erit
-            
+        // Ana sayfaya geçiş fonksiyonu
+        function switchToMain() {
+            introScreen.style.opacity = '0'; 
             setTimeout(function() {
-                introScreen.style.display = 'none'; // Tamamen kaldır
-                mainContent.style.opacity = '1'; // Ana sayfayı görünür yap
-            }, 1500); // 1.5 saniyelik sinematik geçiş
-        });
+                introScreen.style.display = 'none'; 
+                mainContent.style.opacity = '1'; 
+            }, 1500); 
+        }
+
+        // 1. Durum: Video sorunsuz oynar ve biterse geçiş yap
+        introVideo.addEventListener('ended', switchToMain);
+
+        // 2. Durum (Güvenlik Koruması): Eğer video bulunamazsa veya hata verirse, sonsuza kadar siyah ekranda kalmamak için 5 saniye sonra otomatik geçiş yap
+        setTimeout(function() {
+            if (introVideo.readyState === 0 || introVideo.paused) {
+                switchToMain();
+            }
+        }, 5000);
     </script>
 
 </body>
