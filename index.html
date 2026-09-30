@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ARCHITUNA — Tunalı Mimarlık</title>
-
-<meta name="description"
-content="ARCHITUNA / Tunalı Mimarlık — Çağının ötesinde fikirler. Sarsılmaz temeller.">
+<meta name="description" content="ARCHITUNA / Tunalı Mimarlık — Çağının ötesinde fikirler. Sarsılmaz temeller.">
 
 <style>
 
@@ -75,13 +73,13 @@ body {
 }
 
 /* =========================================================
-   INTRO
+   INTRO (VİDEO ALANI TEMİZLENDİ VE ÖNE ÇIKARILDI)
 ========================================================= */
 
 #intro {
     position: fixed;
     inset: 0;
-    background: #050505;
+    background: #e9e9e9; /* Videonun arka plan rengiyle uyumlu */
     z-index: 90000;
     overflow: hidden;
     display: flex;
@@ -95,81 +93,6 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: .72;
-}
-
-.intro-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at center,
-        transparent 0%,
-        rgba(0,0,0,.25) 40%,
-        rgba(0,0,0,.85) 100%);
-}
-
-.intro-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-}
-
-.intro-small {
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: #aaa;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-}
-
-.intro-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: clamp(45px, 10vw, 150px);
-    font-weight: 300;
-    letter-spacing: .08em;
-    transform: scale(1);
-    animation: introZoom 5s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-.intro-sub {
-    margin-top: 25px;
-    font-size: 11px;
-    letter-spacing: 5px;
-    color: #999;
-}
-
-@keyframes introZoom {
-
-    0% {
-        transform: scale(.65);
-        opacity: 0;
-        letter-spacing: .25em;
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(1.7);
-        opacity: 0;
-        letter-spacing: .08em;
-    }
-
-}
-
-/* =========================================================
-   INTRO GRID
-========================================================= */
-
-.intro-lines {
-    position: absolute;
-    inset: 0;
-    opacity: .12;
-    background-image:
-        linear-gradient(90deg, transparent 49.8%, white 50%, transparent 50.2%),
-        linear-gradient(transparent 49.8%, white 50%, transparent 50.2%);
-    background-size: 100% 100%;
 }
 
 /* =========================================================
@@ -243,8 +166,6 @@ body.loaded main {
     overflow: hidden;
 }
 
-/* büyük arka plan logosu */
-
 .hero-watermark {
     position: absolute;
     width: min(75vw, 900px);
@@ -257,8 +178,6 @@ body.loaded main {
     pointer-events: none;
     transition: transform 1s cubic-bezier(.16,1,.3,1);
 }
-
-/* mimari grid */
 
 .grid {
     position: absolute;
@@ -281,7 +200,6 @@ body.loaded main {
         transparent calc(80% - 1px),
         rgba(255,255,255,.12) 80%,
         transparent calc(80% + 1px));
-
     pointer-events: none;
 }
 
@@ -564,19 +482,9 @@ section {
 }
 
 @keyframes brandChange {
-
-    0%, 42% {
-        transform: translateY(0);
-    }
-
-    50%, 92% {
-        transform: translateY(-25px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-
+    0%, 42% { transform: translateY(0); }
+    50%, 92% { transform: translateY(-25px); }
+    100% { transform: translateY(0); }
 }
 
 /* =========================================================
@@ -658,74 +566,25 @@ footer {
 ========================================================= */
 
 @media (max-width: 700px) {
-
-    .navbar {
-        padding: 20px;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero {
-        padding: 120px 25px 80px;
-    }
-
-    .hero-bottom {
-        left: 25px;
-        right: 25px;
-    }
-
-    section {
-        padding: 100px 25px;
-    }
-
-    .manifesto-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-
-    .project {
-        min-height: 65vh;
-    }
-
-    .project-info {
-        left: 25px;
-        bottom: 25px;
-    }
-
-    .service {
-        gap: 20px;
-    }
-
-    footer {
-        padding: 25px;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .cursor,
-    .cursor-ring {
-        display: none;
-    }
-
+    .navbar { padding: 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 25px 80px; }
+    .hero-bottom { left: 25px; right: 25px; }
+    section { padding: 100px 25px; }
+    .manifesto-grid { grid-template-columns: 1fr; gap: 50px; }
+    .project { min-height: 65vh; }
+    .project-info { left: 25px; bottom: 25px; }
+    .service { gap: 20px; }
+    footer { padding: 25px; flex-direction: column; gap: 15px; }
+    .cursor, .cursor-ring { display: none; }
 }
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
         animation-duration: .01ms !important;
         transition-duration: .01ms !important;
     }
-
 }
-
 </style>
 </head>
 
@@ -734,17 +593,13 @@ footer {
 <!-- ======================================================
      CURSOR
 ====================================================== -->
-
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
-
 
 <!-- ======================================================
      AÇILIŞ
 ====================================================== -->
-
 <div id="intro">
-
     <video
         id="intro-video"
         src="giris.mp4"
@@ -753,673 +608,297 @@ footer {
         playsinline
         preload="auto">
     </video>
-
-    <div class="intro-overlay"></div>
-
-    <div class="intro-lines"></div>
-
-    <div class="intro-content">
-
-        <div class="intro-small">
-            TUNALI MİMARLIK
-        </div>
-
-        <div class="intro-title">
-            ARCHITUNA
-        </div>
-
-        <div class="intro-sub">
-            FİKİR → MEKÂN
-        </div>
-
-    </div>
-
 </div>
-
 
 <!-- ======================================================
      NAVBAR
 ====================================================== -->
-
 <nav class="navbar">
-
     <div>
-
-        <div class="logo-text">
-            ARCHITUNA
-        </div>
-
-        <div class="logo-sub">
-            TUNALI MİMARLIK
-        </div>
-
+        <div class="logo-text">ARCHITUNA</div>
+        <div class="logo-sub">TUNALI MİMARLIK</div>
     </div>
-
     <ul class="nav-links">
-
-        <li>
-            <a href="#vizyon">Vizyon</a>
-        </li>
-
-        <li>
-            <a href="#projeler">Projeler</a>
-        </li>
-
-        <li>
-            <a href="#hizmetler">Hizmetler</a>
-        </li>
-
-        <li>
-            <a href="#iletisim">İletişim</a>
-        </li>
-
+        <li><a href="#vizyon">Vizyon</a></li>
+        <li><a href="#projeler">Projeler</a></li>
+        <li><a href="#hizmetler">Hizmetler</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
     </ul>
-
 </nav>
-
 
 <!-- ======================================================
      ANA İÇERİK
 ====================================================== -->
-
 <main>
 
 <!-- ======================================================
      HERO
 ====================================================== -->
-
 <section class="hero" id="vizyon">
-
     <div class="grid"></div>
-
-    <img
-        src="logo.png"
-        class="hero-watermark"
-        id="watermark"
-        alt="ARCHITUNA">
-
+    <img src="logo.png" class="hero-watermark" id="watermark" alt="ARCHITUNA">
+    
     <div class="hero-content">
-
-        <div class="eyebrow">
-            ARCHITUNA / TUNALI MİMARLIK
-        </div>
-
+        <div class="eyebrow">ARCHITUNA / TUNALI MİMARLIK</div>
         <h1 class="hero-title">
-
-            <span>
-                ÇAĞININ
-            </span>
-
-            <span class="outline">
-                ÖTESİNDE
-            </span>
-
-            <span>
-                FİKİRLER.
-            </span>
-
+            <span>ÇAĞININ</span>
+            <span class="outline">ÖTESİNDE</span>
+            <span>FİKİRLER.</span>
         </h1>
-
         <p class="hero-description">
-
-            Mekânı yalnızca tasarlamıyor,
-            onu bir fikrin devamı olarak ele alıyoruz.
-            Tasarım, teknoloji ve mimari anlatımı
-            tek bir bütün hâline getiriyoruz.
-
+            Mekânı yalnızca tasarlamıyor, onu bir fikrin devamı olarak ele alıyoruz. Tasarım, teknoloji ve mimari anlatımı tek bir bütün hâline getiriyoruz.
         </p>
-
     </div>
-
     <div class="hero-bottom">
-
-        <span>
-            01 — VİZYON
-        </span>
-
-        <span>
-            SCROLL ↓
-        </span>
-
+        <span>01 — VİZYON</span>
+        <span>SCROLL ↓</span>
     </div>
-
 </section>
-
 
 <!-- ======================================================
      MANİFESTO
 ====================================================== -->
-
 <section class="manifesto">
-
     <div class="manifesto-grid">
-
         <div>
-
-            <div class="section-number">
-                02 — MANİFESTO
-            </div>
-
+            <div class="section-number">02 — MANİFESTO</div>
             <h2 class="section-title reveal">
-
                 SADECE YAPI
                 <em>TASARLAMIYORUZ.</em>
-
             </h2>
-
         </div>
-
         <div class="manifesto-text reveal">
-
             <p>
-
-                <strong>
-                    Bir fikir inşa ediyoruz.
-                </strong>
-
-                <br><br>
-
-                Her proje bir çizgiyle başlar.
-                Her çizgi bir fikre dönüşür.
-                Her fikir ise yaşanacak bir mekâna.
-
-                <br><br>
-
-                Bizim için mimarlık;
-                estetik, işlev ve teknolojinin
-                aynı noktada buluştuğu yerdir.
-
-                <br><br>
-
-                <strong>
-                    Sarsılmaz temeller üzerine,
-                    çağının ötesinde fikirler.
-                </strong>
-
+                <strong>Bir fikir inşa ediyoruz.</strong><br><br>
+                Her proje bir çizgiyle başlar. Her çizgi bir fikre dönüşür. Her fikir ise yaşanacak bir mekâna.<br><br>
+                Bizim için mimarlık; estetik, işlev ve teknolojinin aynı noktada buluştuğu yerdir.<br><br>
+                <strong>Sarsılmaz temeller üzerine, çağının ötesinde fikirler.</strong>
             </p>
-
         </div>
-
     </div>
-
 </section>
-
 
 <!-- ======================================================
      PROJELER
 ====================================================== -->
-
 <section class="projects" id="projeler">
-
-    <div class="section-number">
-        03 — SEÇİLİ PROJELER
-    </div>
-
+    <div class="section-number">03 — SEÇİLİ PROJELER</div>
     <h2 class="section-title reveal">
-
         FİKİRLERİN
         <em>MEKÂNA</em>
         DÖNÜŞTÜĞÜ YER.
-
     </h2>
 
-
     <!-- PROJE 01 -->
-
     <div class="project reveal">
-
         <div class="project-image">
-
-            <img
-                src="proje1.jpg"
-                alt="Villa Projesi">
-
+            <img src="universitevaziyet.png" alt="Üniversite Masterplan">
         </div>
-
         <div class="project-info">
-
-            <div class="project-number">
-                01 / KONUT
-            </div>
-
-            <div class="project-name">
-                VİLLA 01
-            </div>
-
-            <div class="project-location">
-                İSTANBUL — 2026
-            </div>
-
+            <div class="project-number">01 / KENTSEL VİZYON</div>
+            <div class="project-name">ÜNİVERSİTE MASTERPLAN</div>
+            <div class="project-location">ARCHITUNA STUDIO — 2026</div>
         </div>
-
     </div>
-
 
     <!-- PROJE 02 -->
-
     <div class="project reveal">
-
         <div class="project-image">
-
-            <img
-                src="proje2.jpg"
-                alt="Mimari Proje">
-
+            <img src="kutuphane.png" alt="Kütüphane Konsepti">
         </div>
-
         <div class="project-info">
-
-            <div class="project-number">
-                02 / MİMARİ
-            </div>
-
-            <div class="project-name">
-                PROJECT 02
-            </div>
-
-            <div class="project-location">
-                İSTANBUL — 2026
-            </div>
-
+            <div class="project-number">02 / İÇ MEKAN</div>
+            <div class="project-name">KÜTÜPHANE</div>
+            <div class="project-location">BİLGİ MERKEZİ — 2026</div>
         </div>
-
     </div>
-
 
     <!-- PROJE 03 -->
-
     <div class="project reveal">
-
         <div class="project-image">
-
-            <img
-                src="proje3.jpg"
-                alt="Mimari Görselleştirme">
-
+            <img src="villa.png" alt="Özel Konut">
         </div>
-
         <div class="project-info">
-
-            <div class="project-number">
-                03 / 3D VISUALIZATION
-            </div>
-
-            <div class="project-name">
-                PROJECT 03
-            </div>
-
-            <div class="project-location">
-                ARCHITUNA STUDIO
-            </div>
-
+            <div class="project-number">03 / KONUT</div>
+            <div class="project-name">PREMIUM VİLLA</div>
+            <div class="project-location">LÜKS YAŞAM ALANI — 2026</div>
         </div>
-
     </div>
-
 </section>
-
 
 <!-- ======================================================
      HİZMETLER
 ====================================================== -->
-
 <section class="services" id="hizmetler">
-
-    <div class="section-number">
-        04 — NE YAPIYORUZ?
-    </div>
-
+    <div class="section-number">04 — NE YAPIYORUZ?</div>
     <h2 class="section-title reveal">
-
         TASARIMDAN
         <em>GERÇEKLİĞE.</em>
-
     </h2>
-
     <div class="services-list">
-
         <div class="service reveal">
-
-            <div class="service-name">
-                Mimari Tasarım
-            </div>
-
-            <div class="service-number">
-                01
-            </div>
-
+            <div class="service-name">Mimari Tasarım</div>
+            <div class="service-number">01</div>
         </div>
-
         <div class="service reveal">
-
-            <div class="service-name">
-                Mimari Proje
-            </div>
-
-            <div class="service-number">
-                02
-            </div>
-
+            <div class="service-name">Mimari Proje</div>
+            <div class="service-number">02</div>
         </div>
-
         <div class="service reveal">
-
-            <div class="service-name">
-                3D Modelleme
-            </div>
-
-            <div class="service-number">
-                03
-            </div>
-
+            <div class="service-name">3D Modelleme</div>
+            <div class="service-number">03</div>
         </div>
-
         <div class="service reveal">
-
-            <div class="service-name">
-                Fotogerçekçi Render
-            </div>
-
-            <div class="service-number">
-                04
-            </div>
-
+            <div class="service-name">Fotogerçekçi Render</div>
+            <div class="service-number">04</div>
         </div>
-
         <div class="service reveal">
-
-            <div class="service-name">
-                Görsel Anlatım
-            </div>
-
-            <div class="service-number">
-                05
-            </div>
-
+            <div class="service-name">Görsel Anlatım</div>
+            <div class="service-number">05</div>
         </div>
-
     </div>
-
 </section>
-
 
 <!-- ======================================================
      MARKA
 ====================================================== -->
-
 <section class="brand-section">
-
     <div class="brand-main reveal">
-
-        <h2>
-            ARCHITUNA
-        </h2>
-
+        <h2>ARCHITUNA</h2>
         <div class="brand-switch">
-
-            <span>
-                TUNALI MİMARLIK
-            </span>
-
-            <span>
-                ARCHITECTURE STUDIO
-            </span>
-
+            <span>TUNALI MİMARLIK</span>
+            <span>ARCHITECTURE STUDIO</span>
         </div>
-
     </div>
-
 </section>
-
 
 <!-- ======================================================
      İLETİŞİM
 ====================================================== -->
-
 <section class="contact" id="iletisim">
-
-    <div class="section-number">
-        05 — İLETİŞİM
-    </div>
-
+    <div class="section-number">05 — İLETİŞİM</div>
     <h2 class="contact-title reveal">
-
         BİR FİKRİNİZ
         <span>VARSA,</span>
-
         <br>
-
         KONUŞALIM.
-
     </h2>
-
     <div class="contact-bottom">
-
         <div class="contact-item">
-
-            <strong>
-                E-POSTA
-            </strong>
-
+            <strong>E-POSTA</strong>
             info@archituna.com
-
         </div>
-
         <div class="contact-item">
-
-            <strong>
-                STÜDYO
-            </strong>
-
+            <strong>STÜDYO</strong>
             TUNALI MİMARLIK
-
         </div>
-
         <div class="contact-item">
-
-            <strong>
-                SOSYAL
-            </strong>
-
+            <strong>SOSYAL</strong>
             Instagram / Behance
-
         </div>
-
     </div>
-
 </section>
-
 
 <!-- ======================================================
      FOOTER
 ====================================================== -->
-
 <footer>
-
-    <span>
-        © 2026 ARCHITUNA
-    </span>
-
-    <span>
-        TUNALI MİMARLIK
-    </span>
-
-    <span>
-        SARSILMAZ TEMELLER.
-    </span>
-
+    <span>© 2026 ARCHITUNA</span>
+    <span>TUNALI MİMARLIK</span>
+    <span>SARSILMAZ TEMELLER.</span>
 </footer>
 
 </main>
 
-
 <script>
-
 /* =========================================================
-   INTRO VİDEO
+   INTRO VİDEO VE GEÇİŞ KONTROLÜ
 ========================================================= */
-
 const intro = document.getElementById("intro");
 const video = document.getElementById("intro-video");
 
 function finishIntro() {
-
-    intro.style.transition =
-        "opacity 1.6s cubic-bezier(.16,1,.3,1)";
-
+    intro.style.transition = "opacity 1.6s cubic-bezier(.16,1,.3,1)";
     intro.style.opacity = "0";
 
     setTimeout(() => {
-
         intro.style.display = "none";
-
         document.body.classList.add("loaded");
-
     }, 1600);
-
 }
-
-/* Video biterse */
 
 video.addEventListener("ended", finishIntro);
 
-
-/* Video yüklenemezse 7 saniye sonra */
-
 setTimeout(() => {
-
-    if (
-        intro &&
-        intro.style.display !== "none"
-    ) {
-
+    if (intro && intro.style.display !== "none") {
         finishIntro();
-
     }
-
 }, 9000);
-
 
 /* =========================================================
    MOUSE CURSOR
 ========================================================= */
-
 const cursor = document.querySelector(".cursor");
 const ring = document.querySelector(".cursor-ring");
 
-let mouseX = 0;
-let mouseY = 0;
-
-let ringX = 0;
-let ringY = 0;
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
 
 document.addEventListener("mousemove", e => {
-
     mouseX = e.clientX;
     mouseY = e.clientY;
-
     cursor.style.left = mouseX + "px";
     cursor.style.top = mouseY + "px";
-
 });
 
-
 function animateCursor() {
-
     ringX += (mouseX - ringX) * .12;
     ringY += (mouseY - ringY) * .12;
-
     ring.style.left = ringX + "px";
     ring.style.top = ringY + "px";
-
     requestAnimationFrame(animateCursor);
-
 }
-
 animateCursor();
-
 
 /* =========================================================
    LOGO MOUSE PARALLAX
 ========================================================= */
-
-const watermark =
-    document.getElementById("watermark");
+const watermark = document.getElementById("watermark");
 
 document.addEventListener("mousemove", e => {
-
-    const x =
-        (e.clientX / window.innerWidth - .5) * 25;
-
-    const y =
-        (e.clientY / window.innerHeight - .5) * 25;
-
-    watermark.style.transform =
-        `translate(calc(-50% + ${x}px),
-        calc(-50% + ${y}px))
-        scale(1.05)`;
-
+    const x = (e.clientX / window.innerWidth - .5) * 25;
+    const y = (e.clientY / window.innerHeight - .5) * 25;
+    watermark.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1.05)`;
 });
-
 
 /* =========================================================
    SCROLL REVEAL
 ========================================================= */
-
-const observer =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("visible");
-
-                }
-
-            });
-
-        },
-        {
-            threshold: .12
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
         }
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
-
-        observer.observe(element);
-
     });
+}, { threshold: .12 });
 
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+});
 
 /* =========================================================
    LINKLERDE CURSOR BÜYÜMESİ
 ========================================================= */
-
-document
-    .querySelectorAll("a, .project, .service")
-    .forEach(element => {
-
-        element.addEventListener("mouseenter", () => {
-
-            ring.style.width = "65px";
-            ring.style.height = "65px";
-
-        });
-
-        element.addEventListener("mouseleave", () => {
-
-            ring.style.width = "38px";
-            ring.style.height = "38px";
-
-        });
-
+document.querySelectorAll("a, .project, .service").forEach(element => {
+    element.addEventListener("mouseenter", () => {
+        ring.style.width = "65px";
+        ring.style.height = "65px";
     });
-
+    element.addEventListener("mouseleave", () => {
+        ring.style.width = "38px";
+        ring.style.height = "38px";
+    });
+});
 </script>
 
 </body>
