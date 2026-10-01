@@ -4,15 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ARCHITUNA.COM | TUNALI MİMARLIK</title>
+<title>ARCHITUNA.COM.TR | TUNALI MİMARLIK</title>
 
 <meta name="description"
-content="ARCHITUNA.COM — Tunalı Mimarlık. Çağının ötesinde fikirler. Sarsılmaz temeller.">
+content="ARCHITUNA.COM.TR — Tunalı Mimarlık. Architecture, design, visualization and spatial ideas by Architect Osman Kemal Tunalı.">
+
+<meta name="theme-color" content="#080808">
 
 <style>
 
 /* =========================================================
-   ARCHITUNA — PREMIUM ARCHITECTURE STUDIO
+   ARCHITUNA — GLOBAL ARCHITECTURE STUDIO
 ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap');
@@ -89,9 +91,13 @@ a {
     text-decoration: none;
 }
 
+button {
+    font: inherit;
+}
+
 
 /* =========================================================
-   NOISE / FILM GRAIN
+   NOISE
 ========================================================= */
 
 body::before {
@@ -1036,6 +1042,8 @@ section {
     overflow: hidden;
 
     background: #121212;
+
+    cursor: pointer;
 }
 
 .project-card.project-wide .project-image {
@@ -1096,6 +1104,56 @@ section {
     filter:
         grayscale(0%)
         contrast(1.08);
+}
+
+
+/* =========================================================
+   VIEW INDICATOR
+========================================================= */
+
+.project-view {
+
+    position: absolute;
+
+    right: 25px;
+    top: 45px;
+
+    z-index: 10;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255,255,255,.35);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    color: white;
+
+    opacity: 0;
+
+    transform: scale(.7);
+
+    transition:
+        opacity .5s ease,
+        transform .5s var(--ease);
+}
+
+.project-card:hover .project-view {
+
+    opacity: 1;
+
+    transform: scale(1);
 }
 
 
@@ -1174,6 +1232,224 @@ section {
     letter-spacing: 3px;
 
     color: #aaa;
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100000;
+
+    background:
+        rgba(0,0,0,.96);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 5vw;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .6s ease,
+        visibility .6s ease;
+}
+
+.lightbox.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+.lightbox::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 30px;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    pointer-events: none;
+}
+
+.lightbox-image {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 92vw;
+
+    max-height: 88vh;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.7);
+
+    transform: scale(.94);
+
+    opacity: 0;
+
+    transition:
+        transform .7s var(--ease),
+        opacity .5s ease;
+}
+
+.lightbox.active .lightbox-image {
+
+    transform: scale(1);
+
+    opacity: 1;
+}
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 35px;
+    right: 40px;
+
+    z-index: 10;
+
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    transition:
+        background .3s ease,
+        transform .4s var(--ease);
+}
+
+.lightbox-close:hover {
+
+    background: white;
+
+    color: black;
+
+    transform: rotate(90deg);
+}
+
+.lightbox-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 10;
+
+    transform: translateY(-50%);
+
+    width: 58px;
+    height: 58px;
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.35);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition:
+        background .3s ease,
+        transform .4s var(--ease);
+}
+
+.lightbox-arrow:hover {
+
+    background: white;
+
+    color: black;
+}
+
+.lightbox-prev {
+    left: 35px;
+}
+
+.lightbox-next {
+    right: 35px;
+}
+
+.lightbox-meta {
+
+    position: absolute;
+
+    left: 40px;
+    bottom: 35px;
+
+    z-index: 10;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #888;
+}
+
+.lightbox-counter {
+
+    position: absolute;
+
+    right: 40px;
+    bottom: 35px;
+
+    z-index: 10;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #777;
 }
 
 
@@ -1519,6 +1795,16 @@ section {
     font-weight: 400;
 }
 
+.contact-item a {
+
+    transition:
+        color .3s ease;
+}
+
+.contact-item a:hover {
+    color: white;
+}
+
 
 /* =========================================================
    FOOTER
@@ -1832,6 +2118,75 @@ footer {
         top: 18px;
         bottom: 18px;
     }
+
+
+    /* MOBILE LIGHTBOX */
+
+    .lightbox {
+
+        padding: 15px;
+    }
+
+    .lightbox::before {
+
+        inset: 12px;
+    }
+
+    .lightbox-image {
+
+        max-width: 94vw;
+
+        max-height: 78vh;
+    }
+
+    .lightbox-close {
+
+        top: 25px;
+
+        right: 25px;
+
+        width: 44px;
+        height: 44px;
+    }
+
+    .lightbox-arrow {
+
+        width: 45px;
+        height: 45px;
+
+        top: auto;
+
+        bottom: 25px;
+
+        transform: none;
+    }
+
+    .lightbox-arrow:hover {
+        transform: none;
+    }
+
+    .lightbox-prev {
+        left: 25px;
+    }
+
+    .lightbox-next {
+        right: 25px;
+    }
+
+    .lightbox-meta {
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        bottom: 39px;
+
+        white-space: nowrap;
+    }
+
+    .lightbox-counter {
+        display: none;
+    }
 }
 
 
@@ -1933,6 +2288,57 @@ footer {
 
 
 <!-- =====================================================
+     LIGHTBOX
+===================================================== -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    aria-hidden="true">
+
+    <button
+        class="lightbox-close"
+        id="lightbox-close"
+        aria-label="Kapat">
+        ×
+    </button>
+
+    <button
+        class="lightbox-arrow lightbox-prev"
+        id="lightbox-prev"
+        aria-label="Önceki">
+        ←
+    </button>
+
+    <img
+        class="lightbox-image"
+        id="lightbox-image"
+        src=""
+        alt="ARCHITUNA Project">
+
+    <button
+        class="lightbox-arrow lightbox-next"
+        id="lightbox-next"
+        aria-label="Sonraki">
+        →
+    </button>
+
+    <div
+        class="lightbox-meta"
+        id="lightbox-meta">
+        ARCHITUNA / PROJECT
+    </div>
+
+    <div
+        class="lightbox-counter"
+        id="lightbox-counter">
+        01 / 24
+    </div>
+
+</div>
+
+
+<!-- =====================================================
      NAVIGATION
 ===================================================== -->
 
@@ -1940,8 +2346,11 @@ footer {
 
     <div>
 
+        <!-- SADECE EKRANDA GÖRÜNEN MARKA DEĞİŞTİ -->
+        <!-- GERÇEK URL / DOMAIN KODUNA DOKUNULMADI -->
+
         <div class="logo-text">
-            ARCHITUNA.COM
+            ARCHITUNA.COM.TR
         </div>
 
         <div class="logo-sub">
@@ -2144,6 +2553,11 @@ footer {
             <br>
 
             TEK BİR TASARIM DİLİ.
+            <br><br>
+
+            SELECT A PROJECT
+            <br>
+            TO ENTER FULL VIEW.
 
         </div>
 
@@ -2157,11 +2571,19 @@ footer {
 
         <div class="project-card project-wide reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="1.png"
+                data-title="WHITE FRAME"
+                data-category="01 / KONUT">
 
                 <img
                     src="1.png"
                     alt="White Frame">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2184,11 +2606,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="2.png"
+                data-title="WHITE FRAME II"
+                data-category="02 / KONUT">
 
                 <img
                     src="2.png"
                     alt="White Frame II">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2207,11 +2637,16 @@ footer {
         </div>
 
 
-        <!-- 03 — 34.mp4 -->
+        <!-- 03 -->
 
         <div class="project-card project-tall reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="34.mp4"
+                data-video="true"
+                data-title="YOUTH"
+                data-category="03 / KAMUSAL">
 
                 <video
                     class="project-video"
@@ -2222,6 +2657,10 @@ footer {
                     playsinline
                     preload="metadata">
                 </video>
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2248,11 +2687,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="4.png"
+                data-title="YOUTH II"
+                data-category="04 / KAMUSAL">
 
                 <img
                     src="4.png"
                     alt="Youth II">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2279,11 +2726,19 @@ footer {
 
         <div class="project-card project-wide reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="5.png"
+                data-title="CAFÉ 05"
+                data-category="05 / TİCARİ">
 
                 <img
                     src="5.png"
                     alt="Cafe">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2310,11 +2765,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="6.png"
+                data-title="CAFÉ 06"
+                data-category="06 / TİCARİ">
 
                 <img
                     src="6.png"
                     alt="Cafe">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2341,11 +2804,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="7.png"
+                data-title="CAFÉ 07"
+                data-category="07 / TİCARİ">
 
                 <img
                     src="7.png"
                     alt="Cafe">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2372,11 +2843,19 @@ footer {
 
         <div class="project-card project-tall reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="8.png"
+                data-title="CAFÉ 08"
+                data-category="08 / TİCARİ">
 
                 <img
                     src="8.png"
                     alt="Cafe">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2403,11 +2882,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="9.png"
+                data-title="CAFÉ 09"
+                data-category="09 / TİCARİ">
 
                 <img
                     src="9.png"
                     alt="Cafe">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2434,11 +2921,19 @@ footer {
 
         <div class="project-card project-wide reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="10.png"
+                data-title="LIBRARY"
+                data-category="10 / KAMUSAL">
 
                 <img
                     src="10.png"
                     alt="Library">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2465,11 +2960,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="11.png"
+                data-title="LIBRARY II"
+                data-category="11 / KAMUSAL">
 
                 <img
                     src="11.png"
                     alt="Library II">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2496,11 +2999,19 @@ footer {
 
         <div class="project-card project-tall reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="12.png"
+                data-title="BROWN LINE"
+                data-category="12 / KONUT">
 
                 <img
                     src="12.png"
                     alt="Brown Line">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2523,11 +3034,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="13.png"
+                data-title="BROWN LINE II"
+                data-category="13 / KONUT">
 
                 <img
                     src="13.png"
                     alt="Brown Line II">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2550,11 +3069,19 @@ footer {
 
         <div class="project-card project-wide reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="14.png"
+                data-title="BROWN LINE III"
+                data-category="14 / KONUT">
 
                 <img
                     src="14.png"
                     alt="Brown Line III">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2577,11 +3104,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="15.png"
+                data-title="CAMPUS"
+                data-category="15 / EĞİTİM">
 
                 <img
                     src="15.png"
                     alt="Campus">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2608,11 +3143,19 @@ footer {
 
         <div class="project-card project-tall reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="16.png"
+                data-title="CAMPUS II"
+                data-category="16 / EĞİTİM">
 
                 <img
                     src="16.png"
                     alt="Campus II">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2639,11 +3182,19 @@ footer {
 
         <div class="project-card project-wide reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="17.png"
+                data-title="CAMPUS PLAN"
+                data-category="17 / MASTERPLAN">
 
                 <img
                     src="17.png"
                     alt="Campus Plan">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2666,11 +3217,16 @@ footer {
         </div>
 
 
-        <!-- 18 — 33.mp4 -->
+        <!-- 18 -->
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="33.mp4"
+                data-video="true"
+                data-title="VILLA 01"
+                data-category="18 / KONUT">
 
                 <video
                     class="project-video"
@@ -2681,6 +3237,10 @@ footer {
                     playsinline
                     preload="metadata">
                 </video>
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2707,11 +3267,19 @@ footer {
 
         <div class="project-card project-tall reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="19.png"
+                data-title="VILLA 02"
+                data-category="19 / KONUT">
 
                 <img
                     src="19.png"
                     alt="Villa">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2738,11 +3306,19 @@ footer {
 
         <div class="project-card project-wide reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="20.png"
+                data-title="VILLA 03"
+                data-category="20 / KONUT">
 
                 <img
                     src="20.png"
                     alt="Villa">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2769,11 +3345,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="21.png"
+                data-title="RESIDENTIAL"
+                data-category="21 / KONUT">
 
                 <img
                     src="21.png"
                     alt="Residential">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2800,11 +3384,19 @@ footer {
 
         <div class="project-card project-tall reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="22.png"
+                data-title="RESIDENTIAL II"
+                data-category="22 / KONUT">
 
                 <img
                     src="22.png"
                     alt="Residential II">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2831,11 +3423,19 @@ footer {
 
         <div class="project-card reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="23.png"
+                data-title="RESIDENTIAL III"
+                data-category="23 / KONUT">
 
                 <img
                     src="23.png"
                     alt="Residential III">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -2862,11 +3462,19 @@ footer {
 
         <div class="project-card project-wide reveal">
 
-            <div class="project-image">
+            <div
+                class="project-image"
+                data-image="24.png"
+                data-title="RESIDENTIAL IV"
+                data-category="24 / KONUT">
 
                 <img
                     src="24.png"
                     alt="Residential IV">
+
+                <div class="project-view">
+                    VIEW
+                </div>
 
             </div>
 
@@ -3047,7 +3655,20 @@ footer {
                 E-POSTA
             </strong>
 
-            info@archituna.com
+            <a href="mailto:archituna33@gmail.com">
+                archituna33@gmail.com
+            </a>
+
+        </div>
+
+
+        <div class="contact-item">
+
+            <strong>
+                MİMAR
+            </strong>
+
+            Mimar Osman Kemal Tunalı
 
         </div>
 
@@ -3059,17 +3680,8 @@ footer {
             </strong>
 
             TUNALI MİMARLIK
-
-        </div>
-
-
-        <div class="contact-item">
-
-            <strong>
-                WEB
-            </strong>
-
-            ARCHITUNA.COM
+            <br><br>
+            ARCHITUNA.COM.TR
 
         </div>
 
@@ -3085,11 +3697,11 @@ footer {
 <footer>
 
     <span>
-        © 2026 ARCHITUNA.COM
+        © 2026 ARCHITUNA.COM.TR
     </span>
 
     <span>
-        TUNALI MİMARLIK
+        MİMAR OSMAN KEMAL TUNALI
     </span>
 
     <span>
@@ -3334,6 +3946,17 @@ document
                     ring.style.borderColor =
                         'rgba(255,255,255,.8)';
 
+                    if (
+                        element.classList.contains(
+                            'project-card'
+                        )
+                    ) {
+
+                        cursorLabel.style.opacity =
+                            '1';
+
+                    }
+
                 }
             );
 
@@ -3350,6 +3973,9 @@ document
 
                     ring.style.borderColor =
                         'rgba(255,255,255,.55)';
+
+                    cursorLabel.style.opacity =
+                        '0';
 
                 }
             );
@@ -3565,6 +4191,315 @@ document
 
         }
     );
+
+
+/* =========================================================
+   PROJECT LIGHTBOX
+========================================================= */
+
+const lightbox =
+    document.getElementById('lightbox');
+
+const lightboxImage =
+    document.getElementById('lightbox-image');
+
+const lightboxClose =
+    document.getElementById('lightbox-close');
+
+const lightboxPrev =
+    document.getElementById('lightbox-prev');
+
+const lightboxNext =
+    document.getElementById('lightbox-next');
+
+const lightboxMeta =
+    document.getElementById('lightbox-meta');
+
+const lightboxCounter =
+    document.getElementById('lightbox-counter');
+
+
+const projectImages =
+    Array.from(
+        document.querySelectorAll(
+            '.project-image[data-image]:not([data-video="true"])'
+        )
+    );
+
+
+let currentProject = 0;
+
+
+function openLightbox(index) {
+
+    currentProject = index;
+
+    updateLightbox();
+
+    lightbox.classList.add('active');
+
+    lightbox.setAttribute(
+        'aria-hidden',
+        'false'
+    );
+
+    document.body.style.overflow =
+        'hidden';
+}
+
+
+function closeLightbox() {
+
+    lightbox.classList.remove('active');
+
+    lightbox.setAttribute(
+        'aria-hidden',
+        'true'
+    );
+
+    document.body.style.overflow =
+        '';
+}
+
+
+function updateLightbox() {
+
+    const item =
+        projectImages[currentProject];
+
+    if (!item) return;
+
+    const image =
+        item.dataset.image;
+
+    const title =
+        item.dataset.title || 'ARCHITUNA PROJECT';
+
+    const category =
+        item.dataset.category || '';
+
+    lightboxImage.style.opacity =
+        '0';
+
+    setTimeout(
+        function() {
+
+            lightboxImage.src =
+                image;
+
+            lightboxImage.alt =
+                title;
+
+            lightboxMeta.textContent =
+                category +
+                ' — ' +
+                title;
+
+            lightboxCounter.textContent =
+                String(currentProject + 1)
+                    .padStart(2,'0')
+                +
+                ' / ' +
+                String(projectImages.length)
+                    .padStart(2,'0');
+
+            lightboxImage.onload =
+                function() {
+
+                    lightboxImage.style.opacity =
+                        '1';
+
+                };
+
+        },
+        120
+    );
+}
+
+
+function nextProject() {
+
+    currentProject++;
+
+    if (
+        currentProject >=
+        projectImages.length
+    ) {
+
+        currentProject = 0;
+
+    }
+
+    updateLightbox();
+}
+
+
+function previousProject() {
+
+    currentProject--;
+
+    if (
+        currentProject < 0
+    ) {
+
+        currentProject =
+            projectImages.length - 1;
+
+    }
+
+    updateLightbox();
+}
+
+
+projectImages.forEach(
+    function(item,index) {
+
+        item.addEventListener(
+            'click',
+            function() {
+
+                openLightbox(index);
+
+            }
+        );
+
+    }
+);
+
+
+lightboxClose.addEventListener(
+    'click',
+    closeLightbox
+);
+
+lightboxNext.addEventListener(
+    'click',
+    nextProject
+);
+
+lightboxPrev.addEventListener(
+    'click',
+    previousProject
+);
+
+
+lightbox.addEventListener(
+    'click',
+    function(e) {
+
+        if (
+            e.target === lightbox
+        ) {
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   KEYBOARD CONTROL
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    function(e) {
+
+        if (
+            !lightbox.classList.contains(
+                'active'
+            )
+        ) return;
+
+
+        if (
+            e.key === 'Escape'
+        ) {
+
+            closeLightbox();
+
+        }
+
+
+        if (
+            e.key === 'ArrowRight'
+        ) {
+
+            nextProject();
+
+        }
+
+
+        if (
+            e.key === 'ArrowLeft'
+        ) {
+
+            previousProject();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   TOUCH SWIPE
+========================================================= */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+
+lightbox.addEventListener(
+    'touchstart',
+    function(e) {
+
+        touchStartX =
+            e.changedTouches[0].screenX;
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+lightbox.addEventListener(
+    'touchend',
+    function(e) {
+
+        touchEndX =
+            e.changedTouches[0].screenX;
+
+        const difference =
+            touchStartX - touchEndX;
+
+
+        if (
+            Math.abs(difference) < 50
+        ) return;
+
+
+        if (
+            difference > 0
+        ) {
+
+            nextProject();
+
+        } else {
+
+            previousProject();
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
 
 
 /* =========================================================
