@@ -958,20 +958,69 @@ section {
 }
 
 
-.project-category-title {
+/* =========================================================
+   PROJECT GROUPS
+========================================================= */
+
+.project-group {
     grid-column: 1 / -1;
-    padding-top: 35px;
-    padding-bottom: 4px;
-    border-top: 1px solid rgba(255,255,255,.10);
-    font-family: 'DM Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 4px;
-    color: #777;
+    width: 100%;
 }
 
-.project-category-title:first-child {
-    padding-top: 0;
-    border-top: 0;
+.project-group-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 22px;
+    margin-bottom: 34px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.project-group-index {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #666;
+}
+
+.project-group-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 7px;
+}
+
+.project-group-name {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(20px, 2.1vw, 30px);
+    font-weight: 300;
+    letter-spacing: -.035em;
+}
+
+.project-group-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 120px 24px;
+    align-items: start;
+}
+
+.project-group + .project-group {
+    margin-top: 145px;
+}
+
+@media (max-width: 800px) {
+    .project-group-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 70px 16px;
+    }
+
+    .project-card,
+    .project-card.project-wide,
+    .project-card.project-tall {
+        grid-column: span 1;
+        min-height: 0;
+    }
 }
 
 
@@ -2154,7 +2203,7 @@ footer {
 
         <div class="projects-intro reveal">
 
-            27 PROJE.
+            29 PROJE.
             <br>
 
             FARKLI MEKÂNLAR.
@@ -2169,140 +2218,482 @@ footer {
 
     <div class="project-archive">
 
-        <!-- =====================================================
-             KONUT
-             GitHub dosya adları kaynak dosya adlarıdır.
-             Site numarası kategori içinde yeniden başlar.
-        ====================================================== -->
-        <div class="project-category-title">01 — KONUT</div>
-
-        <!-- KONUT 01 — kaynak: 1.png -->
-        <div class="project-card project-wide reveal" data-category="KONUT">
-            <div class="project-image"><img src="1.png" alt="White Frame"></div>
-            <div class="project-info"><div class="project-number">01 / KONUT</div><div class="project-name">WHITE FRAME</div></div>
+    <div class="project-group" data-project-group="01">
+        <div class="project-group-header">
+            <div class="project-group-index">01</div>
+            <div>
+                <div class="project-group-category">KONUT</div>
+                <div class="project-group-name">WHITE FRAME</div>
+            </div>
         </div>
+        <div class="project-group-grid">
 
-        <!-- KONUT 02 — kaynak: 2.png -->
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><img src="2.png" alt="White Frame II"></div>
-            <div class="project-info"><div class="project-number">02 / KONUT</div><div class="project-name">WHITE FRAME II</div></div>
+                <div class="project-card reveal project-wide" data-project-id="01-01" data-group="01" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="1.png" alt="White Frame">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / KONUT</div>
+                        <div class="project-name">WHITE FRAME</div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="01-02" data-group="01" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="2.png" alt="White Frame II">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / KONUT</div>
+                        <div class="project-name">WHITE FRAME II</div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-tall" data-project-id="01-03" data-group="01" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="36.png" alt="White Frame III">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">03 / KONUT</div>
+                        <div class="project-name">WHITE FRAME III</div>
+                    </div>
+                </div>
+
         </div>
-
-        <!-- KONUT 03 — kaynak: 36.png; 1 ve 2 ile AYNI proje grubu -->
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><img src="36.png" alt="White Frame III"></div>
-            <div class="project-info"><div class="project-number">03 / KONUT</div><div class="project-name">WHITE FRAME III</div></div>
-        </div>
-
-        <div class="project-card project-tall reveal" data-category="KONUT">
-            <div class="project-image"><img src="12.png" alt="Brown Line"></div>
-            <div class="project-info"><div class="project-number">04 / KONUT</div><div class="project-name">BROWN LINE</div></div>
-        </div>
-
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><img src="13.png" alt="Brown Line II"></div>
-            <div class="project-info"><div class="project-number">05 / KONUT</div><div class="project-name">BROWN LINE II</div></div>
-        </div>
-
-        <div class="project-card project-wide reveal" data-category="KONUT">
-            <div class="project-image"><img src="14.png" alt="Brown Line III"></div>
-            <div class="project-info"><div class="project-number">06 / KONUT</div><div class="project-name">BROWN LINE III</div></div>
-        </div>
-
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><video class="project-video" src="33.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
-            <div class="project-info"><div class="project-number">07 / KONUT</div><div class="project-name">VILLA 01</div><div class="project-location">VİLLA</div></div>
-        </div>
-
-        <div class="project-card project-tall reveal" data-category="KONUT">
-            <div class="project-image"><img src="19.png" alt="Villa 02"></div>
-            <div class="project-info"><div class="project-number">08 / KONUT</div><div class="project-name">VILLA 02</div><div class="project-location">VİLLA</div></div>
-        </div>
-
-        <div class="project-card project-wide reveal" data-category="KONUT">
-            <div class="project-image"><img src="20.png" alt="Villa 03"></div>
-            <div class="project-info"><div class="project-number">09 / KONUT</div><div class="project-name">VILLA 03</div><div class="project-location">VİLLA</div></div>
-        </div>
-
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><img src="21.png" alt="Residential"></div>
-            <div class="project-info"><div class="project-number">10 / KONUT</div><div class="project-name">RESIDENTIAL</div><div class="project-location">APARTMAN PROJESİ</div></div>
-        </div>
-
-        <div class="project-card project-tall reveal" data-category="KONUT">
-            <div class="project-image"><img src="22.png" alt="Residential II"></div>
-            <div class="project-info"><div class="project-number">11 / KONUT</div><div class="project-name">RESIDENTIAL II</div><div class="project-location">APARTMAN PROJESİ</div></div>
-        </div>
-
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><img src="23.png" alt="Residential III"></div>
-            <div class="project-info"><div class="project-number">12 / KONUT</div><div class="project-name">RESIDENTIAL III</div><div class="project-location">APARTMAN PROJESİ</div></div>
-        </div>
-
-        <div class="project-card project-wide reveal" data-category="KONUT">
-            <div class="project-image"><img src="24.png" alt="Residential IV"></div>
-            <div class="project-info"><div class="project-number">13 / KONUT</div><div class="project-name">RESIDENTIAL IV</div><div class="project-location">APARTMAN PROJESİ</div></div>
-        </div>
-
-        <!-- 37 ve 38, 21-24 ile AYNI RESIDENTIAL proje grubunda -->
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><img src="37.png" alt="Residential V"></div>
-            <div class="project-info"><div class="project-number">14 / KONUT</div><div class="project-name">RESIDENTIAL V</div><div class="project-location">APARTMAN PROJESİ</div></div>
-        </div>
-
-        <div class="project-card reveal" data-category="KONUT">
-            <div class="project-image"><img src="38.png" alt="Residential VI"></div>
-            <div class="project-info"><div class="project-number">15 / KONUT</div><div class="project-name">RESIDENTIAL VI</div><div class="project-location">APARTMAN PROJESİ</div></div>
-        </div>
-
-        <!-- ===================================================== KAMUSAL -->
-        <div class="project-category-title">02 — KAMUSAL</div>
-
-        <div class="project-card project-tall reveal" data-category="KAMUSAL">
-            <div class="project-image"><video class="project-video" src="34.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
-            <div class="project-info"><div class="project-number">01 / KAMUSAL</div><div class="project-name">YOUTH</div><div class="project-location">GENÇLİK MERKEZİ</div></div>
-        </div>
-
-        <div class="project-card reveal" data-category="KAMUSAL">
-            <div class="project-image"><img src="4.png" alt="Youth II"></div>
-            <div class="project-info"><div class="project-number">02 / KAMUSAL</div><div class="project-name">YOUTH II</div><div class="project-location">GENÇLİK MERKEZİ</div></div>
-        </div>
-
-        <div class="project-card project-wide reveal" data-category="KAMUSAL">
-            <div class="project-image"><img src="10.png" alt="Library"></div>
-            <div class="project-info"><div class="project-number">03 / KAMUSAL</div><div class="project-name">LIBRARY</div><div class="project-location">KÜTÜPHANE</div></div>
-        </div>
-
-        <div class="project-card reveal" data-category="KAMUSAL">
-            <div class="project-image"><img src="11.png" alt="Library II"></div>
-            <div class="project-info"><div class="project-number">04 / KAMUSAL</div><div class="project-name">LIBRARY II</div><div class="project-location">KÜTÜPHANE</div></div>
-        </div>
-
-        <!-- ===================================================== TİCARİ -->
-        <div class="project-category-title">03 — TİCARİ</div>
-
-        <div class="project-card project-wide reveal" data-category="TİCARİ"><div class="project-image"><img src="5.png" alt="Café 05"></div><div class="project-info"><div class="project-number">01 / TİCARİ</div><div class="project-name">CAFÉ 05</div><div class="project-location">KAFE</div></div></div>
-        <div class="project-card reveal" data-category="TİCARİ"><div class="project-image"><img src="6.png" alt="Café 06"></div><div class="project-info"><div class="project-number">02 / TİCARİ</div><div class="project-name">CAFÉ 06</div><div class="project-location">KAFE</div></div></div>
-        <div class="project-card reveal" data-category="TİCARİ"><div class="project-image"><img src="7.png" alt="Café 07"></div><div class="project-info"><div class="project-number">03 / TİCARİ</div><div class="project-name">CAFÉ 07</div><div class="project-location">KAFE</div></div></div>
-        <div class="project-card project-tall reveal" data-category="TİCARİ"><div class="project-image"><img src="8.png" alt="Café 08"></div><div class="project-info"><div class="project-number">04 / TİCARİ</div><div class="project-name">CAFÉ 08</div><div class="project-location">KAFE</div></div></div>
-        <div class="project-card reveal" data-category="TİCARİ"><div class="project-image"><img src="9.png" alt="Café 09"></div><div class="project-info"><div class="project-number">05 / TİCARİ</div><div class="project-name">CAFÉ 09</div><div class="project-location">KAFE</div></div></div>
-
-        <!-- ===================================================== EĞİTİM -->
-        <div class="project-category-title">04 — EĞİTİM</div>
-
-        <div class="project-card reveal" data-category="EĞİTİM"><div class="project-image"><img src="15.png" alt="Campus"></div><div class="project-info"><div class="project-number">01 / EĞİTİM</div><div class="project-name">CAMPUS</div><div class="project-location">ÜNİVERSİTE</div></div></div>
-        <div class="project-card project-tall reveal" data-category="EĞİTİM"><div class="project-image"><img src="16.png" alt="Campus II"></div><div class="project-info"><div class="project-number">02 / EĞİTİM</div><div class="project-name">CAMPUS II</div><div class="project-location">ÜNİVERSİTE</div></div></div>
-
-        <!-- ===================================================== MASTERPLAN -->
-        <div class="project-category-title">05 — MASTERPLAN</div>
-
-        <div class="project-card project-wide reveal" data-category="MASTERPLAN"><div class="project-image"><img src="17.png" alt="Campus Plan"></div><div class="project-info"><div class="project-number">01 / MASTERPLAN</div><div class="project-name">CAMPUS PLAN</div><div class="project-location">ÜNİVERSİTE VAZİYET</div></div></div>
-
     </div>
 
+    <div class="project-group" data-project-group="02">
+        <div class="project-group-header">
+            <div class="project-group-index">02</div>
+            <div>
+                <div class="project-group-category">KAMUSAL</div>
+                <div class="project-group-name">YOUTH</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
 
-</section>
+                <div class="project-card reveal project-tall" data-project-id="02-01" data-group="02" data-category="KAMUSAL">
+                    <div class="project-image">
+                        <img src="3.png" alt="Youth">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / KAMUSAL</div>
+                        <div class="project-name">YOUTH</div>
+                <div class="project-location">
+                    GENÇLİK MERKEZİ
+                </div>
+                    </div>
+                </div>
 
+                <div class="project-card reveal" data-project-id="02-02" data-group="02" data-category="KAMUSAL">
+                    <div class="project-image">
+                        <img src="4.png" alt="Youth II">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / KAMUSAL</div>
+                        <div class="project-name">YOUTH II</div>
+                <div class="project-location">
+                    GENÇLİK MERKEZİ
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="02-03" data-group="02" data-category="KAMUSAL">
+                    <div class="project-image">
+                        <video class="project-video" src="34.mp4" muted autoplay loop playsinline preload="metadata"></video>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">03 / KAMUSAL</div>
+                        <div class="project-name">YOUTH III</div>
+                <div class="project-location">
+                    GENÇLİK MERKEZİ
+                </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="project-group" data-project-group="03">
+        <div class="project-group-header">
+            <div class="project-group-index">03</div>
+            <div>
+                <div class="project-group-category">TİCARİ</div>
+                <div class="project-group-name">CAFÉ</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
+
+                <div class="project-card reveal project-wide" data-project-id="03-01" data-group="03" data-category="TİCARİ">
+                    <div class="project-image">
+                        <img src="5.png" alt="Café 05">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / TİCARİ</div>
+                        <div class="project-name">CAFÉ 05</div>
+                <div class="project-location">
+                    KAFE
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="03-02" data-group="03" data-category="TİCARİ">
+                    <div class="project-image">
+                        <img src="6.png" alt="Café 06">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / TİCARİ</div>
+                        <div class="project-name">CAFÉ 06</div>
+                <div class="project-location">
+                    KAFE
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="03-03" data-group="03" data-category="TİCARİ">
+                    <div class="project-image">
+                        <img src="7.png" alt="Café 07">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">03 / TİCARİ</div>
+                        <div class="project-name">CAFÉ 07</div>
+                <div class="project-location">
+                    KAFE
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-tall" data-project-id="03-04" data-group="03" data-category="TİCARİ">
+                    <div class="project-image">
+                        <img src="8.png" alt="Café 08">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">04 / TİCARİ</div>
+                        <div class="project-name">CAFÉ 08</div>
+                <div class="project-location">
+                    KAFE
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="03-05" data-group="03" data-category="TİCARİ">
+                    <div class="project-image">
+                        <img src="9.png" alt="Café 09">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">05 / TİCARİ</div>
+                        <div class="project-name">CAFÉ 09</div>
+                <div class="project-location">
+                    KAFE
+                </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="project-group" data-project-group="04">
+        <div class="project-group-header">
+            <div class="project-group-index">04</div>
+            <div>
+                <div class="project-group-category">KAMUSAL</div>
+                <div class="project-group-name">LIBRARY</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
+
+                <div class="project-card reveal project-wide" data-project-id="04-01" data-group="04" data-category="KAMUSAL">
+                    <div class="project-image">
+                        <img src="10.png" alt="Library">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / KAMUSAL</div>
+                        <div class="project-name">LIBRARY</div>
+                <div class="project-location">
+                    KÜTÜPHANE
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="04-02" data-group="04" data-category="KAMUSAL">
+                    <div class="project-image">
+                        <img src="11.png" alt="Library II">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / KAMUSAL</div>
+                        <div class="project-name">LIBRARY II</div>
+                <div class="project-location">
+                    KÜTÜPHANE
+                </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="project-group" data-project-group="05">
+        <div class="project-group-header">
+            <div class="project-group-index">05</div>
+            <div>
+                <div class="project-group-category">KONUT</div>
+                <div class="project-group-name">BROWN LINE</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
+
+                <div class="project-card reveal project-tall" data-project-id="05-01" data-group="05" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="12.png" alt="Brown Line">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / KONUT</div>
+                        <div class="project-name">BROWN LINE</div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="05-02" data-group="05" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="13.png" alt="Brown Line II">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / KONUT</div>
+                        <div class="project-name">BROWN LINE II</div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-wide" data-project-id="05-03" data-group="05" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="14.png" alt="Brown Line III">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">03 / KONUT</div>
+                        <div class="project-name">BROWN LINE III</div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="project-group" data-project-group="06">
+        <div class="project-group-header">
+            <div class="project-group-index">06</div>
+            <div>
+                <div class="project-group-category">KONUT</div>
+                <div class="project-group-name">RESIDENTIAL II</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
+
+                <div class="project-card reveal" data-project-id="06-01" data-group="06" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="37.png" alt="Residential II">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / KONUT</div>
+                        <div class="project-name">RESIDENTIAL II</div>
+                <div class="project-location">
+                    APARTMAN PROJESİ
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="06-02" data-group="06" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="38.png" alt="Residential III">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / KONUT</div>
+                        <div class="project-name">RESIDENTIAL III</div>
+                <div class="project-location">
+                    APARTMAN PROJESİ
+                </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="project-group" data-project-group="07">
+        <div class="project-group-header">
+            <div class="project-group-index">07</div>
+            <div>
+                <div class="project-group-category">KONUT</div>
+                <div class="project-group-name">VILLA</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
+
+                <div class="project-card reveal" data-project-id="07-01" data-group="07" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="18.png" alt="Villa 01">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / KONUT</div>
+                        <div class="project-name">VILLA 01</div>
+                <div class="project-location">
+                    VİLLA
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-tall" data-project-id="07-02" data-group="07" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="19.png" alt="Villa 02">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / KONUT</div>
+                        <div class="project-name">VILLA 02</div>
+                <div class="project-location">
+                    VİLLA
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-wide" data-project-id="07-03" data-group="07" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="20.png" alt="Villa 03">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">03 / KONUT</div>
+                        <div class="project-name">VILLA 03</div>
+                <div class="project-location">
+                    VİLLA
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="07-04" data-group="07" data-category="KONUT">
+                    <div class="project-image">
+                        <video class="project-video" src="33.mp4" muted autoplay loop playsinline preload="metadata"></video>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">04 / KONUT</div>
+                        <div class="project-name">VILLA 04</div>
+                <div class="project-location">
+                    VİLLA
+                </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="project-group" data-project-group="08">
+        <div class="project-group-header">
+            <div class="project-group-index">08</div>
+            <div>
+                <div class="project-group-category">KONUT</div>
+                <div class="project-group-name">RESIDENTIAL</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
+
+                <div class="project-card reveal" data-project-id="08-01" data-group="08" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="21.png" alt="Residential">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / KONUT</div>
+                        <div class="project-name">RESIDENTIAL</div>
+                <div class="project-location">
+                    APARTMAN PROJESİ
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-tall" data-project-id="08-02" data-group="08" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="22.png" alt="Residential II">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / KONUT</div>
+                        <div class="project-name">RESIDENTIAL II</div>
+                <div class="project-location">
+                    APARTMAN PROJESİ
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-project-id="08-03" data-group="08" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="23.png" alt="Residential III">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">03 / KONUT</div>
+                        <div class="project-name">RESIDENTIAL III</div>
+                <div class="project-location">
+                    APARTMAN PROJESİ
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-wide" data-project-id="08-04" data-group="08" data-category="KONUT">
+                    <div class="project-image">
+                        <img src="24.png" alt="Residential IV">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">04 / KONUT</div>
+                        <div class="project-name">RESIDENTIAL IV</div>
+                <div class="project-location">
+                    APARTMAN PROJESİ
+                </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="project-group" data-project-group="09">
+        <div class="project-group-header">
+            <div class="project-group-index">09</div>
+            <div>
+                <div class="project-group-category">EĞİTİM</div>
+                <div class="project-group-name">CAMPUS</div>
+            </div>
+        </div>
+        <div class="project-group-grid">
+
+                <div class="project-card reveal" data-project-id="09-01" data-group="09" data-category="EĞİTİM">
+                    <div class="project-image">
+                        <img src="15.png" alt="Campus">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">01 / EĞİTİM</div>
+                        <div class="project-name">CAMPUS</div>
+                <div class="project-location">
+                    ÜNİVERSİTE
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-tall" data-project-id="09-02" data-group="09" data-category="EĞİTİM">
+                    <div class="project-image">
+                        <img src="16.png" alt="Campus II">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">02 / EĞİTİM</div>
+                        <div class="project-name">CAMPUS II</div>
+                <div class="project-location">
+                    ÜNİVERSİTE
+                </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal project-wide" data-project-id="09-03" data-group="09" data-category="EĞİTİM">
+                    <div class="project-image">
+                        <img src="17.png" alt="Campus Plan">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-number">03 / EĞİTİM</div>
+                        <div class="project-name">CAMPUS PLAN</div>
+                <div class="project-location">
+                    ÜNİVERSİTE VAZİYET
+                </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- =====================================================
      SERVICES
@@ -3012,29 +3403,25 @@ document
         }
     );
 
-</script>
 
 
-<script>
-/* ARCHITUNA PROJECT ARCHIVE VALIDATION
-   GitHub media filenames are NOT site project numbers.
-   Project numbers restart inside each category. */
-(function () {
-    const expected = {"KONUT":15,"KAMUSAL":4,"TİCARİ":5,"EĞİTİM":2,"MASTERPLAN":1};
-    document.querySelectorAll('.project-category-title').forEach((heading) => {
-        const category = heading.textContent.replace(/^\d+\s*[—-]\s*/, '').trim();
-        let next = heading.nextElementSibling, n = 0;
-        while (next && !next.classList.contains('project-category-title')) {
-            if (next.classList.contains('project-card')) {
-                n++;
-                const label = next.querySelector('.project-number');
-                if (label) label.textContent = String(n).padStart(2,'0') + ' / ' + category;
-            }
-            next = next.nextElementSibling;
+/* =========================================================
+   PROJECT GROUP VALIDATION
+   GitHub dosya adlari ile site numaralari bagimsizdir.
+========================================================= */
+
+(function validateProjectGroups() {
+    const expected = {"01":3,"02":3,"03":5,"04":2,"05":3,"06":2,"07":4,"08":4,"09":3};
+
+    document.querySelectorAll('.project-group').forEach(function(group) {
+        const id = group.dataset.projectGroup;
+        const count = group.querySelectorAll('.project-card').length;
+        if (expected[id] !== count) {
+            console.warn('ARCHITUNA grup kontrolu:', id, expected[id], count);
         }
-        if (expected[category] !== n) console.warn('ARCHITUNA archive check:', category, n, expected[category]);
     });
 })();
 </script>
+
 </body>
 </html>
