@@ -6,14 +6,25 @@
 
 <title>ARCHITUNA.COM.TR | TUNALI MİMARLIK</title>
 
-<meta name="description"
-content="ARCHITUNA.COM.TR — Tunalı Mimarlık. Architecture, design, visualization and spatial ideas by Architect Osman Kemal Tunalı.">
+<meta name="description" content="ARCHITUNA.COM.TR — Tunalı Mimarlık. Architecture, design, visualization and spatial ideas by Architect Osman Kemal Tunalı.">
 
 <meta name="theme-color" content="#080808">
 
 <style>
 
+/* =========================================================
+   ARCHITUNA — GLOBAL ARCHITECTURE STUDIO
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap');
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root {
+
     --black: #080808;
     --black-soft: #101010;
     --black-card: #141414;
@@ -30,52 +41,84 @@ content="ARCHITUNA.COM.TR — Tunalı Mimarlık. Architecture, design, visualiza
     --cream: #e9e8e2;
 
     --ease: cubic-bezier(.16,1,.3,1);
+
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 html {
+
     scroll-behavior: smooth;
     scroll-padding-top: 0;
+
 }
 
 html,
 body {
+
     width: 100%;
     min-height: 100%;
+
 }
 
 body {
+
     background: var(--black);
+
     color: var(--white);
+
     font-family: 'Inter', sans-serif;
+
     overflow-x: hidden;
+
     overflow-anchor: none;
+
     cursor: none;
+
 }
 
 body::selection {
+
     background: white;
     color: black;
+
 }
 
 a {
+
     color: inherit;
     text-decoration: none;
+
 }
 
 button {
+
     font: inherit;
+
 }
 
+
+/* =========================================================
+   NOISE
+========================================================= */
+
 body::before {
+
     content: "";
 
     position: fixed;
+
     inset: 0;
 
     z-index: 99990;
@@ -88,9 +131,16 @@ body::before {
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
 
     mix-blend-mode: soft-light;
+
 }
 
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
 .cursor {
+
     position: fixed;
 
     width: 7px;
@@ -107,9 +157,11 @@ body::before {
     transform: translate(-50%,-50%);
 
     mix-blend-mode: difference;
+
 }
 
 .cursor-ring {
+
     position: fixed;
 
     width: 42px;
@@ -129,9 +181,11 @@ body::before {
         width .45s var(--ease),
         height .45s var(--ease),
         border-color .3s ease;
+
 }
 
 .cursor-label {
+
     position: fixed;
 
     pointer-events: none;
@@ -151,9 +205,16 @@ body::before {
     transform: translate(16px,16px);
 
     transition: opacity .3s ease;
+
 }
 
+
+/* =========================================================
+   GLOBAL LOGO
+========================================================= */
+
 .site-logo-bg {
+
     position: fixed;
 
     left: 50%;
@@ -178,20 +239,31 @@ body::before {
     mix-blend-mode: difference;
 
     transition: opacity 1s ease;
+
 }
 
 .site-logo-bg img {
+
     display: block;
 
     width: 100%;
+
     height: auto;
 
     transition:
         transform .25s var(--ease);
+
 }
 
+
+/* =========================================================
+   INTRO
+========================================================= */
+
 #intro {
+
     position: fixed;
+
     inset: 0;
 
     background: #030303;
@@ -203,13 +275,16 @@ body::before {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     transition:
         opacity 1.5s var(--ease);
+
 }
 
 #intro-video {
+
     position: absolute;
 
     inset: 0;
@@ -224,9 +299,11 @@ body::before {
     filter:
         contrast(1.08)
         brightness(.78);
+
 }
 
 .intro-overlay {
+
     position: absolute;
 
     inset: 0;
@@ -238,9 +315,11 @@ body::before {
             rgba(0,0,0,.15) 30%,
             rgba(0,0,0,.88) 100%
         );
+
 }
 
 .intro-lines {
+
     position: absolute;
 
     inset: 0;
@@ -261,9 +340,11 @@ body::before {
             rgba(255,255,255,.6) 50%,
             transparent 50.1%
         );
+
 }
 
 .intro-corner {
+
     position: absolute;
 
     left: 35px;
@@ -273,17 +354,21 @@ body::before {
     bottom: 35px;
 
     border: 1px solid rgba(255,255,255,.08);
+
 }
 
 .intro-content {
+
     position: relative;
 
     z-index: 5;
 
     text-align: center;
+
 }
 
 .intro-small {
+
     font-family: 'DM Mono', monospace;
 
     font-size: 8px;
@@ -293,9 +378,11 @@ body::before {
     color: #aaa;
 
     margin-bottom: 28px;
+
 }
 
 .intro-title {
+
     font-family: 'Manrope', sans-serif;
 
     font-size: clamp(48px,10vw,155px);
@@ -306,9 +393,11 @@ body::before {
 
     animation:
         introZoom 5s var(--ease) forwards;
+
 }
 
 .intro-sub {
+
     margin-top: 25px;
 
     font-family: 'DM Mono', monospace;
@@ -318,28 +407,46 @@ body::before {
     letter-spacing: 5px;
 
     color: #777;
+
 }
 
 @keyframes introZoom {
 
     0% {
+
         opacity: 0;
+
         transform: scale(.65);
+
         letter-spacing: .25em;
+
     }
 
     20% {
+
         opacity: 1;
+
     }
 
     100% {
+
         opacity: 0;
+
         transform: scale(1.7);
+
         letter-spacing: .08em;
+
     }
+
 }
 
+
+/* =========================================================
+   MAIN
+========================================================= */
+
 main {
+
     position: relative;
 
     z-index: 1;
@@ -348,13 +455,22 @@ main {
 
     transition:
         opacity 1.4s ease;
+
 }
 
 body.site-loaded main {
+
     opacity: 1;
+
 }
 
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
 .navbar {
+
     position: fixed;
 
     top: 0;
@@ -376,14 +492,19 @@ body.site-loaded main {
 
     transition:
         padding .6s var(--ease);
+
 }
 
 .navbar.scrolled {
+
     padding-top: 18px;
+
     padding-bottom: 18px;
+
 }
 
 .logo-text {
+
     font-family: 'Manrope', sans-serif;
 
     font-size: 14px;
@@ -391,9 +512,11 @@ body.site-loaded main {
     letter-spacing: 5px;
 
     font-weight: 500;
+
 }
 
 .logo-sub {
+
     margin-top: 6px;
 
     font-family: 'DM Mono', monospace;
@@ -403,17 +526,21 @@ body.site-loaded main {
     letter-spacing: 3px;
 
     opacity: .55;
+
 }
 
 .nav-links {
+
     list-style: none;
 
     display: flex;
 
     gap: 34px;
+
 }
 
 .nav-links a {
+
     position: relative;
 
     font-family: 'DM Mono', monospace;
@@ -423,9 +550,11 @@ body.site-loaded main {
     letter-spacing: 2px;
 
     text-transform: uppercase;
+
 }
 
 .nav-links a::after {
+
     content: "";
 
     position: absolute;
@@ -440,13 +569,22 @@ body.site-loaded main {
 
     transition:
         width .5s var(--ease);
+
 }
 
 .nav-links a:hover::after {
+
     width: 100%;
+
 }
 
+
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero {
+
     position: relative;
 
     min-height: 100vh;
@@ -461,9 +599,11 @@ body.site-loaded main {
     align-items: center;
 
     overflow: hidden;
+
 }
 
 .hero-grid {
+
     position: absolute;
 
     inset: 0;
@@ -501,9 +641,11 @@ body.site-loaded main {
             rgba(255,255,255,.13) 80%,
             transparent calc(80% + .5px)
         );
+
 }
 
 .hero-grid::after {
+
     content: "";
 
     position: absolute;
@@ -516,17 +658,21 @@ body.site-loaded main {
     height: 1px;
 
     background: rgba(255,255,255,.08);
+
 }
 
 .hero-content {
+
     position: relative;
 
     z-index: 10;
 
     max-width: 1100px;
+
 }
 
 .eyebrow {
+
     display: flex;
 
     align-items: center;
@@ -542,9 +688,11 @@ body.site-loaded main {
     color: #777;
 
     margin-bottom: 38px;
+
 }
 
 .eyebrow::before {
+
     content: "";
 
     width: 35px;
@@ -552,9 +700,11 @@ body.site-loaded main {
     height: 1px;
 
     background: #777;
+
 }
 
 .hero-title {
+
     font-family: 'Manrope', sans-serif;
 
     font-size: clamp(62px,10.5vw,160px);
@@ -564,13 +714,17 @@ body.site-loaded main {
     line-height: .82;
 
     letter-spacing: -.075em;
+
 }
 
 .hero-title span {
+
     display: block;
+
 }
 
 .hero-title .outline {
+
     color: transparent;
 
     -webkit-text-stroke:
@@ -578,13 +732,17 @@ body.site-loaded main {
 
     transition:
         color .6s ease;
+
 }
 
 .hero-title:hover .outline {
+
     color: rgba(255,255,255,.04);
+
 }
 
 .hero-description {
+
     max-width: 530px;
 
     margin-top: 62px;
@@ -596,9 +754,11 @@ body.site-loaded main {
     color: #858581;
 
     font-weight: 300;
+
 }
 
 .hero-bottom {
+
     position: absolute;
 
     left: 8vw;
@@ -619,17 +779,21 @@ body.site-loaded main {
     letter-spacing: 3px;
 
     color: #666;
+
 }
 
 .hero-bottom span:last-child {
+
     display: flex;
 
     align-items: center;
 
     gap: 12px;
+
 }
 
 .hero-bottom span:last-child::before {
+
     content: "";
 
     width: 35px;
@@ -637,17 +801,26 @@ body.site-loaded main {
     height: 1px;
 
     background: #555;
+
 }
 
+
+/* =========================================================
+   SECTION SYSTEM
+========================================================= */
+
 section {
+
     position: relative;
 
     z-index: 1;
 
     padding: 170px 8vw;
+
 }
 
 .section-number {
+
     font-family: 'DM Mono', monospace;
 
     font-size: 7px;
@@ -663,9 +836,11 @@ section {
     align-items: center;
 
     gap: 15px;
+
 }
 
 .section-number::before {
+
     content: "";
 
     width: 25px;
@@ -673,9 +848,11 @@ section {
     height: 1px;
 
     background: #555;
+
 }
 
 .section-title {
+
     font-family: 'Manrope', sans-serif;
 
     font-size: clamp(46px,7vw,105px);
@@ -685,15 +862,24 @@ section {
     line-height: .9;
 
     letter-spacing: -.055em;
+
 }
 
 .section-title em {
+
     font-style: normal;
 
     color: #575752;
+
 }
 
+
+/* =========================================================
+   MANIFESTO
+========================================================= */
+
 .manifesto {
+
     min-height: 90vh;
 
     display: flex;
@@ -708,9 +894,11 @@ section {
         );
 
     overflow: hidden;
+
 }
 
 .manifesto::before {
+
     content: "02";
 
     position: absolute;
@@ -730,9 +918,11 @@ section {
     color: rgba(255,255,255,.018);
 
     font-weight: 700;
+
 }
 
 .manifesto-grid {
+
     width: 100%;
 
     display: grid;
@@ -742,9 +932,11 @@ section {
     gap: 12vw;
 
     align-items: end;
+
 }
 
 .manifesto-text {
+
     font-size: clamp(19px,2vw,29px);
 
     line-height: 1.6;
@@ -752,15 +944,19 @@ section {
     color: #999;
 
     font-weight: 300;
+
 }
 
 .manifesto-text strong {
+
     color: white;
 
     font-weight: 400;
+
 }
 
 .manifesto-mark {
+
     margin-top: 70px;
 
     width: 100%;
@@ -778,9 +974,11 @@ section {
     letter-spacing: 3px;
 
     color: #555;
+
 }
 
 .manifesto-mark::before {
+
     content: "";
 
     width: 70px;
@@ -788,15 +986,24 @@ section {
     height: 1px;
 
     background: #555;
+
 }
 
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
 .projects {
+
     background: #080808;
 
     overflow: hidden;
+
 }
 
 .projects-heading {
+
     display: flex;
 
     justify-content: space-between;
@@ -804,9 +1011,11 @@ section {
     align-items: flex-end;
 
     gap: 60px;
+
 }
 
 .projects-intro {
+
     max-width: 250px;
 
     font-family: 'DM Mono', monospace;
@@ -820,9 +1029,11 @@ section {
     color: #555;
 
     padding-bottom: 8px;
+
 }
 
 .project-archive {
+
     margin-top: 115px;
 
     display: grid;
@@ -833,9 +1044,16 @@ section {
     gap: 120px 24px;
 
     align-items: start;
+
 }
 
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
 .project-card {
+
     position: relative;
 
     grid-column: span 4;
@@ -850,40 +1068,64 @@ section {
 
     transition:
         transform .8s var(--ease);
+
 }
 
 .project-card.project-wide {
+
     grid-column: span 7;
+
 }
 
 .project-card.project-tall {
+
     grid-column: span 5;
 
     min-height: 650px;
+
 }
 
 .project-card::before {
+
     content: "";
 
     position: absolute;
 
-    left: 0;
     top: 0;
+    left: 0;
 
-    width: 100%;
+    width: 35px;
+
     height: 1px;
 
-    background: rgba(255,255,255,.12);
+    background: white;
+
+    z-index: 20;
 
     transition:
-        background .5s ease;
+        width .8s var(--ease);
+
 }
 
 .project-card:hover::before {
-    background: rgba(255,255,255,.6);
+
+    width: 100%;
+
 }
 
-.project-image {
+.project-card:hover {
+
+    transform: translateY(-10px);
+
+}
+
+
+/* =========================================================
+   PROJECT IMAGE
+========================================================= */
+
+.project-card .project-image {
+
     position: relative;
 
     width: 100%;
@@ -892,34 +1134,26 @@ section {
 
     overflow: hidden;
 
-    background: #111;
+    background: #121212;
 
-    cursor: none;
-}
+    cursor: pointer;
 
-.project-card.project-tall .project-image {
-    height: 580px;
 }
 
 .project-card.project-wide .project-image {
-    height: 430px;
+
+    height: 520px;
+
 }
 
-.project-image img,
-.project-video {
-    display: block;
+.project-card.project-tall .project-image {
 
-    width: 100%;
-    height: 100%;
+    height: 610px;
 
-    object-fit: cover;
-
-    transition:
-        transform 1.4s var(--ease),
-        filter 1s ease;
 }
 
-.project-image::after {
+.project-card .project-image::after {
+
     content: "";
 
     position: absolute;
@@ -929,37 +1163,68 @@ section {
     background:
         linear-gradient(
             180deg,
-            transparent 50%,
-            rgba(0,0,0,.5) 100%
+            transparent 38%,
+            rgba(0,0,0,.88) 100%
         );
 
-    opacity: .4;
+    z-index: 2;
 
     pointer-events: none;
+
 }
 
-.project-card:hover
-.project-image img,
-.project-card:hover
+.project-card .project-image img,
 .project-video {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter:
+        grayscale(35%)
+        contrast(1.05);
+
     transform: scale(1.035);
-    filter: brightness(.82);
+
+    transition:
+        transform 1.6s var(--ease),
+        filter 1s ease;
+
 }
+
+.project-card:hover .project-image img,
+.project-card:hover .project-video {
+
+    transform: scale(1.10);
+
+    filter:
+        grayscale(0%)
+        contrast(1.08);
+
+}
+
+
+/* =========================================================
+   VIEW INDICATOR
+========================================================= */
 
 .project-view {
+
     position: absolute;
 
-    left: 50%;
-    top: 50%;
+    right: 25px;
+    top: 45px;
 
-    transform:
-        translate(-50%,-50%)
-        scale(.8);
+    z-index: 10;
 
-    width: 80px;
-    height: 80px;
+    width: 45px;
+    height: 45px;
 
-    border: 1px solid rgba(255,255,255,.5);
+    border: 1px solid rgba(255,255,255,.35);
 
     border-radius: 50%;
 
@@ -972,150 +1237,495 @@ section {
 
     font-size: 7px;
 
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+
+    color: white;
 
     opacity: 0;
 
+    transform: scale(.7);
+
     transition:
         opacity .5s ease,
-        transform .7s var(--ease);
+        transform .5s var(--ease);
+
 }
 
 .project-card:hover .project-view {
+
     opacity: 1;
 
-    transform:
-        translate(-50%,-50%)
-        scale(1);
+    transform: scale(1);
+
 }
 
-.project-info {
-    padding-top: 20px;
 
-    display: grid;
-
-    grid-template-columns:
-        90px 1fr auto;
-
-    gap: 20px;
-
-    align-items: baseline;
-}
+/* =========================================================
+   PROJECT NUMBER
+========================================================= */
 
 .project-number {
+
     font-family: 'DM Mono', monospace;
 
     font-size: 7px;
 
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 
-    color: #666;
+    color: #bbb;
+
+    margin-bottom: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
 }
 
-.project-name {
+.project-number::before {
+
+    content: "";
+
+    width: 16px;
+
+    height: 1px;
+
+    background: #999;
+
+}
+
+
+/* =========================================================
+   PROJECT INFO
+========================================================= */
+
+.project-card .project-info {
+
+    position: absolute;
+
+    left: 30px;
+    right: 30px;
+
+    bottom: 30px;
+
+    z-index: 5;
+
+}
+
+.project-card .project-name {
+
     font-family: 'Manrope', sans-serif;
 
-    font-size: 17px;
+    font-size: clamp(29px,4vw,62px);
 
-    font-weight: 400;
+    line-height: .9;
 
-    letter-spacing: -.02em;
+    font-weight: 300;
+
+    letter-spacing: -.055em;
+
 }
 
-.project-location {
-    font-family: 'DM Mono', monospace;
+.project-card .project-location {
 
-    font-size: 6px;
+    margin-top: 13px;
 
-    letter-spacing: 2px;
-
-    color: #555;
-}
-
-.services {
-    background: #101010;
-}
-
-.services-grid {
-    margin-top: 110px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    border-top:
-        1px solid var(--line);
-}
-
-.service {
-    padding:
-        55px 30px 55px 0;
-
-    border-bottom:
-        1px solid var(--line);
-
-    display: grid;
-
-    grid-template-columns:
-        80px 1fr;
-
-    gap: 30px;
-
-    transition:
-        background .5s ease,
-        padding .6s var(--ease);
-}
-
-.service:nth-child(even) {
-    padding-left: 30px;
-
-    border-left:
-        1px solid var(--line);
-}
-
-.service:hover {
-    background: rgba(255,255,255,.025);
-
-    padding-left: 20px;
-}
-
-.service-number {
     font-family: 'DM Mono', monospace;
 
     font-size: 7px;
 
     letter-spacing: 3px;
 
-    color: #555;
+    color: #aaa;
+
 }
 
-.service-name {
-    font-family: 'Manrope', sans-serif;
 
-    font-size: clamp(25px,3vw,42px);
+/* =========================================================
+   LIGHTBOX
+========================================================= */
 
-    font-weight: 300;
+.lightbox {
 
-    letter-spacing: -.04em;
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100000;
+
+    background:
+        rgba(0,0,0,.96);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 5vw;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .6s ease,
+        visibility .6s ease;
+
 }
 
-.service-description {
-    margin-top: 20px;
+.lightbox.active {
 
-    max-width: 430px;
+    opacity: 1;
 
-    font-size: 12px;
+    visibility: visible;
 
-    line-height: 1.9;
+    pointer-events: auto;
+
+}
+
+.lightbox::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 30px;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    pointer-events: none;
+
+}
+
+.lightbox-image {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 92vw;
+
+    max-height: 88vh;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.7);
+
+    transform: scale(.94);
+
+    opacity: 0;
+
+    transition:
+        transform .7s var(--ease),
+        opacity .5s ease;
+
+}
+
+.lightbox.active .lightbox-image {
+
+    transform: scale(1);
+
+    opacity: 1;
+
+}
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 35px;
+    right: 40px;
+
+    z-index: 10;
+
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    transition:
+        background .3s ease,
+        transform .4s var(--ease);
+
+}
+
+.lightbox-close:hover {
+
+    background: white;
+
+    color: black;
+
+    transform: rotate(90deg);
+
+}
+
+.lightbox-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 10;
+
+    transform: translateY(-50%);
+
+    width: 58px;
+    height: 58px;
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.35);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition:
+        background .3s ease,
+        transform .4s var(--ease);
+
+}
+
+.lightbox-arrow:hover {
+
+    background: white;
+
+    color: black;
+
+}
+
+.lightbox-prev {
+
+    left: 35px;
+
+}
+
+.lightbox-next {
+
+    right: 35px;
+
+}
+
+.lightbox-meta {
+
+    position: absolute;
+
+    left: 40px;
+
+    bottom: 35px;
+
+    z-index: 10;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #888;
+
+}
+
+.lightbox-counter {
+
+    position: absolute;
+
+    right: 40px;
+
+    bottom: 35px;
+
+    z-index: 10;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
 
     color: #777;
 
-    font-weight: 300;
 }
 
-.brand {
-    min-height: 80vh;
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services {
+
+    background: var(--cream);
+
+    color: #111;
+
+    overflow: hidden;
+
+}
+
+.services::before {
+
+    content: "SERVICES";
+
+    position: absolute;
+
+    right: -3vw;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%)
+        rotate(90deg);
+
+    font-family: 'Manrope';
+
+    font-size: 13vw;
+
+    font-weight: 700;
+
+    color: rgba(0,0,0,.025);
+
+    letter-spacing: -.07em;
+
+}
+
+.services .section-number {
+
+    color: #777;
+
+}
+
+.services .section-number::before {
+
+    background: #777;
+
+}
+
+.services-list {
+
+    margin-top: 105px;
+
+    border-top: 1px solid #aaa;
+
+}
+
+.service {
+
+    position: relative;
+
+    min-height: 105px;
+
+    padding: 28px 0;
+
+    border-bottom: 1px solid #aaa;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    transition:
+        padding .5s var(--ease);
+
+}
+
+.service::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -1px;
+
+    width: 0;
+
+    height: 1px;
+
+    background: #111;
+
+    transition:
+        width .7s var(--ease);
+
+}
+
+.service:hover::before {
+
+    width: 100%;
+
+}
+
+.service:hover {
+
+    padding-left: 30px;
+
+    padding-right: 30px;
+
+}
+
+.service-name {
+
+    font-family: 'Manrope';
+
+    font-size: clamp(27px,4vw,58px);
+
+    font-weight: 300;
+
+    letter-spacing: -.05em;
+
+}
+
+.service-number {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #777;
+
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand-section {
+
+    min-height: 100vh;
 
     display: flex;
 
@@ -1126,31 +1736,82 @@ section {
     text-align: center;
 
     overflow: hidden;
+
+    background: #090909;
+
 }
 
-.brand-word {
-    font-family: 'Manrope', sans-serif;
+.brand-section::before {
 
-    font-size: clamp(80px,18vw,280px);
+    content: "ARCHITUNA";
 
-    font-weight: 300;
+    position: absolute;
+
+    font-family: 'Manrope';
+
+    font-size: 19vw;
+
+    font-weight: 700;
+
+    color: rgba(255,255,255,.018);
+
+    white-space: nowrap;
 
     letter-spacing: -.09em;
 
-    line-height: .75;
-
-    color: #151515;
-
-    transition:
-        color 1s ease;
 }
 
-.brand:hover .brand-word {
-    color: #202020;
+.brand-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 45vw;
+
+    height: 45vw;
+
+    border: 1px solid rgba(255,255,255,.05);
+
+    border-radius: 50%;
+
 }
 
-.brand-sub {
-    margin-top: 55px;
+.brand-main {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+.brand-main h2 {
+
+    font-family: 'Manrope';
+
+    font-size: clamp(55px,11vw,175px);
+
+    font-weight: 300;
+
+    letter-spacing: -.085em;
+
+    line-height: .8;
+
+}
+
+.brand-switch {
+
+    margin-top: 35px;
+
+    height: 25px;
+
+    overflow: hidden;
+
+}
+
+.brand-switch span {
+
+    display: block;
 
     font-family: 'DM Mono', monospace;
 
@@ -1158,112 +1819,175 @@ section {
 
     letter-spacing: 5px;
 
-    color: #555;
+    color: #777;
+
+    animation:
+        brandChange 5s infinite;
+
 }
 
+@keyframes brandChange {
+
+    0%,42% {
+
+        transform: translateY(0);
+
+    }
+
+    50%,92% {
+
+        transform: translateY(-25px);
+
+    }
+
+    100% {
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
 .contact {
-    min-height: 100vh;
 
-    display: flex;
+    min-height: 90vh;
 
-    flex-direction: column;
-
-    justify-content: center;
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            #191919 0%,
+            #101010 32%,
+            #101010 100%
+        );
 
     overflow: hidden;
+
 }
 
 .contact::before {
-    content: "04";
+
+    content: "";
 
     position: absolute;
 
-    right: -2vw;
-    top: 10%;
+    right: 8vw;
 
-    font-family: 'Manrope';
+    top: 18%;
 
-    font-size: 35vw;
+    width: 1px;
 
-    line-height: 1;
+    height: 65%;
 
-    color: rgba(255,255,255,.018);
+    background:
+        linear-gradient(
+            transparent,
+            rgba(255,255,255,.15),
+            transparent
+        );
 
-    font-weight: 700;
 }
 
 .contact-title {
-    font-family: 'Manrope', sans-serif;
 
-    font-size: clamp(65px,12vw,180px);
+    font-family: 'Manrope';
+
+    font-size: clamp(52px,9vw,135px);
 
     font-weight: 300;
 
-    line-height: .8;
+    line-height: .87;
 
     letter-spacing: -.075em;
+
+    max-width: 1100px;
+
 }
 
 .contact-title span {
-    display: block;
-}
 
-.contact-title .outline {
-    color: transparent;
+    color: #555550;
 
-    -webkit-text-stroke:
-        1px rgba(255,255,255,.75);
 }
 
 .contact-bottom {
-    margin-top: 130px;
+
+    margin-top: 120px;
 
     display: grid;
 
     grid-template-columns:
-        1fr 1fr 1fr;
+        repeat(3,1fr);
 
-    gap: 40px;
+    gap: 30px;
+
 }
 
 .contact-item {
-    display: flex;
 
-    flex-direction: column;
+    padding-top: 20px;
 
-    gap: 12px;
-}
+    border-top: 1px solid rgba(255,255,255,.12);
 
-.contact-label {
     font-family: 'DM Mono', monospace;
 
-    font-size: 7px;
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #888;
+
+}
+
+.contact-item strong {
+
+    display: block;
+
+    color: white;
+
+    font-family: 'Inter';
+
+    font-size: 10px;
 
     letter-spacing: 3px;
 
-    color: #555;
+    margin-bottom: 12px;
+
+    font-weight: 400;
+
 }
 
-.contact-value {
-    font-size: 14px;
+.contact-item a {
 
-    color: #aaa;
-
-    font-weight: 300;
-}
-
-.contact-value a {
     transition:
         color .3s ease;
+
 }
 
-.contact-value a:hover {
+.contact-item a:hover {
+
     color: white;
+
 }
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
+
+    position: relative;
+
+    z-index: 2;
+
     padding:
-        35px 8vw;
+        30px
+        8vw;
 
     border-top:
         1px solid var(--line);
@@ -1272,298 +1996,422 @@ footer {
 
     justify-content: space-between;
 
-    align-items: center;
-
     font-family: 'DM Mono', monospace;
 
-    font-size: 6px;
+    font-size: 7px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
-    color: #444;
+    color: #555;
+
 }
 
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
 .reveal {
+
     opacity: 0;
 
     transform:
-        translateY(45px);
+        translateY(55px);
 
     transition:
-        opacity 1.2s var(--ease),
-        transform 1.2s var(--ease);
+        opacity 1.1s ease,
+        transform 1.1s var(--ease);
+
 }
 
 .reveal.visible {
+
     opacity: 1;
 
     transform:
         translateY(0);
+
 }
 
-.lightbox {
-    position: fixed;
 
-    inset: 0;
+/* =========================================================
+   STAGGER
+========================================================= */
 
-    z-index: 80000;
+.project-card:nth-child(2) {
 
-    background:
-        rgba(0,0,0,.96);
+    transition-delay: .04s;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transition:
-        opacity .5s ease,
-        visibility .5s ease;
 }
 
-.lightbox.active {
-    opacity: 1;
+.project-card:nth-child(3) {
 
-    visibility: visible;
+    transition-delay: .08s;
 
-    pointer-events: auto;
 }
 
-.lightbox-image {
-    max-width: 88vw;
+.project-card:nth-child(4) {
 
-    max-height: 82vh;
+    transition-delay: .12s;
 
-    object-fit: contain;
-
-    opacity: 0;
-
-    transition:
-        opacity .3s ease;
 }
 
-.lightbox-close {
-    position: absolute;
+.project-card:nth-child(5) {
 
-    top: 30px;
-    right: 35px;
+    transition-delay: .16s;
 
-    width: 45px;
-    height: 45px;
-
-    border: 1px solid rgba(255,255,255,.25);
-
-    background: transparent;
-
-    color: white;
-
-    border-radius: 50%;
-
-    font-size: 24px;
-
-    font-weight: 200;
-
-    cursor: pointer;
-
-    z-index: 5;
-
-    transition:
-        background .3s ease,
-        border-color .3s ease;
 }
 
-.lightbox-close:hover {
-    background: white;
 
-    color: black;
+/* =========================================================
+   MOBILE
+========================================================= */
 
-    border-color: white;
-}
-
-.lightbox-arrow {
-    position: absolute;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 55px;
-    height: 55px;
-
-    border: 1px solid rgba(255,255,255,.2);
-
-    border-radius: 50%;
-
-    background: transparent;
-
-    color: white;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    z-index: 5;
-
-    transition:
-        background .3s ease,
-        border-color .3s ease;
-}
-
-.lightbox-arrow:hover {
-    background: white;
-
-    color: black;
-
-    border-color: white;
-}
-
-.lightbox-prev {
-    left: 30px;
-}
-
-.lightbox-next {
-    right: 30px;
-}
-
-.lightbox-meta {
-    position: absolute;
-
-    left: 50px;
-    bottom: 35px;
-
-    font-family: 'DM Mono', monospace;
-
-    font-size: 7px;
-
-    letter-spacing: 3px;
-
-    color: #777;
-}
-
-.lightbox-counter {
-    position: absolute;
-
-    right: 50px;
-    bottom: 35px;
-
-    font-family: 'DM Mono', monospace;
-
-    font-size: 7px;
-
-    letter-spacing: 3px;
-
-    color: #777;
-}
-
-@media (max-width:900px) {
+@media (max-width:700px) {
 
     body {
+
         cursor: auto;
+
     }
 
     .cursor,
     .cursor-ring,
     .cursor-label {
+
         display: none;
+
     }
 
     .navbar {
-        padding:
-            20px 25px;
+
+        padding: 20px;
+
+        mix-blend-mode: difference;
+
     }
 
     .nav-links {
-        gap: 15px;
+
+        display: none;
+
     }
 
     .hero {
+
+        min-height: 100svh;
+
         padding:
-            120px 25px 70px;
+            120px
+            25px
+            80px;
+
+    }
+
+    .hero-title {
+
+        font-size:
+            clamp(53px,15vw,90px);
+
+    }
+
+    .hero-description {
+
+        margin-top: 45px;
+
+        font-size: 13px;
+
+        max-width: 90%;
+
+    }
+
+    .hero-bottom {
+
+        left: 25px;
+
+        right: 25px;
+
+        bottom: 25px;
+
     }
 
     section {
+
         padding:
-            110px 25px;
+            105px 25px;
+
+    }
+
+    .section-title {
+
+        font-size:
+            clamp(43px,12vw,72px);
+
+    }
+
+    .manifesto {
+
+        min-height: auto;
+
     }
 
     .manifesto-grid {
+
         grid-template-columns: 1fr;
-        gap: 70px;
+
+        gap: 60px;
+
+    }
+
+    .manifesto-text {
+
+        font-size: 19px;
+
+    }
+
+    .manifesto::before {
+
+        font-size: 60vw;
+
     }
 
     .projects-heading {
-        flex-direction: column;
-        align-items: flex-start;
+
+        display: block;
+
+    }
+
+    .projects-intro {
+
+        margin-top: 40px;
+
     }
 
     .project-archive {
-        grid-template-columns:
-            repeat(2,1fr);
 
-        gap:
-            70px 15px;
+        grid-template-columns: 1fr;
+
+        gap: 75px;
+
+        margin-top: 75px;
+
     }
 
     .project-card,
     .project-card.project-wide,
     .project-card.project-tall {
+
         grid-column: span 1;
 
-        min-height: 400px;
+        min-height: 520px;
+
     }
 
-    .project-image,
+    .project-card .project-image,
     .project-card.project-wide .project-image,
     .project-card.project-tall .project-image {
-        height: 380px;
+
+        height: 520px;
+
     }
 
-    .project-info {
-        grid-template-columns:
-            1fr;
+    .project-card .project-info {
 
-        gap: 8px;
+        left: 22px;
+
+        right: 22px;
+
+        bottom: 22px;
+
     }
 
-    .project-location {
-        margin-top: 4px;
+    .project-card .project-name {
+
+        font-size:
+            clamp(32px,10vw,54px);
+
     }
 
-    .services-grid {
-        grid-template-columns: 1fr;
+    .services::before {
+
+        font-size: 24vw;
+
     }
 
-    .service,
-    .service:nth-child(even) {
-        padding-left: 0;
+    .service {
 
-        border-left: 0;
+        min-height: 90px;
+
+    }
+
+    .service:hover {
+
+        padding-left: 10px;
+
+        padding-right: 10px;
+
+    }
+
+    .service-name {
+
+        font-size:
+            clamp(24px,8vw,40px);
+
+    }
+
+    .brand-section {
+
+        min-height: 75vh;
+
+    }
+
+    .brand-section::after {
+
+        width: 70vw;
+
+        height: 70vw;
+
+    }
+
+    .brand-main h2 {
+
+        font-size:
+            clamp(55px,17vw,100px);
+
+    }
+
+    .contact {
+
+        min-height: auto;
+
     }
 
     .contact-bottom {
+
         grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        margin-top: 80px;
+
+    }
+
+    .contact-title {
+
+        font-size:
+            clamp(48px,13vw,80px);
+
+    }
+
+    .contact::before {
+
+        right: 25px;
+
+        top: 20%;
+
+        height: 55%;
+
+    }
+
+    footer {
+
+        padding:
+            25px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+    .site-logo-bg {
+
+        width: 110vw;
+
+        opacity: .022;
+
+    }
+
+    .intro-corner {
+
+        left: 18px;
+
+        right: 18px;
+
+        top: 18px;
+
+        bottom: 18px;
+
+    }
+
+    /* MOBILE LIGHTBOX */
+
+    .lightbox {
+
+        padding: 15px;
+
+    }
+
+    .lightbox::before {
+
+        inset: 12px;
+
+    }
+
+    .lightbox-image {
+
+        max-width: 94vw;
+
+        max-height: 78vh;
+
+    }
+
+    .lightbox-close {
+
+        top: 25px;
+
+        right: 25px;
+
+        width: 44px;
+
+        height: 44px;
+
     }
 
     .lightbox-arrow {
+
         width: 45px;
+
         height: 45px;
+
+        top: auto;
+
+        bottom: 25px;
+
+        transform: none;
+
+    }
+
+    .lightbox-arrow:hover {
+
+        transform: none;
+
     }
 
     .lightbox-prev {
-        left: 15px;
+
+        left: 25px;
+
     }
 
     .lightbox-next {
-        right: 15px;
+
+        right: 25px;
+
     }
 
     .lightbox-meta {
+
         left: 50%;
 
         transform: translateX(-50%);
@@ -1571,90 +2419,21 @@ footer {
         bottom: 39px;
 
         white-space: nowrap;
+
     }
 
     .lightbox-counter {
+
         display: none;
+
     }
+
 }
 
-@media (max-width:600px) {
 
-    .navbar {
-        padding:
-            18px;
-    }
-
-    .logo-text {
-        font-size: 11px;
-        letter-spacing: 3px;
-    }
-
-    .nav-links {
-        gap: 12px;
-    }
-
-    .nav-links a {
-        font-size: 6px;
-        letter-spacing: 1px;
-    }
-
-    .hero {
-        padding:
-            110px 18px 60px;
-    }
-
-    .hero-title {
-        font-size:
-            clamp(55px,17vw,100px);
-    }
-
-    .contact {
-        min-height: auto;
-    }
-
-    .contact-bottom {
-        grid-template-columns: 1fr;
-
-        gap: 35px;
-
-        margin-top: 80px;
-    }
-
-    .contact-title {
-        font-size:
-            clamp(48px,13vw,80px);
-    }
-
-    .contact::before {
-        right: 25px;
-        top: 20%;
-        height: 55%;
-    }
-
-    footer {
-        padding:
-            25px;
-
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-    .site-logo-bg {
-        width: 92vw;
-
-        opacity: .028;
-    }
-
-    .intro-corner {
-        left: 18px;
-        right: 18px;
-
-        top: 18px;
-        bottom: 18px;
-    }
-}
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion:reduce) {
 
@@ -1670,13 +2449,21 @@ footer {
 
         transition-duration:
             .01ms !important;
+
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     GLOBAL LOGO
+===================================================== -->
 
 <div
     class="site-logo-bg"
@@ -1689,6 +2476,11 @@ footer {
 
 </div>
 
+
+<!-- =====================================================
+     CURSOR
+===================================================== -->
+
 <div class="cursor"></div>
 
 <div class="cursor-ring"></div>
@@ -1696,6 +2488,11 @@ footer {
 <div class="cursor-label">
     VIEW
 </div>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
 
 <div id="intro">
 
@@ -1732,6 +2529,11 @@ footer {
 
 </div>
 
+
+<!-- =====================================================
+     LIGHTBOX
+===================================================== -->
+
 <div
     class="lightbox"
     id="lightbox"
@@ -1741,15 +2543,21 @@ footer {
         class="lightbox-close"
         id="lightbox-close"
         aria-label="Kapat">
+
         ×
+
     </button>
+
 
     <button
         class="lightbox-arrow lightbox-prev"
         id="lightbox-prev"
         aria-label="Önceki">
+
         ←
+
     </button>
+
 
     <img
         class="lightbox-image"
@@ -1757,26 +2565,40 @@ footer {
         src=""
         alt="ARCHITUNA Project">
 
+
     <button
         class="lightbox-arrow lightbox-next"
         id="lightbox-next"
         aria-label="Sonraki">
+
         →
+
     </button>
+
 
     <div
         class="lightbox-meta"
         id="lightbox-meta">
+
         ARCHITUNA / PROJECT
+
     </div>
+
 
     <div
         class="lightbox-counter"
         id="lightbox-counter">
+
         01 / 27
+
     </div>
 
 </div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <nav class="navbar">
 
@@ -1791,6 +2613,7 @@ footer {
         </div>
 
     </div>
+
 
     <ul class="nav-links">
 
@@ -1822,7 +2645,17 @@ footer {
 
 </nav>
 
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section
     class="hero"
@@ -1863,6 +2696,7 @@ footer {
 
     </div>
 
+
     <div class="hero-bottom">
 
         <span>
@@ -1870,12 +2704,17 @@ footer {
         </span>
 
         <span>
-            SCROLL TO EXPLORE
+            SCROLL ↓
         </span>
 
     </div>
 
 </section>
+
+
+<!-- =====================================================
+     MANIFESTO
+===================================================== -->
 
 <section class="manifesto">
 
@@ -1884,43 +2723,50 @@ footer {
         <div>
 
             <div class="section-number">
-                02 — MANIFESTO
+                02 — MANİFESTO
             </div>
 
-            <h2 class="section-title">
-                MEKÂN
-                <em>BİR</em>
-                FİKİRDİR.
+            <h2 class="section-title reveal">
+
+                SADECE YAPI
+                <em>TASARLAMIYORUZ.</em>
+
             </h2>
 
         </div>
 
-        <div>
 
-            <p class="manifesto-text">
+        <div class="manifesto-text reveal">
 
-                Bizim için mimarlık;
-                çizgilerden, yüzeylerden ve
-                yapılardan daha fazlasıdır.
-
-                <br><br>
+            <p>
 
                 <strong>
-                    Her proje bir düşüncenin,
-                    bir ihtiyacın ve bir hikâyenin
-                    mekânsal karşılığıdır.
+                    Bir fikir inşa ediyoruz.
                 </strong>
 
                 <br><br>
 
-                Tasarımın estetik gücünü,
-                teknik doğruluk ve dijital
-                üretim ile bir araya getiriyoruz.
+                Her proje bir çizgiyle başlar.
+                Her çizgi bir fikre dönüşür.
+                Her fikir ise yaşanacak bir mekâna.
+
+                <br><br>
+
+                Bizim için mimarlık;
+                estetik, işlev ve teknolojinin
+                aynı noktada buluştuğu yerdir.
+
+                <br><br>
+
+                <strong>
+                    Sarsılmaz temeller üzerine,
+                    çağının ötesinde fikirler.
+                </strong>
 
             </p>
 
             <div class="manifesto-mark">
-                TUNALI MİMARLIK / 2026
+                ARCHITECTURE / DESIGN / VISION
             </div>
 
         </div>
@@ -1929,13 +2775,20 @@ footer {
 
 </section>
 
+
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
+
 <section
     class="projects"
     id="projeler">
 
+
     <div class="section-number">
         03 — ARCHITUNA PROJECT ARCHIVE
     </div>
+
 
     <div class="projects-heading">
 
@@ -1946,6 +2799,7 @@ footer {
             DÖNÜŞTÜĞÜ YER.
 
         </h2>
+
 
         <div class="projects-intro reveal">
 
@@ -1960,15 +2814,20 @@ footer {
 
             SELECT A PROJECT
             <br>
+
             TO ENTER FULL VIEW.
 
         </div>
 
     </div>
 
+
     <div class="project-archive">
 
-        <!-- 01 -->
+
+        <!-- =================================================
+             01
+        ================================================= -->
 
         <div class="project-card project-wide reveal">
 
@@ -1988,6 +2847,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2002,7 +2862,10 @@ footer {
 
         </div>
 
-        <!-- 02 -->
+
+        <!-- =================================================
+             02
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2022,6 +2885,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2036,7 +2900,138 @@ footer {
 
         </div>
 
-        <!-- 03 -->
+
+        <!-- =================================================
+             36 — HUPA 36
+             AYNI PROJENİN 2 FARKLI AÇISI
+        ================================================= -->
+
+        <div class="project-card project-wide reveal">
+
+            <div
+                class="project-image"
+                data-image="36.png"
+                data-gallery="36.png|36-2.png"
+                data-title="HUPA 36"
+                data-category="36 / KONUT">
+
+                <img
+                    src="36.png"
+                    alt="HUPA 36">
+
+                <div class="project-view">
+                    VIEW
+                </div>
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+                    36 / KONUT
+                </div>
+
+                <div class="project-name">
+                    HUPA 36
+                </div>
+
+                <div class="project-location">
+                    KONUT PROJESİ
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             37
+        ================================================= -->
+
+        <div class="project-card reveal">
+
+            <div
+                class="project-image"
+                data-image="37.png"
+                data-title="RESIDENTIAL 37"
+                data-category="37 / KONUT">
+
+                <img
+                    src="37.png"
+                    alt="Residential 37">
+
+                <div class="project-view">
+                    VIEW
+                </div>
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+                    37 / KONUT
+                </div>
+
+                <div class="project-name">
+                    RESIDENTIAL 37
+                </div>
+
+                <div class="project-location">
+                    KONUT PROJESİ
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             38
+        ================================================= -->
+
+        <div class="project-card project-tall reveal">
+
+            <div
+                class="project-image"
+                data-image="38.png"
+                data-title="RESIDENTIAL 38"
+                data-category="38 / KONUT">
+
+                <img
+                    src="38.png"
+                    alt="Residential 38">
+
+                <div class="project-view">
+                    VIEW
+                </div>
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div class="project-number">
+                    38 / KONUT
+                </div>
+
+                <div class="project-name">
+                    RESIDENTIAL 38
+                </div>
+
+                <div class="project-location">
+                    KONUT PROJESİ
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             03
+        ================================================= -->
 
         <div class="project-card project-tall reveal">
 
@@ -2063,6 +3058,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2081,7 +3077,10 @@ footer {
 
         </div>
 
-        <!-- 04 -->
+
+        <!-- =================================================
+             04
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2101,6 +3100,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2119,7 +3119,10 @@ footer {
 
         </div>
 
-        <!-- 05 -->
+
+        <!-- =================================================
+             05
+        ================================================= -->
 
         <div class="project-card project-wide reveal">
 
@@ -2139,6 +3142,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2157,7 +3161,10 @@ footer {
 
         </div>
 
-        <!-- 06 -->
+
+        <!-- =================================================
+             06
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2177,6 +3184,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2195,7 +3203,10 @@ footer {
 
         </div>
 
-        <!-- 07 -->
+
+        <!-- =================================================
+             07
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2215,6 +3226,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2233,7 +3245,10 @@ footer {
 
         </div>
 
-        <!-- 08 -->
+
+        <!-- =================================================
+             08
+        ================================================= -->
 
         <div class="project-card project-tall reveal">
 
@@ -2253,6 +3268,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2271,7 +3287,10 @@ footer {
 
         </div>
 
-        <!-- 09 -->
+
+        <!-- =================================================
+             09
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2291,6 +3310,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2309,7 +3329,10 @@ footer {
 
         </div>
 
-        <!-- 10 -->
+
+        <!-- =================================================
+             10
+        ================================================= -->
 
         <div class="project-card project-wide reveal">
 
@@ -2329,6 +3352,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2347,7 +3371,10 @@ footer {
 
         </div>
 
-        <!-- 11 -->
+
+        <!-- =================================================
+             11
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2367,6 +3394,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2385,7 +3413,10 @@ footer {
 
         </div>
 
-        <!-- 12 -->
+
+        <!-- =================================================
+             12
+        ================================================= -->
 
         <div class="project-card project-tall reveal">
 
@@ -2405,6 +3436,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2419,7 +3451,10 @@ footer {
 
         </div>
 
-        <!-- 13 -->
+
+        <!-- =================================================
+             13
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2439,6 +3474,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2453,7 +3489,10 @@ footer {
 
         </div>
 
-        <!-- 14 -->
+
+        <!-- =================================================
+             14
+        ================================================= -->
 
         <div class="project-card project-wide reveal">
 
@@ -2473,6 +3512,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2487,7 +3527,10 @@ footer {
 
         </div>
 
-        <!-- 15 -->
+
+        <!-- =================================================
+             15
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2507,6 +3550,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2525,7 +3569,10 @@ footer {
 
         </div>
 
-        <!-- 16 -->
+
+        <!-- =================================================
+             16
+        ================================================= -->
 
         <div class="project-card project-tall reveal">
 
@@ -2545,6 +3592,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2563,7 +3611,10 @@ footer {
 
         </div>
 
-        <!-- 17 -->
+
+        <!-- =================================================
+             17
+        ================================================= -->
 
         <div class="project-card project-wide reveal">
 
@@ -2583,6 +3634,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2601,7 +3653,10 @@ footer {
 
         </div>
 
-        <!-- 18 -->
+
+        <!-- =================================================
+             18
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2628,6 +3683,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2646,7 +3702,10 @@ footer {
 
         </div>
 
-        <!-- 19 -->
+
+        <!-- =================================================
+             19
+        ================================================= -->
 
         <div class="project-card project-tall reveal">
 
@@ -2666,6 +3725,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2684,7 +3744,10 @@ footer {
 
         </div>
 
-        <!-- 20 -->
+
+        <!-- =================================================
+             20
+        ================================================= -->
 
         <div class="project-card project-wide reveal">
 
@@ -2704,6 +3767,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2722,7 +3786,10 @@ footer {
 
         </div>
 
-        <!-- 21 -->
+
+        <!-- =================================================
+             21
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2742,6 +3809,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2760,7 +3828,10 @@ footer {
 
         </div>
 
-        <!-- 22 -->
+
+        <!-- =================================================
+             22
+        ================================================= -->
 
         <div class="project-card project-tall reveal">
 
@@ -2780,6 +3851,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2798,7 +3870,10 @@ footer {
 
         </div>
 
-        <!-- 23 -->
+
+        <!-- =================================================
+             23
+        ================================================= -->
 
         <div class="project-card reveal">
 
@@ -2818,6 +3893,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2836,7 +3912,10 @@ footer {
 
         </div>
 
-        <!-- 24 -->
+
+        <!-- =================================================
+             24
+        ================================================= -->
 
         <div class="project-card project-wide reveal">
 
@@ -2856,6 +3935,7 @@ footer {
 
             </div>
 
+
             <div class="project-info">
 
                 <div class="project-number">
@@ -2874,224 +3954,95 @@ footer {
 
         </div>
 
-        <!-- 36 — 01 VE 02'YE İLAVE GÖRSEL -->
-
-        <div class="project-card project-wide reveal">
-
-            <div
-                class="project-image"
-                data-image="36.png"
-                data-title="WHITE FRAME III"
-                data-category="01–02 / EK GÖRSEL">
-
-                <img
-                    src="36.png"
-                    alt="White Frame III">
-
-                <div class="project-view">
-                    VIEW
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <div class="project-number">
-                    01–02 / EK GÖRSEL
-                </div>
-
-                <div class="project-name">
-                    WHITE FRAME III
-                </div>
-
-                <div class="project-location">
-                    APARTMAN PROJESİ
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- 37 -->
-
-        <div class="project-card reveal">
-
-            <div
-                class="project-image"
-                data-image="37.png"
-                data-title="RESIDENTIAL 37"
-                data-category="37 / KONUT">
-
-                <img
-                    src="37.png"
-                    alt="Residential 37">
-
-                <div class="project-view">
-                    VIEW
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <div class="project-number">
-                    37 / KONUT
-                </div>
-
-                <div class="project-name">
-                    RESIDENTIAL 37
-                </div>
-
-                <div class="project-location">
-                    KONUT PROJESİ
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- 38 -->
-
-        <div class="project-card project-tall reveal">
-
-            <div
-                class="project-image"
-                data-image="38.png"
-                data-title="RESIDENTIAL 38"
-                data-category="38 / KONUT">
-
-                <img
-                    src="38.png"
-                    alt="Residential 38">
-
-                <div class="project-view">
-                    VIEW
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <div class="project-number">
-                    38 / KONUT
-                </div>
-
-                <div class="project-name">
-                    RESIDENTIAL 38
-                </div>
-
-                <div class="project-location">
-                    KONUT PROJESİ
-                </div>
-
-            </div>
-
-        </div>
 
     </div>
 
 </section>
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
 
 <section
     class="services"
     id="hizmetler">
 
     <div class="section-number">
-        04 — SERVICES
+        04 — NE YAPIYORUZ?
     </div>
 
+
     <h2 class="section-title reveal">
+
         TASARIMDAN
-        <em>GERÇEĞE.</em>
+        <em>GERÇEKLİĞE.</em>
+
     </h2>
 
-    <div class="services-grid">
+
+    <div class="services-list">
 
         <div class="service reveal">
+
+            <div class="service-name">
+                Mimari Tasarım
+            </div>
 
             <div class="service-number">
                 01
             </div>
 
-            <div>
-
-                <div class="service-name">
-                    MİMARİ TASARIM
-                </div>
-
-                <p class="service-description">
-                    Konut, villa, ticari ve kamusal
-                    yapılar için konseptten uygulama
-                    projesine kadar bütüncül mimari
-                    tasarım hizmeti.
-                </p>
-
-            </div>
-
         </div>
 
+
         <div class="service reveal">
+
+            <div class="service-name">
+                Mimari Proje
+            </div>
 
             <div class="service-number">
                 02
             </div>
 
-            <div>
-
-                <div class="service-name">
-                    3D MODELLEME
-                </div>
-
-                <p class="service-description">
-                    3ds Max, Revit ve AutoCAD
-                    altyapısıyla yüksek doğrulukta
-                    üç boyutlu modelleme.
-                </p>
-
-            </div>
-
         </div>
 
+
         <div class="service reveal">
+
+            <div class="service-name">
+                3D Modelleme
+            </div>
 
             <div class="service-number">
                 03
             </div>
 
-            <div>
-
-                <div class="service-name">
-                    ARCHVIZ
-                </div>
-
-                <p class="service-description">
-                    Corona Render, Enscape ve
-                    Twinmotion ile gerçekçi mimari
-                    görselleştirme ve sunum.
-                </p>
-
-            </div>
-
         </div>
 
+
         <div class="service reveal">
+
+            <div class="service-name">
+                Fotogerçekçi Render
+            </div>
 
             <div class="service-number">
                 04
             </div>
 
-            <div>
+        </div>
 
-                <div class="service-name">
-                    SUNUM &amp; ANLATIM
-                </div>
 
-                <p class="service-description">
-                    Projeyi yalnızca göstermek değil,
-                    doğru bir görsel dil ve anlatım
-                    üzerinden aktarmak.
-                </p>
+        <div class="service reveal">
 
+            <div class="service-name">
+                Görsel Anlatım
+            </div>
+
+            <div class="service-number">
+                05
             </div>
 
         </div>
@@ -3100,83 +4051,98 @@ footer {
 
 </section>
 
-<section class="brand">
 
-    <div>
+<!-- =====================================================
+     BRAND
+===================================================== -->
 
-        <div class="brand-word">
+<section class="brand-section">
+
+    <div class="brand-main reveal">
+
+        <h2>
             ARCHITUNA
-        </div>
+        </h2>
 
-        <div class="brand-sub">
-            TUNALI MİMARLIK
+        <div class="brand-switch">
+
+            <span>
+                TUNALI MİMARLIK
+            </span>
+
+            <span>
+                ARCHITECTURE STUDIO
+            </span>
+
         </div>
 
     </div>
 
 </section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
 
 <section
     class="contact"
     id="iletisim">
 
     <div class="section-number">
-        05 — CONTACT
+        05 — İLETİŞİM
     </div>
+
 
     <h2 class="contact-title reveal">
 
-        <span>
-            BİR
-        </span>
+        BİR FİKRİNİZ
+        <span>VARSA,</span>
 
-        <span class="outline">
-            PROJE
-        </span>
+        <br>
 
-        <span>
-            KONUŞALIM.
-        </span>
+        KONUŞALIM.
 
     </h2>
 
+
     <div class="contact-bottom">
 
-        <div class="contact-item reveal">
+        <div class="contact-item">
 
-            <div class="contact-label">
-                E-MAIL
-            </div>
+            <strong>
+                E-POSTA
+            </strong>
 
-            <div class="contact-value">
-                <a href="mailto:info@archituna.com.tr">
-                    info@archituna.com.tr
-                </a>
-            </div>
+            <a href="mailto:archituna33@gmail.com">
+                archituna33@gmail.com
+            </a>
 
         </div>
 
-        <div class="contact-item reveal">
 
-            <div class="contact-label">
-                INSTAGRAM
-            </div>
+        <div class="contact-item">
 
-            <div class="contact-value">
-                @archituna
-            </div>
+            <strong>
+                MİMAR
+            </strong>
+
+            Mimar Osman Kemal Tunalı
 
         </div>
 
-        <div class="contact-item reveal">
 
-            <div class="contact-label">
-                STUDIO
-            </div>
+        <div class="contact-item">
 
-            <div class="contact-value">
-                TUNALI MİMARLIK
-            </div>
+            <strong>
+                STÜDYO
+            </strong>
+
+            TUNALI MİMARLIK
+
+            <br><br>
+
+            ARCHITUNA.COM.TR
 
         </div>
 
@@ -3184,74 +4150,228 @@ footer {
 
 </section>
 
-</main>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
     <span>
-        © 2026 ARCHITUNA / TUNALI MİMARLIK
+        © 2026 ARCHITUNA.COM.TR
     </span>
 
     <span>
-        FİKİR → MEKÂN
+        MİMAR OSMAN KEMAL TUNALI
+    </span>
+
+    <span>
+        SARSILMAZ TEMELLER.
     </span>
 
 </footer>
 
+
+</main>
+
+
 <script>
 
-window.history.scrollRestoration = 'manual';
 
-window.scrollTo(0,0);
+/* =========================================================
+   SAYFA HER ZAMAN EN ÜSTTEN BAŞLASIN
+========================================================= */
+
+if ('scrollRestoration' in history) {
+
+    history.scrollRestoration = 'manual';
+
+}
+
+
+window.addEventListener(
+
+    'beforeunload',
+
+    function() {
+
+        window.scrollTo(0,0);
+
+    }
+
+);
+
+
+window.addEventListener(
+
+    'load',
+
+    function() {
+
+        setTimeout(
+
+            function() {
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    left: 0,
+
+                    behavior: 'instant'
+
+                });
+
+            },
+
+            20
+
+        );
+
+    }
+
+);
+
+
+/* =========================================================
+   INTRO
+========================================================= */
 
 const intro =
     document.getElementById('intro');
 
+
 const introVideo =
     document.getElementById('intro-video');
 
+
+let introFinished = false;
+
+
 function finishIntro() {
 
-    if (
-        intro.classList.contains('done')
-    ) return;
+    if (introFinished) return;
 
-    intro.classList.add('done');
+    introFinished = true;
+
 
     intro.style.opacity = '0';
 
-    document.body.classList.add(
-        'site-loaded'
-    );
 
     setTimeout(
+
         function() {
 
             intro.style.display = 'none';
 
+            document.body.classList
+                .add('site-loaded');
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                left: 0,
+
+                behavior: 'instant'
+
+            });
+
         },
-        1600
+
+        1500
+
     );
+
 }
 
+
 introVideo.addEventListener(
+
     'ended',
+
     finishIntro
+
 );
 
+
 setTimeout(
-    finishIntro,
-    5500
+
+    function() {
+
+        if (
+            intro.style.display !== 'none'
+        ) {
+
+            finishIntro();
+
+        }
+
+    },
+
+    9000
+
 );
+
+
+/* =========================================================
+   PROJECT VIDEOS
+========================================================= */
+
+document
+    .querySelectorAll('.project-video')
+    .forEach(
+
+        function(video) {
+
+            video.muted = true;
+
+            video.playsInline = true;
+
+            video.loop = true;
+
+
+            const play =
+                video.play();
+
+
+            if (
+                play !== undefined
+            ) {
+
+                play.catch(
+
+                    function() {
+
+                        video.muted = true;
+
+                    }
+
+                );
+
+            }
+
+        }
+
+    );
+
+
+/* =========================================================
+   CURSOR
+========================================================= */
 
 const cursor =
     document.querySelector('.cursor');
 
+
 const ring =
     document.querySelector('.cursor-ring');
 
+
 const cursorLabel =
     document.querySelector('.cursor-label');
+
 
 let mouseX = 0;
 let mouseY = 0;
@@ -3259,52 +4379,82 @@ let mouseY = 0;
 let ringX = 0;
 let ringY = 0;
 
+
 document.addEventListener(
+
     'mousemove',
+
     function(e) {
 
         mouseX = e.clientX;
+
         mouseY = e.clientY;
+
 
         cursor.style.left =
             mouseX + 'px';
 
+
         cursor.style.top =
             mouseY + 'px';
 
+
+        cursorLabel.style.left =
+            mouseX + 'px';
+
+
+        cursorLabel.style.top =
+            mouseY + 'px';
+
     }
+
 );
+
 
 function animateCursor() {
 
     ringX +=
-        (mouseX - ringX) * .14;
+        (mouseX - ringX) * .13;
+
 
     ringY +=
-        (mouseY - ringY) * .14;
+        (mouseY - ringY) * .13;
+
 
     ring.style.left =
         ringX + 'px';
 
+
     ring.style.top =
         ringY + 'px';
+
 
     requestAnimationFrame(
         animateCursor
     );
+
 }
+
 
 animateCursor();
 
+
+/* =========================================================
+   HOVER CURSOR
+========================================================= */
+
 document
     .querySelectorAll(
-        'a, button, .project-card'
+        'a, .project-card, .service'
     )
     .forEach(
+
         function(element) {
 
             element.addEventListener(
+
                 'mouseenter',
+
                 function() {
 
                     ring.style.width =
@@ -3315,6 +4465,7 @@ document
 
                     ring.style.borderColor =
                         'rgba(255,255,255,.8)';
+
 
                     if (
                         element.classList.contains(
@@ -3328,10 +4479,14 @@ document
                     }
 
                 }
+
             );
 
+
             element.addEventListener(
+
                 'mouseleave',
+
                 function() {
 
                     ring.style.width =
@@ -3347,16 +4502,26 @@ document
                         '0';
 
                 }
+
             );
 
         }
+
     );
+
+
+/* =========================================================
+   NAVBAR SCROLL
+========================================================= */
 
 const navbar =
     document.querySelector('.navbar');
 
+
 window.addEventListener(
+
     'scroll',
+
     function() {
 
         if (
@@ -3374,30 +4539,43 @@ window.addEventListener(
         }
 
     },
+
     {
         passive: true
     }
+
 );
+
+
+/* =========================================================
+   GLOBAL LOGO PARALLAX
+========================================================= */
 
 const logoWrapper =
     document.getElementById(
         'global-logo-wrapper'
     );
 
+
 const logoImg =
     document.getElementById(
         'global-logo-img'
     );
 
+
 window.addEventListener(
+
     'scroll',
+
     function() {
 
         const scrollY =
             window.scrollY;
 
+
         const movement =
             scrollY * .035;
+
 
         const scale =
             1 +
@@ -3406,7 +4584,9 @@ window.addEventListener(
                 .12
             );
 
+
         logoWrapper.style.transform =
+
             `
             translate(
                 -50%,
@@ -3416,13 +4596,18 @@ window.addEventListener(
             `;
 
     },
+
     {
         passive: true
     }
+
 );
 
+
 document.addEventListener(
+
     'mousemove',
+
     function(e) {
 
         const x =
@@ -3432,6 +4617,7 @@ document.addEventListener(
                 .5
             ) * 30;
 
+
         const y =
             (
                 e.clientY /
@@ -3439,7 +4625,9 @@ document.addEventListener(
                 .5
             ) * 30;
 
+
         logoImg.style.transform =
+
             `
             translate(
                 ${x}px,
@@ -3448,7 +4636,13 @@ document.addEventListener(
             `;
 
     }
+
 );
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
 const observer =
     new IntersectionObserver(
@@ -3456,6 +4650,7 @@ const observer =
         function(entries) {
 
             entries.forEach(
+
                 function(entry) {
 
                     if (
@@ -3469,6 +4664,7 @@ const observer =
                     }
 
                 }
+
             );
 
         },
@@ -3479,15 +4675,23 @@ const observer =
 
     );
 
+
 document
     .querySelectorAll('.reveal')
     .forEach(
+
         function(element) {
 
             observer.observe(element);
 
         }
+
     );
+
+
+/* =========================================================
+   PROJECT VIDEO — VIEWPORT OPTIMIZATION
+========================================================= */
 
 const videoObserver =
     new IntersectionObserver(
@@ -3495,10 +4699,12 @@ const videoObserver =
         function(entries) {
 
             entries.forEach(
+
                 function(entry) {
 
                     const video =
                         entry.target;
+
 
                     if (
                         entry.isIntersecting
@@ -3516,6 +4722,7 @@ const videoObserver =
                     }
 
                 }
+
             );
 
         },
@@ -3526,120 +4733,278 @@ const videoObserver =
 
     );
 
+
 document
     .querySelectorAll('.project-video')
     .forEach(
+
         function(video) {
 
             videoObserver.observe(video);
 
         }
+
     );
+
+
+/* =========================================================
+   PROJECT LIGHTBOX
+   36 PROJESİ İÇİN 2 AYRI AÇI DESTEĞİ
+========================================================= */
 
 const lightbox =
     document.getElementById('lightbox');
 
+
 const lightboxImage =
     document.getElementById('lightbox-image');
+
 
 const lightboxClose =
     document.getElementById('lightbox-close');
 
+
 const lightboxPrev =
     document.getElementById('lightbox-prev');
+
 
 const lightboxNext =
     document.getElementById('lightbox-next');
 
+
 const lightboxMeta =
     document.getElementById('lightbox-meta');
+
 
 const lightboxCounter =
     document.getElementById('lightbox-counter');
 
+
+/*
+    Sadece görsel projeleri alıyoruz.
+    Videolar lightbox'a dahil edilmiyor.
+*/
+
 const projectImages =
     Array.from(
+
         document.querySelectorAll(
+
             '.project-image[data-image]:not([data-video="true"])'
+
         )
+
     );
 
+
 let currentProject = 0;
+
+let currentGallery = 0;
+
+
+/* =========================================================
+   GALERİ
+========================================================= */
+
+function getGallery(item) {
+
+    if (!item) {
+
+        return [];
+
+    }
+
+
+    /*
+       data-gallery varsa
+       aynı projeye ait tüm görselleri al.
+       
+       Örneğin 36:
+       
+       36.png
+       36-2.png
+    */
+
+    if (item.dataset.gallery) {
+
+        return item.dataset.gallery
+
+            .split('|')
+
+            .map(
+
+                function(image) {
+
+                    return image.trim();
+
+                }
+
+            )
+
+            .filter(Boolean);
+
+    }
+
+
+    /*
+       Normal projeler tek görseldir.
+    */
+
+    return [
+
+        item.dataset.image
+
+    ];
+
+}
+
+
+/* =========================================================
+   LIGHTBOX AÇ
+========================================================= */
 
 function openLightbox(index) {
 
     currentProject = index;
 
+    currentGallery = 0;
+
+
     updateLightbox();
 
-    lightbox.classList.add('active');
+
+    lightbox.classList.add(
+        'active'
+    );
+
 
     lightbox.setAttribute(
         'aria-hidden',
         'false'
     );
 
+
     document.body.style.overflow =
         'hidden';
+
 }
+
+
+/* =========================================================
+   LIGHTBOX KAPAT
+========================================================= */
 
 function closeLightbox() {
 
-    lightbox.classList.remove('active');
+    lightbox.classList.remove(
+        'active'
+    );
+
 
     lightbox.setAttribute(
         'aria-hidden',
         'true'
     );
 
+
     document.body.style.overflow =
         '';
+
 }
+
+
+/* =========================================================
+   LIGHTBOX GÜNCELLE
+========================================================= */
 
 function updateLightbox() {
 
     const item =
         projectImages[currentProject];
 
+
     if (!item) return;
 
+
+    const gallery =
+        getGallery(item);
+
+
+    if (!gallery.length) return;
+
+
     const image =
-        item.dataset.image;
+        gallery[currentGallery];
+
 
     const title =
         item.dataset.title ||
         'ARCHITUNA PROJECT';
 
+
     const category =
         item.dataset.category ||
         '';
 
+
     lightboxImage.style.opacity =
         '0';
 
+
     setTimeout(
+
         function() {
 
             lightboxImage.src =
                 image;
 
+
             lightboxImage.alt =
                 title;
+
 
             lightboxMeta.textContent =
                 category +
                 ' — ' +
                 title;
 
+
+            /*
+                Burada sayaç aynı projenin
+                görsellerini gösterir.
+                
+                36 açıldığında:
+                
+                01 / 02
+                
+                sağ oka basınca:
+                
+                02 / 02
+                
+                daha sonra 37'ye geçer.
+            */
+
             lightboxCounter.textContent =
-                String(currentProject + 1)
-                    .padStart(2,'0')
+
+                String(
+                    currentGallery + 1
+                )
+                .padStart(2,'0')
+
                 +
-                ' / ' +
-                String(projectImages.length)
-                    .padStart(2,'0');
+
+                ' / '
+
+                +
+
+                String(
+                    gallery.length
+                )
+                .padStart(2,'0');
+
 
             lightboxImage.onload =
+
                 function() {
 
                     lightboxImage.style.opacity =
@@ -3647,33 +5012,123 @@ function updateLightbox() {
 
                 };
 
+
         },
+
         120
+
     );
+
 }
+
+
+/* =========================================================
+   SONRAKİ GÖRSEL / PROJE
+========================================================= */
 
 function nextProject() {
 
-    currentProject++;
+    const currentItem =
+        projectImages[currentProject];
+
+
+    const gallery =
+        getGallery(currentItem);
+
+
+    /*
+       Aynı projenin başka açısı varsa
+       önce ona geç.
+       
+       36:
+       
+       36.png
+       ↓
+       36-2.png
+    */
 
     if (
+
+        currentGallery <
+        gallery.length - 1
+
+    ) {
+
+        currentGallery++;
+
+        updateLightbox();
+
+        return;
+
+    }
+
+
+    /*
+       Aynı projenin görselleri bittiyse
+       sonraki projeye geç.
+    */
+
+    currentProject++;
+
+
+    if (
+
         currentProject >=
         projectImages.length
+
     ) {
 
         currentProject = 0;
 
     }
 
+
+    currentGallery = 0;
+
+
     updateLightbox();
+
 }
+
+
+/* =========================================================
+   ÖNCEKİ GÖRSEL / PROJE
+========================================================= */
 
 function previousProject() {
 
-    currentProject--;
+
+    /*
+       Aynı projenin önceki açısı
+       varsa ona dön.
+    */
 
     if (
+
+        currentGallery > 0
+
+    ) {
+
+        currentGallery--;
+
+        updateLightbox();
+
+        return;
+
+    }
+
+
+    /*
+       İlk açıdaysak önceki projeye geç.
+    */
+
+    currentProject--;
+
+
+    if (
+
         currentProject < 0
+
     ) {
 
         currentProject =
@@ -3681,45 +5136,106 @@ function previousProject() {
 
     }
 
+
+    /*
+       Önceki projenin son görseline git.
+    */
+
+    const previousItem =
+        projectImages[currentProject];
+
+
+    const previousGallery =
+        getGallery(previousItem);
+
+
+    currentGallery =
+        previousGallery.length - 1;
+
+
     updateLightbox();
+
 }
 
+
+/* =========================================================
+   PROJE GÖRSELLERİNE TIKLAMA
+========================================================= */
+
 projectImages.forEach(
+
     function(item,index) {
 
         item.addEventListener(
+
             'click',
+
             function() {
 
                 openLightbox(index);
 
             }
+
         );
 
     }
+
 );
+
+
+/* =========================================================
+   LIGHTBOX KAPAT
+========================================================= */
 
 lightboxClose.addEventListener(
+
     'click',
+
     closeLightbox
+
 );
+
+
+/* =========================================================
+   SONRAKİ
+========================================================= */
 
 lightboxNext.addEventListener(
+
     'click',
+
     nextProject
+
 );
+
+
+/* =========================================================
+   ÖNCEKİ
+========================================================= */
 
 lightboxPrev.addEventListener(
+
     'click',
+
     previousProject
+
 );
 
+
+/* =========================================================
+   DIŞARI TIKLAYINCA KAPAT
+========================================================= */
+
 lightbox.addEventListener(
+
     'click',
+
     function(e) {
 
         if (
+
             e.target === lightbox
+
         ) {
 
             closeLightbox();
@@ -3727,36 +5243,60 @@ lightbox.addEventListener(
         }
 
     }
+
 );
 
+
+/* =========================================================
+   KEYBOARD CONTROL
+========================================================= */
+
 document.addEventListener(
+
     'keydown',
+
     function(e) {
 
+
         if (
+
             !lightbox.classList.contains(
                 'active'
             )
-        ) return;
+
+        ) {
+
+            return;
+
+        }
+
 
         if (
+
             e.key === 'Escape'
+
         ) {
 
             closeLightbox();
 
         }
 
+
         if (
+
             e.key === 'ArrowRight'
+
         ) {
 
             nextProject();
 
         }
 
+
         if (
+
             e.key === 'ArrowLeft'
+
         ) {
 
             previousProject();
@@ -3764,41 +5304,69 @@ document.addEventListener(
         }
 
     }
+
 );
+
+
+/* =========================================================
+   TOUCH SWIPE
+========================================================= */
 
 let touchStartX = 0;
 
 let touchEndX = 0;
 
+
 lightbox.addEventListener(
+
     'touchstart',
+
     function(e) {
 
         touchStartX =
             e.changedTouches[0].screenX;
 
     },
+
     {
+
         passive: true
+
     }
+
 );
 
+
 lightbox.addEventListener(
+
     'touchend',
+
     function(e) {
 
         touchEndX =
             e.changedTouches[0].screenX;
 
+
         const difference =
-            touchStartX - touchEndX;
+            touchStartX -
+            touchEndX;
+
 
         if (
+
             Math.abs(difference) < 50
-        ) return;
+
+        ) {
+
+            return;
+
+        }
+
 
         if (
+
             difference > 0
+
         ) {
 
             nextProject();
@@ -3810,20 +5378,32 @@ lightbox.addEventListener(
         }
 
     },
+
     {
+
         passive: true
+
     }
+
 );
+
+
+/* =========================================================
+   SMOOTH ANCHOR
+========================================================= */
 
 document
     .querySelectorAll(
         'a[href^="#"]'
     )
     .forEach(
+
         function(link) {
 
             link.addEventListener(
+
                 'click',
+
                 function(e) {
 
                     const target =
@@ -3831,22 +5411,31 @@ document
                             link.getAttribute('href')
                         );
 
+
                     if (!target) return;
+
 
                     e.preventDefault();
 
+
                     target.scrollIntoView({
+
                         behavior: 'smooth',
+
                         block: 'start'
+
                     });
 
                 }
+
             );
 
         }
+
     );
 
 </script>
+
 
 </body>
 </html>
