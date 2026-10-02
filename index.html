@@ -2,167 +2,165 @@
 
 /* =========================================================
    ARCHITUNA — PROJECT LIGHTBOX
-   MOBILE SCROLL FIX
+   STABLE DESKTOP + MOBILE VERSION
 ========================================================= */
 
-(function initProjectLightbox() {
+(function () {
 
-    const lightbox =
-        document.getElementById('project-lightbox');
+    function initProjectLightbox() {
 
-    const mediaBox =
-        document.getElementById('project-lightbox-media');
+        const lightbox =
+            document.getElementById('project-lightbox');
 
-    const numberBox =
-        document.getElementById('project-lightbox-number');
+        const mediaBox =
+            document.getElementById('project-lightbox-media');
 
-    const nameBox =
-        document.getElementById('project-lightbox-name');
+        const numberBox =
+            document.getElementById('project-lightbox-number');
 
-    const closeBtn =
-        document.querySelector('.project-lightbox-close');
+        const nameBox =
+            document.getElementById('project-lightbox-name');
 
-    const prevBtn =
-        document.querySelector('.project-lightbox-prev');
+        const closeBtn =
+            document.querySelector('.project-lightbox-close');
 
-    const nextBtn =
-        document.querySelector('.project-lightbox-next');
+        const prevBtn =
+            document.querySelector('.project-lightbox-prev');
 
-
-    if (
-        !lightbox ||
-        !mediaBox ||
-        !numberBox ||
-        !nameBox ||
-        !closeBtn ||
-        !prevBtn ||
-        !nextBtn
-    ) {
-        console.error(
-            'ARCHITUNA: Lightbox DOM elemanları bulunamadı.'
-        );
-        return;
-    }
+        const nextBtn =
+            document.querySelector('.project-lightbox-next');
 
 
-    /* =====================================================
-       PROJECT LIST
-    ===================================================== */
+        /* =====================================================
+           DOM KONTROLÜ
+        ===================================================== */
 
-    const cards =
-        Array.from(
-            document.querySelectorAll('.project-card')
-        );
+        if (
+            !lightbox ||
+            !mediaBox ||
+            !numberBox ||
+            !nameBox ||
+            !closeBtn ||
+            !prevBtn ||
+            !nextBtn
+        ) {
 
+            console.warn(
+                'ARCHITUNA: Lightbox elemanları bulunamadı.'
+            );
 
-    let current = 0;
-
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    let lightboxIsOpen = false;
-
-    /*
-       Scroll konumu.
-    */
-    let savedScrollY = 0;
-
-    /*
-       Açılmadan önceki stiller.
-    */
-    let previousBodyOverflow = '';
-    let previousBodyPosition = '';
-    let previousBodyTop = '';
-    let previousBodyWidth = '';
-    let previousBodyPaddingRight = '';
-
-    let previousHtmlOverflow = '';
-    let previousHtmlOverscrollBehavior = '';
-
-    /*
-       Mobil cihaz kontrolü.
-    */
-    function isMobileDevice() {
-
-        return window.matchMedia(
-            '(max-width: 700px)'
-        ).matches;
-
-    }
-
-
-    /* =====================================================
-       SCROLL LOCK
-    ===================================================== */
-
-    function lockPageScroll() {
-
-        if (lightboxIsOpen) {
             return;
         }
 
-        lightboxIsOpen = true;
+
+        /* =====================================================
+           PROJECT LIST
+        ===================================================== */
+
+        const cards =
+            Array.from(
+                document.querySelectorAll('.project-card')
+            );
 
 
-        const body =
-            document.body;
+        if (!cards.length) {
 
-        const html =
-            document.documentElement;
+            console.warn(
+                'ARCHITUNA: .project-card bulunamadı.'
+            );
 
-
-        /*
-           Scroll konumunu TAM OLARAK kaydet.
-        */
-
-        savedScrollY =
-            window.scrollY ||
-            window.pageYOffset ||
-            0;
+            return;
+        }
 
 
-        /*
-           Mevcut inline stilleri kaydet.
-        */
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
 
-        previousBodyOverflow =
-            body.style.overflow;
+        let current = 0;
 
-        previousBodyPosition =
-            body.style.position;
+        let lightboxIsOpen = false;
 
-        previousBodyTop =
-            body.style.top;
+        let savedScrollY = 0;
 
-        previousBodyWidth =
-            body.style.width;
-
-        previousBodyPaddingRight =
-            body.style.paddingRight;
-
-        previousHtmlOverflow =
-            html.style.overflow;
-
-        previousHtmlOverscrollBehavior =
-            html.style.overscrollBehavior;
+        let touchStartX = 0;
+        let touchStartY = 0;
 
 
         /*
-           MOBİL
-           -------------------------------------------------
-           Mobilde body'yi fixed YAPMIYORUZ.
-
-           Eski sistemde mobil Safari/Chrome'da:
-
-               position:fixed
-               top:-scrollY
-               overflow:hidden
-
-           kombinasyonu kapatıldıktan sonra sayfanın
-           scroll mekanizması bazen kilitli kalabiliyordu.
+           Önceki stilleri sakla.
         */
 
-        if (isMobileDevice()) {
+        let previousBodyOverflow = '';
+        let previousBodyTouchAction = '';
+        let previousHtmlOverflow = '';
+        let previousHtmlTouchAction = '';
+
+
+        /* =====================================================
+           DEVICE
+        ===================================================== */
+
+        function isMobileDevice() {
+
+            return window.matchMedia(
+                '(max-width: 700px)'
+            ).matches;
+
+        }
+
+
+        /* =====================================================
+           LOCK SCROLL
+        ===================================================== */
+
+        function lockPageScroll() {
+
+            if (lightboxIsOpen) {
+                return;
+            }
+
+
+            const body =
+                document.body;
+
+            const html =
+                document.documentElement;
+
+
+            /*
+               Mevcut konumu kaydet.
+            */
+
+            savedScrollY =
+                window.scrollY ||
+                window.pageYOffset ||
+                0;
+
+
+            /*
+               Mevcut inline stilleri kaydet.
+            */
+
+            previousBodyOverflow =
+                body.style.overflow;
+
+            previousBodyTouchAction =
+                body.style.touchAction;
+
+            previousHtmlOverflow =
+                html.style.overflow;
+
+            previousHtmlTouchAction =
+                html.style.touchAction;
+
+
+            /*
+               ÖNEMLİ:
+               Body artık position:fixed yapılmıyor.
+
+               Böylece masaüstü sayfanın layout'u bozulmuyor.
+            */
 
             html.style.overflow =
                 'hidden';
@@ -170,162 +168,102 @@
             body.style.overflow =
                 'hidden';
 
-            html.style.overscrollBehavior =
-                'none';
 
             /*
-               Mobilde position fixed yok.
+               Mobilde arka planın dokunmatik scroll'u
+               engellenir.
             */
 
-            body.style.position =
-                '';
+            if (isMobileDevice()) {
 
-            body.style.top =
-                '';
+                html.style.touchAction =
+                    'none';
 
-            body.style.width =
-                '';
-
-        }
-
-        /*
-           DESKTOP
-           -------------------------------------------------
-           Masaüstündeki mevcut stabil fixed sistem korunuyor.
-        */
-
-        else {
-
-            const scrollbarWidth =
-                window.innerWidth -
-                document.documentElement.clientWidth;
-
-
-            if (scrollbarWidth > 0) {
-
-                body.style.paddingRight =
-                    scrollbarWidth + 'px';
+                body.style.touchAction =
+                    'none';
 
             }
 
 
-            body.style.position =
-                'fixed';
-
-            body.style.top =
-                `-${savedScrollY}px`;
-
-            body.style.width =
-                '100%';
-
-            body.style.overflow =
-                'hidden';
-
-
-            html.style.overflow =
-                'hidden';
-
-            html.style.overscrollBehavior =
-                'none';
+            lightboxIsOpen = true;
 
         }
 
-    }
+
+        /* =====================================================
+           UNLOCK SCROLL
+        ===================================================== */
+
+        function unlockPageScroll() {
+
+            if (!lightboxIsOpen) {
+                return;
+            }
 
 
-    /* =====================================================
-       SCROLL UNLOCK
-    ===================================================== */
+            const body =
+                document.body;
 
-    function unlockPageScroll() {
+            const html =
+                document.documentElement;
 
-        if (!lightboxIsOpen) {
-            return;
-        }
-
-
-        const body =
-            document.body;
-
-        const html =
-            document.documentElement;
-
-
-        /*
-           Önce lightbox arayüzünü kapat.
-        */
-
-        lightbox.classList.remove(
-            'is-open'
-        );
-
-        lightbox.setAttribute(
-            'aria-hidden',
-            'true'
-        );
-
-
-        /*
-           MEDYAYI TEMİZLE.
-        */
-
-        mediaBox.innerHTML = '';
-
-
-        /*
-           =================================================
-           MOBİL RESTORE
-           =================================================
-        */
-
-        if (isMobileDevice()) {
 
             /*
-               Önce scroll kilitlerini kaldır.
+               Önce lightbox'ı kapat.
+            */
+
+            lightbox.classList.remove(
+                'is-open'
+            );
+
+            lightbox.setAttribute(
+                'aria-hidden',
+                'true'
+            );
+
+
+            /*
+               Videoyu tamamen kaldır.
+            */
+
+            mediaBox.innerHTML = '';
+
+
+            /*
+               Scroll stillerini geri getir.
             */
 
             body.style.overflow =
                 previousBodyOverflow;
 
-            body.style.position =
-                previousBodyPosition;
-
-            body.style.top =
-                previousBodyTop;
-
-            body.style.width =
-                previousBodyWidth;
-
-            body.style.paddingRight =
-                previousBodyPaddingRight;
-
+            body.style.touchAction =
+                previousBodyTouchAction;
 
             html.style.overflow =
                 previousHtmlOverflow;
 
-            html.style.overscrollBehavior =
-                previousHtmlOverscrollBehavior;
+            html.style.touchAction =
+                previousHtmlTouchAction;
 
 
             /*
-               Bazı mobil tarayıcılar style değişikliğini
-               aynı frame içerisinde uygulamıyor.
+               Eski konuma dön.
 
-               Bu nedenle scroll'u bir sonraki frame'de,
-               ardından bir frame daha sonra kesinleştiriyoruz.
+               requestAnimationFrame kullanıyoruz çünkü
+               bazı tarayıcılarda overflow değişikliği
+               aynı frame'de uygulanabiliyor.
             */
 
             requestAnimationFrame(
-                function() {
+                function () {
 
                     window.scrollTo(
                         0,
                         savedScrollY
                     );
 
-
                     requestAnimationFrame(
-                        function() {
+                        function () {
 
                             window.scrollTo(
                                 0,
@@ -338,116 +276,124 @@
                 }
             );
 
-        }
 
-
-        /*
-           =================================================
-           DESKTOP RESTORE
-           =================================================
-        */
-
-        else {
-
-            /*
-               Önce fixed body'yi normal hale getir.
-            */
-
-            body.style.position =
-                previousBodyPosition;
-
-            body.style.top =
-                previousBodyTop;
-
-            body.style.width =
-                previousBodyWidth;
-
-            body.style.overflow =
-                previousBodyOverflow;
-
-            body.style.paddingRight =
-                previousBodyPaddingRight;
-
-
-            html.style.overflow =
-                previousHtmlOverflow;
-
-            html.style.overscrollBehavior =
-                previousHtmlOverscrollBehavior;
-
-
-            /*
-               Eski konuma dön.
-            */
-
-            window.scrollTo({
-                top: savedScrollY,
-                left: 0,
-                behavior: 'instant'
-            });
+            lightboxIsOpen = false;
 
         }
 
 
-        /*
-           Bir sonraki açılış için temizle.
-        */
+        /* =====================================================
+           CREATE MEDIA
+        ===================================================== */
 
-        lightboxIsOpen = false;
+        function createMedia(card) {
 
-    }
-
-
-    /* =====================================================
-       MEDIA CREATE
-    ===================================================== */
-
-    function createMedia(card) {
-
-        const source =
-            card.querySelector(
-                'img, video'
-            );
+            const source =
+                card.querySelector(
+                    'img, video'
+                );
 
 
-        if (!source) {
-            return null;
-        }
+            if (!source) {
+                return null;
+            }
 
 
-        const tag =
-            source.tagName.toLowerCase();
+            const tag =
+                source.tagName.toLowerCase();
 
 
-        /*
-           VIDEO
-        */
+            /* =================================================
+               VIDEO
+            ================================================= */
 
-        if (tag === 'video') {
+            if (tag === 'video') {
+
+                const media =
+                    document.createElement(
+                        'video'
+                    );
+
+
+                /*
+                   Önce currentSrc.
+                   Yoksa src.
+                */
+
+                media.src =
+                    source.currentSrc ||
+                    source.src ||
+                    source.getAttribute('src') ||
+                    '';
+
+
+                /*
+                   Video özellikleri.
+                */
+
+                media.controls = true;
+
+                media.autoplay = true;
+
+                media.loop = true;
+
+                media.playsInline = true;
+
+                media.preload = 'auto';
+
+                /*
+                   Tarayıcı otomatik oynatma için
+                   gerekirse muted kalabilir.
+                */
+
+                media.muted =
+                    source.muted || false;
+
+
+                /*
+                   Sınıf ekle.
+                */
+
+                media.className =
+                    'project-lightbox-video';
+
+
+                return media;
+
+            }
+
+
+            /* =================================================
+               IMAGE
+            ================================================= */
 
             const media =
                 document.createElement(
-                    'video'
+                    'img'
                 );
 
 
             media.src =
                 source.currentSrc ||
                 source.src ||
-                source.getAttribute('src');
+                source.getAttribute('src') ||
+                '';
 
 
-            media.controls = true;
+            media.alt =
+                source.alt || '';
 
-            media.autoplay = true;
 
-            media.loop = true;
+            media.className =
+                'project-lightbox-image';
 
-            media.playsInline = true;
 
-            media.preload = 'auto';
+            /*
+               Mobil tarayıcıların resmi gereksiz yere
+               sürüklemesini engelle.
+            */
 
-            media.muted = false;
+            media.draggable = false;
 
 
             return media;
@@ -455,334 +401,144 @@
         }
 
 
-        /*
-           IMAGE
-        */
+        /* =====================================================
+           OPEN
+        ===================================================== */
 
-        const media =
-            document.createElement(
-                'img'
-            );
+        function openAt(index) {
 
-
-        media.src =
-            source.currentSrc ||
-            source.src ||
-            source.getAttribute('src');
-
-
-        media.alt =
-            source.alt || '';
-
-
-        return media;
-
-    }
-
-
-    /* =====================================================
-       OPEN
-    ===================================================== */
-
-    function openAt(index) {
-
-        if (!cards.length) {
-            return;
-        }
-
-
-        current =
-            (
-                index +
-                cards.length
-            ) % cards.length;
-
-
-        const card =
-            cards[current];
-
-
-        const media =
-            createMedia(card);
-
-
-        if (!media) {
-            return;
-        }
-
-
-        /*
-           İlk açılışta scroll'u kilitle.
-        */
-
-        if (!lightboxIsOpen) {
-
-            lockPageScroll();
-
-        }
-
-
-        /*
-           Yeni medyayı yerleştir.
-        */
-
-        mediaBox.innerHTML = '';
-
-        mediaBox.appendChild(
-            media
-        );
-
-
-        /*
-           Bilgiler.
-        */
-
-        const number =
-            card.querySelector(
-                '.project-number'
-            );
-
-        const name =
-            card.querySelector(
-                '.project-name'
-            );
-
-
-        numberBox.textContent =
-            number
-                ? number.textContent.trim()
-                : '';
-
-
-        nameBox.textContent =
-            name
-                ? name.textContent.trim()
-                : '';
-
-
-        /*
-           Lightbox'ı göster.
-        */
-
-        lightbox.classList.add(
-            'is-open'
-        );
-
-        lightbox.setAttribute(
-            'aria-hidden',
-            'false'
-        );
-
-
-        /*
-           Video.
-        */
-
-        if (
-            media.tagName.toLowerCase() ===
-            'video'
-        ) {
-
-            media.play().catch(
-                function() {}
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       CLOSE
-    ===================================================== */
-
-    function closeLightbox() {
-
-        if (
-            !lightbox.classList.contains(
-                'is-open'
-            )
-        ) {
-            return;
-        }
-
-
-        unlockPageScroll();
-
-    }
-
-
-    /* =====================================================
-       MOVE
-    ===================================================== */
-
-    function move(step) {
-
-        if (!cards.length) {
-            return;
-        }
-
-
-        openAt(
-            current + step
-        );
-
-    }
-
-
-    /* =====================================================
-       CARD CLICK
-    ===================================================== */
-
-    cards.forEach(
-        function(card, index) {
-
-            const image =
-                card.querySelector(
-                    '.project-image'
-                );
-
-
-            if (!image) {
+            if (!cards.length) {
                 return;
             }
 
 
-            image.setAttribute(
-                'role',
-                'button'
+            /*
+               Güvenli index.
+            */
+
+            current =
+                (
+                    index +
+                    cards.length
+                ) % cards.length;
+
+
+            const card =
+                cards[current];
+
+
+            const media =
+                createMedia(card);
+
+
+            if (!media) {
+                return;
+            }
+
+
+            /*
+               İlk açılışta scroll kilitle.
+            */
+
+            if (!lightboxIsOpen) {
+
+                lockPageScroll();
+
+            }
+
+
+            /*
+               Eski medyayı temizle.
+            */
+
+            mediaBox.innerHTML = '';
+
+
+            /*
+               Yeni medyayı ekle.
+            */
+
+            mediaBox.appendChild(
+                media
             );
 
 
-            image.setAttribute(
-                'tabindex',
-                '0'
+            /* =================================================
+               NUMBER
+            ================================================= */
+
+            const number =
+                card.querySelector(
+                    '.project-number'
+                );
+
+
+            numberBox.textContent =
+                number
+                    ? number.textContent.trim()
+                    : '';
+
+
+            /* =================================================
+               NAME
+            ================================================= */
+
+            const name =
+                card.querySelector(
+                    '.project-name'
+                );
+
+
+            nameBox.textContent =
+                name
+                    ? name.textContent.trim()
+                    : '';
+
+
+            /* =================================================
+               SHOW
+            ================================================= */
+
+            lightbox.classList.add(
+                'is-open'
+            );
+
+            lightbox.setAttribute(
+                'aria-hidden',
+                'false'
             );
 
 
-            image.setAttribute(
-                'aria-label',
-                'Projeyi tam ekran görüntüle'
-            );
-
-
-            image.addEventListener(
-                'click',
-                function(e) {
-
-                    e.preventDefault();
-
-                    e.stopPropagation();
-
-                    openAt(index);
-
-                }
-            );
-
-
-            image.addEventListener(
-                'keydown',
-                function(e) {
-
-                    if (
-                        e.key === 'Enter' ||
-                        e.key === ' '
-                    ) {
-
-                        e.preventDefault();
-
-                        openAt(index);
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       CLOSE BUTTON
-    ===================================================== */
-
-    closeBtn.addEventListener(
-        'click',
-        function(e) {
-
-            e.preventDefault();
-
-            e.stopPropagation();
-
-            closeLightbox();
-
-        }
-    );
-
-
-    /* =====================================================
-       PREVIOUS
-    ===================================================== */
-
-    prevBtn.addEventListener(
-        'click',
-        function(e) {
-
-            e.preventDefault();
-
-            e.stopPropagation();
-
-            move(-1);
-
-        }
-    );
-
-
-    /* =====================================================
-       NEXT
-    ===================================================== */
-
-    nextBtn.addEventListener(
-        'click',
-        function(e) {
-
-            e.preventDefault();
-
-            e.stopPropagation();
-
-            move(1);
-
-        }
-    );
-
-
-    /* =====================================================
-       BACKGROUND CLICK
-    ===================================================== */
-
-    lightbox.addEventListener(
-        'click',
-        function(e) {
+            /*
+               Video oynat.
+            */
 
             if (
-                e.target === lightbox
+                media.tagName.toLowerCase() ===
+                'video'
             ) {
 
-                closeLightbox();
+                media.play().catch(
+                    function () {
+
+                        /*
+                           Otomatik oynatma
+                           engellenirse problem değil.
+                        */
+
+                    }
+                );
 
             }
 
         }
-    );
 
 
-    /* =====================================================
-       KEYBOARD
-    ===================================================== */
+        /* =====================================================
+           CLOSE
+        ===================================================== */
 
-    document.addEventListener(
-        'keydown',
-        function(e) {
+        function closeLightbox() {
 
             if (
                 !lightbox.classList.contains(
@@ -793,221 +549,433 @@
             }
 
 
-            if (
-                e.key === 'Escape'
-            ) {
-
-                e.preventDefault();
-
-                closeLightbox();
-
-                return;
-
-            }
-
-
-            if (
-                e.key === 'ArrowLeft'
-            ) {
-
-                e.preventDefault();
-
-                move(-1);
-
-                return;
-
-            }
-
-
-            if (
-                e.key === 'ArrowRight'
-            ) {
-
-                e.preventDefault();
-
-                move(1);
-
-                return;
-
-            }
+            unlockPageScroll();
 
         }
-    );
 
 
-    /* =====================================================
-       MOBILE SWIPE
-    ===================================================== */
+        /* =====================================================
+           NEXT / PREVIOUS
+        ===================================================== */
 
-    lightbox.addEventListener(
-        'touchstart',
-        function(e) {
+        function move(step) {
 
-            if (
-                !e.changedTouches.length
-            ) {
+            if (!cards.length) {
                 return;
             }
 
 
-            touchStartX =
-                e.changedTouches[0].clientX;
+            openAt(
+                current + step
+            );
 
-            touchStartY =
-                e.changedTouches[0].clientY;
-
-        },
-        {
-            passive: true
         }
-    );
 
 
-    lightbox.addEventListener(
-        'touchend',
-        function(e) {
+        /* =====================================================
+           CARD CLICK
+        ===================================================== */
 
-            if (
-                !e.changedTouches.length
-            ) {
-                return;
-            }
+        cards.forEach(
+            function (card, index) {
 
-
-            const touch =
-                e.changedTouches[0];
+                const image =
+                    card.querySelector(
+                        '.project-image'
+                    );
 
 
-            const dx =
-                touch.clientX -
-                touchStartX;
-
-
-            const dy =
-                touch.clientY -
-                touchStartY;
-
-
-            /*
-               Sadece belirgin yatay hareket.
-            */
-
-            if (
-                Math.abs(dx) > 55 &&
-                Math.abs(dx) > Math.abs(dy)
-            ) {
-
-                if (dx < 0) {
-
-                    move(1);
-
+                if (!image) {
+                    return;
                 }
 
-                else {
 
-                    move(-1);
+                /*
+                   Accessibility.
+                */
 
-                }
+                image.setAttribute(
+                    'role',
+                    'button'
+                );
 
-            }
+                image.setAttribute(
+                    'tabindex',
+                    '0'
+                );
 
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    /* =====================================================
-       PAGEHIDE
-    ===================================================== */
-
-    window.addEventListener(
-        'pagehide',
-        function() {
-
-            const body =
-                document.body;
-
-            const html =
-                document.documentElement;
+                image.setAttribute(
+                    'aria-label',
+                    'Projeyi tam ekran görüntüle'
+                );
 
 
-            /*
-               Her durumda tüm scroll kilitlerini
-               temizle.
-            */
+                /* ---------------------------------------------
+                   CLICK
+                --------------------------------------------- */
 
-            body.style.position =
-                previousBodyPosition;
+                image.addEventListener(
+                    'click',
+                    function (e) {
 
-            body.style.top =
-                previousBodyTop;
+                        e.preventDefault();
 
-            body.style.width =
-                previousBodyWidth;
+                        e.stopPropagation();
 
-            body.style.overflow =
-                previousBodyOverflow;
+                        openAt(index);
 
-            body.style.paddingRight =
-                previousBodyPaddingRight;
+                    }
+                );
 
 
-            html.style.overflow =
-                previousHtmlOverflow;
+                /* ---------------------------------------------
+                   ENTER / SPACE
+                --------------------------------------------- */
 
-            html.style.overscrollBehavior =
-                previousHtmlOverscrollBehavior;
+                image.addEventListener(
+                    'keydown',
+                    function (e) {
 
+                        if (
+                            e.key === 'Enter' ||
+                            e.key === ' '
+                        ) {
 
-            lightboxIsOpen = false;
+                            e.preventDefault();
 
-        }
-    );
+                            openAt(index);
 
+                        }
 
-    /* =====================================================
-       RESIZE
-    ===================================================== */
-
-    window.addEventListener(
-        'resize',
-        function() {
-
-            /*
-               Lightbox açıkken yön değişimi
-               yaşanırsa scroll konumu korunur.
-            */
-
-            if (
-                lightboxIsOpen &&
-                isMobileDevice()
-            ) {
-
-                window.scrollTo(
-                    0,
-                    savedScrollY
+                    }
                 );
 
             }
-
-        },
-        {
-            passive: true
-        }
-    );
+        );
 
 
-    /* =====================================================
-       READY
-    ===================================================== */
+        /* =====================================================
+           CLOSE BUTTON
+        ===================================================== */
 
-    console.log(
-        'ARCHITUNA Lightbox hazır:',
-        cards.length,
-        'proje'
-    );
+        closeBtn.addEventListener(
+            'click',
+            function (e) {
+
+                e.preventDefault();
+
+                e.stopPropagation();
+
+                closeLightbox();
+
+            }
+        );
+
+
+        /* =====================================================
+           PREVIOUS
+        ===================================================== */
+
+        prevBtn.addEventListener(
+            'click',
+            function (e) {
+
+                e.preventDefault();
+
+                e.stopPropagation();
+
+                move(-1);
+
+            }
+        );
+
+
+        /* =====================================================
+           NEXT
+        ===================================================== */
+
+        nextBtn.addEventListener(
+            'click',
+            function (e) {
+
+                e.preventDefault();
+
+                e.stopPropagation();
+
+                move(1);
+
+            }
+        );
+
+
+        /* =====================================================
+           BACKGROUND CLICK
+        ===================================================== */
+
+        lightbox.addEventListener(
+            'click',
+            function (e) {
+
+                if (
+                    e.target === lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           KEYBOARD
+        ===================================================== */
+
+        document.addEventListener(
+            'keydown',
+            function (e) {
+
+                if (
+                    !lightbox.classList.contains(
+                        'is-open'
+                    )
+                ) {
+                    return;
+                }
+
+
+                /* ESC */
+
+                if (
+                    e.key === 'Escape'
+                ) {
+
+                    e.preventDefault();
+
+                    closeLightbox();
+
+                    return;
+
+                }
+
+
+                /* LEFT */
+
+                if (
+                    e.key === 'ArrowLeft'
+                ) {
+
+                    e.preventDefault();
+
+                    move(-1);
+
+                    return;
+
+                }
+
+
+                /* RIGHT */
+
+                if (
+                    e.key === 'ArrowRight'
+                ) {
+
+                    e.preventDefault();
+
+                    move(1);
+
+                    return;
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           MOBILE SWIPE
+        ===================================================== */
+
+        lightbox.addEventListener(
+            'touchstart',
+            function (e) {
+
+                if (
+                    !e.changedTouches.length
+                ) {
+                    return;
+                }
+
+
+                const touch =
+                    e.changedTouches[0];
+
+
+                touchStartX =
+                    touch.clientX;
+
+                touchStartY =
+                    touch.clientY;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        lightbox.addEventListener(
+            'touchend',
+            function (e) {
+
+                if (
+                    !e.changedTouches.length
+                ) {
+                    return;
+                }
+
+
+                const touch =
+                    e.changedTouches[0];
+
+
+                const dx =
+                    touch.clientX -
+                    touchStartX;
+
+
+                const dy =
+                    touch.clientY -
+                    touchStartY;
+
+
+                /*
+                   Sadece yatay swipe.
+                */
+
+                if (
+                    Math.abs(dx) > 55 &&
+                    Math.abs(dx) > Math.abs(dy)
+                ) {
+
+                    if (dx < 0) {
+
+                        move(1);
+
+                    }
+
+                    else {
+
+                        move(-1);
+
+                    }
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =====================================================
+           RESIZE
+        ===================================================== */
+
+        window.addEventListener(
+            'resize',
+            function () {
+
+                /*
+                   Lightbox açıkken sayfanın konumunu
+                   değiştirme.
+                */
+
+                if (lightboxIsOpen) {
+
+                    window.scrollTo(
+                        0,
+                        savedScrollY
+                    );
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =====================================================
+           PAGE HIDE
+        ===================================================== */
+
+        window.addEventListener(
+            'pagehide',
+            function () {
+
+                const body =
+                    document.body;
+
+                const html =
+                    document.documentElement;
+
+
+                body.style.overflow =
+                    previousBodyOverflow;
+
+                body.style.touchAction =
+                    previousBodyTouchAction;
+
+                html.style.overflow =
+                    previousHtmlOverflow;
+
+                html.style.touchAction =
+                    previousHtmlTouchAction;
+
+
+                lightboxIsOpen = false;
+
+            }
+        );
+
+
+        /* =====================================================
+           READY
+        ===================================================== */
+
+        console.log(
+            'ARCHITUNA Lightbox hazır:',
+            cards.length,
+            'proje'
+        );
+
+    }
+
+
+    /* =========================================================
+       DOM READY
+    ========================================================= */
+
+    if (
+        document.readyState === 'loading'
+    ) {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            initProjectLightbox
+        );
+
+    }
+
+    else {
+
+        initProjectLightbox();
+
+    }
 
 })();
 
