@@ -1094,6 +1094,7 @@ section {
 .project-card .project-image {
 
     position: relative;
+    cursor: zoom-in;
 
     width: 100%;
 
@@ -1164,6 +1165,179 @@ section {
         contrast(1.08);
 }
 
+
+
+
+/* =========================================================
+   PROJECT LIGHTBOX
+========================================================= */
+
+.project-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px 70px;
+    background: rgba(3,3,3,.96);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .35s ease, visibility .35s ease;
+}
+
+.project-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.project-lightbox-stage {
+    position: relative;
+    width: min(92vw, 1500px);
+    height: min(90vh, 1000px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-lightbox-media {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-lightbox-media img,
+.project-lightbox-media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    filter: none;
+    transform: none;
+    background: #050505;
+}
+
+.project-lightbox-close,
+.project-lightbox-prev,
+.project-lightbox-next {
+    position: absolute;
+    z-index: 5;
+    border: 0;
+    background: transparent;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.project-lightbox-close {
+    top: 20px;
+    right: 28px;
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 200;
+}
+
+.project-lightbox-prev,
+.project-lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 64px;
+    height: 100px;
+    font-size: 76px;
+    line-height: 80px;
+    font-weight: 200;
+}
+
+.project-lightbox-prev { left: 10px; }
+.project-lightbox-next { right: 10px; }
+
+.project-lightbox-close:hover { transform: scale(1.12); }
+.project-lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
+.project-lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
+
+.project-lightbox-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.project-lightbox-caption span:last-child {
+    color: white;
+}
+
+.project-lightbox-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 2px;
+    color: #555;
+    white-space: nowrap;
+}
+
+@media (max-width:700px) {
+    .project-lightbox {
+        padding: 20px 12px 70px;
+    }
+
+    .project-lightbox-stage {
+        width: 100%;
+        height: calc(100svh - 105px);
+    }
+
+    .project-lightbox-media img,
+    .project-lightbox-media video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .project-lightbox-close {
+        top: 10px;
+        right: 16px;
+        font-size: 36px;
+    }
+
+    .project-lightbox-prev,
+    .project-lightbox-next {
+        width: 45px;
+        height: 70px;
+        font-size: 58px;
+        line-height: 60px;
+    }
+
+    .project-lightbox-prev { left: 0; }
+    .project-lightbox-next { right: 0; }
+
+    .project-lightbox-caption {
+        bottom: -31px;
+        font-size: 7px;
+        letter-spacing: 2px;
+    }
+
+    .project-lightbox-hint {
+        bottom: 12px;
+        font-size: 6px;
+    }
+}
 
 /* =========================================================
    PROJECT NUMBER
@@ -1668,6 +1842,11 @@ footer {
 ========================================================= */
 
 @media (max-width:700px) {
+
+    .project-group-grid {
+        grid-template-columns: 1fr !important;
+        gap: 75px;
+    }
 
     body {
         cursor: auto;
@@ -3405,6 +3584,129 @@ document
 
 
 
+
+
+/* =========================================================
+   PROJECT LIGHTBOX / CLICK + PREV/NEXT + TOUCH SWIPE
+========================================================= */
+(function initProjectLightbox() {
+    const lightbox = document.getElementById('project-lightbox');
+    const mediaBox = document.getElementById('project-lightbox-media');
+    const numberBox = document.getElementById('project-lightbox-number');
+    const nameBox = document.getElementById('project-lightbox-name');
+    const closeBtn = document.querySelector('.project-lightbox-close');
+    const prevBtn = document.querySelector('.project-lightbox-prev');
+    const nextBtn = document.querySelector('.project-lightbox-next');
+    if (!lightbox || !mediaBox) return;
+
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    let current = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    function openAt(index) {
+        if (!cards.length) return;
+        current = (index + cards.length) % cards.length;
+        const card = cards[current];
+        const source = card.querySelector('img, video');
+        if (!source) return;
+
+        mediaBox.innerHTML = '';
+        let media;
+
+        if (source.tagName.toLowerCase() === 'video') {
+            media = document.createElement('video');
+            media.src = source.currentSrc || source.src;
+            media.controls = true;
+            media.autoplay = true;
+            media.loop = true;
+            media.playsInline = true;
+            media.muted = false;
+            media.preload = 'metadata';
+        } else {
+            media = document.createElement('img');
+            media.src = source.currentSrc || source.src;
+            media.alt = source.alt || '';
+        }
+
+        mediaBox.appendChild(media);
+        const number = card.querySelector('.project-number');
+        const name = card.querySelector('.project-name');
+        numberBox.textContent = number ? number.textContent.trim() : '';
+        nameBox.textContent = name ? name.textContent.trim() : '';
+
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+
+        if (media.tagName.toLowerCase() === 'video') {
+            media.play().catch(function(){});
+        }
+    }
+
+    function close() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        mediaBox.innerHTML = '';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+    }
+
+    function move(step) {
+        openAt(current + step);
+    }
+
+    cards.forEach(function(card, index) {
+        const image = card.querySelector('.project-image');
+        if (!image) return;
+        image.setAttribute('role', 'button');
+        image.setAttribute('tabindex', '0');
+        image.setAttribute('aria-label', 'Projeyi tam ekran görüntüle');
+        image.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openAt(index);
+        });
+        image.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openAt(index);
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', function() { move(-1); });
+    nextBtn.addEventListener('click', function() { move(1); });
+
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') move(-1);
+        if (e.key === 'ArrowRight') move(1);
+    });
+
+    lightbox.addEventListener('touchstart', function(e) {
+        if (!e.changedTouches.length) return;
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, {passive:true});
+
+    lightbox.addEventListener('touchend', function(e) {
+        if (!e.changedTouches.length) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) {
+            move(dx < 0 ? 1 : -1);
+        }
+    }, {passive:true});
+})();
+
 /* =========================================================
    PROJECT GROUP VALIDATION
    GitHub dosya adlari ile site numaralari bagimsizdir.
@@ -3422,6 +3724,24 @@ document
     });
 })();
 </script>
+
+
+<!-- =========================================================
+     PROJECT LIGHTBOX / FULLSCREEN VIEWER
+========================================================= -->
+<div class="project-lightbox" id="project-lightbox" aria-hidden="true">
+    <button class="project-lightbox-close" type="button" aria-label="Kapat">×</button>
+    <button class="project-lightbox-prev" type="button" aria-label="Önceki proje">‹</button>
+    <div class="project-lightbox-stage">
+        <div class="project-lightbox-media" id="project-lightbox-media"></div>
+        <div class="project-lightbox-caption">
+            <span id="project-lightbox-number"></span>
+            <span id="project-lightbox-name"></span>
+        </div>
+    </div>
+    <button class="project-lightbox-next" type="button" aria-label="Sonraki proje">›</button>
+    <div class="project-lightbox-hint">← / → &nbsp;&nbsp; DEĞİŞTİR &nbsp;&nbsp; ESC &nbsp;&nbsp; KAPAT</div>
+</div>
 
 </body>
 </html>
