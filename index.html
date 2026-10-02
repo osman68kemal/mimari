@@ -1025,6 +1025,8 @@ section {
     justify-content:center;
 
     overflow:hidden;
+
+    touch-action:pan-y;
 }
 
 .project-lightbox-media img,
@@ -1546,11 +1548,6 @@ footer {
 
 @media (max-width:700px) {
 
-    /*
-       ÖNEMLİ:
-       MOBİLDE TÜM PROJE KARTLARI KESİNLİKLE ALT ALTA
-    */
-
     .project-group-grid {
         display:grid !important;
 
@@ -1754,6 +1751,12 @@ footer {
             15px
             8px
             65px;
+
+        /*
+           Mobilde tarayıcı scroll kilidinden bağımsız
+           olarak lightbox kendi alanını kontrol eder.
+        */
+        overscroll-behavior:contain;
     }
 
     .project-lightbox-stage {
@@ -2868,8 +2871,6 @@ footer {
 
     <div class="project-group-grid">
 
-        <!-- 18.png VILLA GRUBUNDA -->
-
         <div
             class="project-card reveal"
             data-project-id="07-01"
@@ -3484,8 +3485,6 @@ footer {
 
 <!-- =====================================================
      PROJECT LIGHTBOX
-     ÖNEMLİ:
-     ARTIK SCRIPT'TEN ÖNCE DOM'DA
 ===================================================== -->
 
 <div
@@ -4066,7 +4065,15 @@ document
 
 /* =========================================================
    PROJECT LIGHTBOX
-   TAM EKRAN / GALERİ / SWIPE
+   GELİŞTİRİLMİŞ SCROLL LOCK SİSTEMİ
+
+   ÖNEMLİ:
+   - Açılırken mevcut scroll konumu kaydedilir.
+   - openAt() artık scroll lock'u tekrar tekrar değiştirmez.
+   - Sağ/sol geçişte scroll konumu bozulmaz.
+   - Kapatıldığında sayfa tam olarak eski konumuna döner.
+   - body position fixed kullanıldığı için mobil/masaüstünde
+     tarayıcı scroll kilidi daha stabil çalışır.
 ========================================================= */
 
 (function initProjectLightbox() {
@@ -4107,11 +4114,6 @@ document
         );
 
 
-    /*
-       DOM artık script'ten önce geldiği için
-       lightbox burada kesin olarak bulunuyor.
-    */
-
     if (
         !lightbox ||
         !mediaBox ||
@@ -4119,6 +4121,7 @@ document
         !prevBtn ||
         !nextBtn
     ) {
+
         console.error(
             'ARCHITUNA: Lightbox DOM elemanları bulunamadı.'
         );
@@ -4127,10 +4130,9 @@ document
     }
 
 
-    /*
-       BÜTÜN PROJELERİ TEK GALERİ OLARAK AL.
-       GRUPLARIN KENDİ DÜZENİNE DOKUNMAZ.
-    */
+    /* =====================================================
+       BÜTÜN PROJELER
+    ===================================================== */
 
     const cards =
         Array.from(
@@ -4145,13 +4147,198 @@ document
     let touchStartX = 0;
     let touchStartY = 0;
 
+
+    /*
+       YENİ SCROLL KONTROL DEĞİŞKENLERİ
+    */
+
+    let lightboxIsLocked = false;
+
+    let savedScrollY = 0;
+
     let previousBodyOverflow = '';
+    let previousBodyPosition = '';
+    let previousBodyTop = '';
+    let previousBodyWidth = '';
+    let previousBodyPaddingRight = '';
+
     let previousHtmlOverflow = '';
+    let previousHtmlOverscrollBehavior = '';
+
+
+
+    /* =====================================================
+       SCROLL LOCK
+===================================================== */
+
+    function lockPageScroll() {
+
+        /*
+           Zaten kilitliyse tekrar kaydetme.
+
+           BU KISIM ÖNEMLİ:
+           Sağ/sol okla başka görsele geçerken
+           scroll değerleri tekrar overwrite edilmez.
+        */
+
+        if (lightboxIsLocked) {
+            return;
+        }
+
+
+        lightboxIsLocked = true;
+
+
+        savedScrollY =
+            window.scrollY ||
+            window.pageYOffset ||
+            0;
+
+
+        const body =
+            document.body;
+
+        const html =
+            document.documentElement;
+
+
+        previousBodyOverflow =
+            body.style.overflow;
+
+        previousBodyPosition =
+            body.style.position;
+
+        previousBodyTop =
+            body.style.top;
+
+        previousBodyWidth =
+            body.style.width;
+
+        previousBodyPaddingRight =
+            body.style.paddingRight;
+
+        previousHtmlOverflow =
+            html.style.overflow;
+
+        previousHtmlOverscrollBehavior =
+            html.style.overscrollBehavior;
+
+
+        /*
+           Scrollbar kaybolduğunda masaüstünde
+           layout'un yatay kaymasını engelle.
+        */
+
+        const scrollbarWidth =
+            window.innerWidth -
+            document.documentElement.clientWidth;
+
+
+        if (scrollbarWidth > 0) {
+
+            body.style.paddingRight =
+                scrollbarWidth + 'px';
+
+        }
+
+
+        /*
+           Body'yi mevcut scroll konumunda sabitle.
+        */
+
+        body.style.position =
+            'fixed';
+
+        body.style.top =
+            `-${savedScrollY}px`;
+
+        body.style.width =
+            '100%';
+
+        body.style.overflow =
+            'hidden';
+
+
+        html.style.overflow =
+            'hidden';
+
+        html.style.overscrollBehavior =
+            'none';
+
+    }
+
+
+
+    /* =====================================================
+       SCROLL UNLOCK
+===================================================== */
+
+    function unlockPageScroll() {
+
+        if (!lightboxIsLocked) {
+            return;
+        }
+
+
+        const body =
+            document.body;
+
+        const html =
+            document.documentElement;
+
+
+        /*
+           Önce lightbox'ı kapat.
+        */
+
+        body.style.position =
+            previousBodyPosition;
+
+        body.style.top =
+            previousBodyTop;
+
+        body.style.width =
+            previousBodyWidth;
+
+        body.style.overflow =
+            previousBodyOverflow;
+
+        body.style.paddingRight =
+            previousBodyPaddingRight;
+
+
+        html.style.overflow =
+            previousHtmlOverflow;
+
+        html.style.overscrollBehavior =
+            previousHtmlOverscrollBehavior;
+
+
+        /*
+           Body fixed'ten çıktığında eski scroll
+           konumuna kesin olarak geri dön.
+        */
+
+        window.scrollTo({
+            top:savedScrollY,
+            left:0,
+            behavior:'instant'
+        });
+
+
+        /*
+           Bir sonraki açılış için sıfırla.
+        */
+
+        lightboxIsLocked = false;
+
+    }
+
 
 
     /* =====================================================
        MEDIA OLUŞTUR
-    ===================================================== */
+===================================================== */
 
     function createMedia(card) {
 
@@ -4185,7 +4372,7 @@ document
             media.playsInline = true;
 
             /*
-               Videolar lightbox'ta sesli açılabilir.
+               Lightbox videosu sesli açılabilir.
             */
 
             media.muted = false;
@@ -4193,7 +4380,6 @@ document
             media.preload = 'auto';
 
             return media;
-
         }
 
 
@@ -4214,13 +4400,16 @@ document
     }
 
 
+
     /* =====================================================
-       AÇ
-    ===================================================== */
+       AÇ / GÖRSEL DEĞİŞTİR
+===================================================== */
 
     function openAt(index) {
 
-        if (!cards.length) return;
+        if (!cards.length) {
+            return;
+        }
 
 
         current =
@@ -4238,7 +4427,23 @@ document
             createMedia(card);
 
 
-        if (!media) return;
+        if (!media) {
+            return;
+        }
+
+
+        /*
+           İlk kez açılıyorsa scroll'u kilitle.
+
+           Sağ/sol geçişte burası tekrar
+           scroll konumunu değiştirmeyecek.
+        */
+
+        if (!lightboxIsLocked) {
+
+            lockPageScroll();
+
+        }
 
 
         mediaBox.innerHTML = '';
@@ -4280,24 +4485,6 @@ document
 
 
         /*
-           Sayfanın arkada kaymasını engelle.
-        */
-
-        previousBodyOverflow =
-            document.body.style.overflow;
-
-        previousHtmlOverflow =
-            document.documentElement.style.overflow;
-
-
-        document.body.style.overflow =
-            'hidden';
-
-        document.documentElement.style.overflow =
-            'hidden';
-
-
-        /*
            Videoyu oynat.
         */
 
@@ -4316,11 +4503,24 @@ document
     }
 
 
+
     /* =====================================================
        KAPAT
-    ===================================================== */
+===================================================== */
 
     function closeLightbox() {
+
+        if (
+            !lightbox.classList
+                .contains('is-open')
+        ) {
+            return;
+        }
+
+
+        /*
+           Önce görsel arayüzü kapat.
+        */
 
         lightbox.classList
             .remove('is-open');
@@ -4340,25 +4540,33 @@ document
 
 
         /*
-           Sayfanın önceki overflow durumunu geri getir.
+           SAYFANIN SCROLL KİLİDİNİ KALDIR.
+
+           Bu işlem eski scroll konumunu da
+           otomatik olarak geri getirir.
         */
 
-        document.body.style.overflow =
-            previousBodyOverflow;
-
-        document.documentElement.style.overflow =
-            previousHtmlOverflow;
+        unlockPageScroll();
 
     }
 
 
+
     /* =====================================================
        İLERİ / GERİ
-    ===================================================== */
+===================================================== */
 
     function move(step) {
 
-        if (!cards.length) return;
+        if (!cards.length) {
+            return;
+        }
+
+
+        /*
+           openAt() lightbox'ı kapatmaz.
+           Böylece scroll lock sabit kalır.
+        */
 
         openAt(
             current + step
@@ -4367,9 +4575,10 @@ document
     }
 
 
+
     /* =====================================================
        KARTLARA TIKLAMA
-    ===================================================== */
+===================================================== */
 
     cards.forEach(
         function(card,index) {
@@ -4379,7 +4588,9 @@ document
                     '.project-image'
                 );
 
-            if (!image) return;
+            if (!image) {
+                return;
+            }
 
 
             image.setAttribute(
@@ -4435,9 +4646,10 @@ document
     );
 
 
+
     /* =====================================================
-       BUTTONS
-    ===================================================== */
+       CLOSE BUTTON
+===================================================== */
 
     closeBtn.addEventListener(
         'click',
@@ -4451,11 +4663,17 @@ document
     );
 
 
+
+    /* =====================================================
+       PREVIOUS
+===================================================== */
+
     prevBtn.addEventListener(
         'click',
         function(e) {
 
             e.preventDefault();
+            e.stopPropagation();
 
             move(-1);
 
@@ -4463,11 +4681,17 @@ document
     );
 
 
+
+    /* =====================================================
+       NEXT
+===================================================== */
+
     nextBtn.addEventListener(
         'click',
         function(e) {
 
             e.preventDefault();
+            e.stopPropagation();
 
             move(1);
 
@@ -4475,9 +4699,10 @@ document
     );
 
 
+
     /* =====================================================
        ARKA PLANA TIKLAYINCA KAPAT
-    ===================================================== */
+===================================================== */
 
     lightbox.addEventListener(
         'click',
@@ -4495,9 +4720,10 @@ document
     );
 
 
+
     /* =====================================================
        KLAVYE
-    ===================================================== */
+===================================================== */
 
     document.addEventListener(
         'keydown',
@@ -4553,9 +4779,10 @@ document
     );
 
 
+
     /* =====================================================
        MOBİL SWIPE
-    ===================================================== */
+===================================================== */
 
     lightbox.addEventListener(
         'touchstart',
@@ -4635,24 +4862,25 @@ document
     );
 
 
+
     /* =====================================================
-       MOBİLDE ÇİFT TIKLAMA / ZOOM SORUNLARINI AZALT
-    ===================================================== */
+       LIGHTBOX MEDYA TOUCH
+===================================================== */
 
     mediaBox.addEventListener(
         'touchstart',
-        function(e) {
+        function() {
 
             if (
                 lightbox.classList
                     .contains('is-open')
             ) {
-
                 /*
-                   Swipe sistemi lightbox seviyesinde
+                   Bilerek boş bırakıldı.
+
+                   Swipe lightbox seviyesinde
                    çalışmaya devam eder.
                 */
-
             }
 
         },
@@ -4662,9 +4890,54 @@ document
     );
 
 
+
+    /* =====================================================
+       LIGHTBOX SAYFA GÖRÜNÜR DEĞİLSE
+       SCROLL LOCK'U TEMİZLE
+===================================================== */
+
+    window.addEventListener(
+        'pagehide',
+        function() {
+
+            if (lightboxIsLocked) {
+
+                /*
+                   Sayfa kapanırken fixed body
+                   stilinin kalmasını önle.
+                */
+
+                document.body.style.position =
+                    previousBodyPosition;
+
+                document.body.style.top =
+                    previousBodyTop;
+
+                document.body.style.width =
+                    previousBodyWidth;
+
+                document.body.style.overflow =
+                    previousBodyOverflow;
+
+                document.body.style.paddingRight =
+                    previousBodyPaddingRight;
+
+                document.documentElement.style.overflow =
+                    previousHtmlOverflow;
+
+                document.documentElement.style.overscrollBehavior =
+                    previousHtmlOverscrollBehavior;
+
+            }
+
+        }
+    );
+
+
+
     /* =====================================================
        LIGHTBOX HAZIR
-    ===================================================== */
+===================================================== */
 
     console.log(
         'ARCHITUNA Lightbox hazır:',
@@ -4673,6 +4946,7 @@ document
     );
 
 })();
+
 
 
 /* =========================================================
@@ -4731,7 +5005,7 @@ document
 
 
     /*
-       Toplam proje kontrolü:
+       Toplam proje:
        3 + 3 + 5 + 2 + 3 + 2 + 4 + 4 + 3 = 29
     */
 
