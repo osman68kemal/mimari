@@ -1842,6 +1842,920 @@ footer {
     }
 }
 
+
+/* =========================================================
+   ARCHITUNA V2 — GLOBAL STUDIO / EDITORIAL ART DIRECTION
+   Mevcut HTML, proje içerikleri, intro video ve JS korunur.
+   Bu katman yalnızca görsel sanat yönetimini geliştirir.
+========================================================= */
+
+:root{
+    --black:#070707;
+    --black-soft:#0b0b0b;
+    --black-card:#101010;
+    --white:#f2f1ec;
+    --white-soft:#c8c7c0;
+    --gray:#777772;
+    --gray-dark:#3f3f3b;
+    --line:rgba(255,255,255,.105);
+    --line-soft:rgba(255,255,255,.055);
+    --cream:#ebe9e1;
+    --accent:#b8b4a6;
+    --ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* --- Global atmosphere --- */
+body{
+    background:
+        radial-gradient(circle at 72% 12%,rgba(255,255,255,.025),transparent 28%),
+        #070707;
+    color:var(--white);
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:99989;
+    pointer-events:none;
+    background:
+        linear-gradient(90deg,transparent 0 49.97%,rgba(255,255,255,.018) 50%,transparent 50.03%),
+        linear-gradient(0deg,transparent 0 49.97%,rgba(255,255,255,.012) 50%,transparent 50.03%);
+    opacity:.22;
+}
+
+/* --- Intro: VIDEO IS PRESERVED --- */
+#intro{
+    background:#030303;
+    isolation:isolate;
+}
+
+#intro-video{
+    opacity:.68;
+    filter:contrast(1.08) brightness(.74) saturate(.78);
+}
+
+.intro-overlay{
+    background:
+        linear-gradient(90deg,rgba(0,0,0,.58),transparent 48%,rgba(0,0,0,.42)),
+        radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.12) 42%,rgba(0,0,0,.82) 100%);
+}
+
+.intro-lines{
+    opacity:.10;
+}
+
+.intro-corner{
+    left:28px;
+    right:28px;
+    top:28px;
+    bottom:28px;
+    border-color:rgba(255,255,255,.11);
+}
+
+.intro-content{
+    width:min(90vw,1500px);
+    text-align:left;
+    align-self:flex-end;
+    margin:0 0 9vh 8vw;
+}
+
+.intro-small{
+    margin-bottom:20px;
+    font-size:7px;
+    letter-spacing:5px;
+}
+
+.intro-title{
+    font-size:clamp(58px,11vw,178px);
+    letter-spacing:-.065em;
+    line-height:.82;
+    text-shadow:0 0 40px rgba(0,0,0,.35);
+}
+
+.intro-sub{
+    margin-top:28px;
+    letter-spacing:4px;
+    color:#999;
+}
+
+/* --- Navigation --- */
+.navbar{
+    padding:28px 5vw;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+}
+
+.logo-text{
+    font-size:12px;
+    letter-spacing:4px;
+}
+
+.logo-sub{
+    letter-spacing:2.5px;
+    color:#aaa;
+}
+
+.nav-links{
+    gap:38px;
+}
+
+.nav-links a{
+    font-size:7px;
+    letter-spacing:2.5px;
+    transition:opacity .35s ease;
+}
+
+.nav-links:hover a:not(:hover){
+    opacity:.38;
+}
+
+/* --- Hero: editorial architecture statement --- */
+.hero{
+    min-height:100svh;
+    padding:150px 8vw 95px;
+    align-items:flex-end;
+}
+
+.hero-grid{
+    opacity:.12;
+}
+
+.hero-grid::before{
+    content:"";
+    position:absolute;
+    left:8vw;
+    top:13%;
+    bottom:9%;
+    width:1px;
+    background:rgba(255,255,255,.075);
+}
+
+.hero-grid::after{
+    left:8vw;
+    right:8vw;
+    top:auto;
+    bottom:95px;
+}
+
+.hero-content{
+    width:100%;
+    max-width:none;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(250px,28vw);
+    gap:7vw;
+    align-items:end;
+}
+
+.hero-title{
+    font-size:clamp(72px,11.7vw,185px);
+    letter-spacing:-.085em;
+    line-height:.78;
+}
+
+.hero-title span:nth-child(2){
+    margin-left:8.5vw;
+}
+
+.hero-description{
+    max-width:420px;
+    margin:0 0 8px auto;
+    font-size:12px;
+    line-height:1.95;
+    color:#85857f;
+}
+
+.hero-bottom{
+    left:8vw;
+    right:8vw;
+    bottom:28px;
+}
+
+.hero-bottom span:first-child{
+    color:#777;
+}
+
+.hero-bottom span:last-child{
+    color:#777;
+}
+
+/* --- Sections --- */
+section{
+    padding:190px 8vw;
+}
+
+.section-number{
+    font-size:7px;
+    letter-spacing:3.5px;
+    margin-bottom:48px;
+    color:#686863;
+}
+
+.section-number::before{
+    width:42px;
+    background:#777;
+}
+
+.section-title{
+    font-size:clamp(54px,8vw,125px);
+    letter-spacing:-.075em;
+}
+
+/* --- Manifesto --- */
+.manifesto{
+    min-height:100svh;
+    background:
+        linear-gradient(115deg,#0b0b0b 0%,#101010 54%,#0a0a0a 100%);
+}
+
+.manifesto::after{
+    content:"TUNALI / ARCHITUNA";
+    position:absolute;
+    right:8vw;
+    top:17%;
+    writing-mode:vertical-rl;
+    font-family:'DM Mono',monospace;
+    font-size:7px;
+    letter-spacing:4px;
+    color:#4f4f4b;
+}
+
+.manifesto-grid{
+    grid-template-columns:minmax(0,1.15fr) minmax(260px,.55fr);
+    gap:10vw;
+}
+
+.manifesto-text{
+    font-size:clamp(22px,2.4vw,37px);
+    line-height:1.45;
+    letter-spacing:-.025em;
+}
+
+.manifesto-mark{
+    margin-top:85px;
+    color:#666;
+}
+
+.manifesto-mark::before{
+    width:105px;
+}
+
+/* --- Projects header --- */
+.projects{
+    background:#070707;
+}
+
+.projects-heading{
+    align-items:flex-start;
+}
+
+.projects-heading .section-title{
+    max-width:850px;
+}
+
+.projects-intro{
+    max-width:290px;
+    padding-top:10px;
+    font-size:7px;
+    line-height:2.2;
+    color:#62625d;
+}
+
+/* --- Project archive: stronger rhythm --- */
+.project-archive{
+    margin-top:135px;
+    gap:155px 24px;
+}
+
+.project-group{
+    position:relative;
+}
+
+.project-group-header{
+    min-height:62px;
+    margin-bottom:38px;
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(255,255,255,.085);
+}
+
+.project-group-index{
+    font-size:8px;
+    color:#999;
+}
+
+.project-group-category{
+    font-size:6px;
+    letter-spacing:3.5px;
+    color:#666;
+}
+
+.project-group-name{
+    font-size:clamp(21px,2.4vw,35px);
+    letter-spacing:-.05em;
+}
+
+.project-group + .project-group{
+    margin-top:175px;
+}
+
+.project-group-grid{
+    gap:135px 24px;
+}
+
+/* --- Cards: more gallery, less template --- */
+.project-card{
+    min-height:0;
+    padding-top:18px;
+    transition:transform 1s var(--ease),opacity .5s ease;
+}
+
+.project-card::before{
+    width:22px;
+    height:1px;
+    background:#aaa;
+}
+
+.project-card:hover::before{
+    width:100%;
+}
+
+.project-card:hover{
+    transform:translateY(-7px);
+}
+
+.project-card .project-image{
+    height:clamp(360px,38vw,590px);
+    background:#111;
+}
+
+.project-card.project-wide .project-image{
+    height:clamp(430px,45vw,690px);
+}
+
+.project-card.project-tall .project-image{
+    height:clamp(510px,55vw,780px);
+}
+
+.project-card .project-image::after{
+    background:
+        linear-gradient(180deg,transparent 48%,rgba(0,0,0,.82) 100%);
+    opacity:.86;
+    transition:opacity .8s ease;
+}
+
+.project-card:hover .project-image::after{
+    opacity:.72;
+}
+
+.project-card .project-image img,
+.project-video{
+    filter:grayscale(18%) contrast(1.04) brightness(.94);
+    transform:scale(1.018);
+}
+
+.project-card:hover .project-image img,
+.project-card:hover .project-video{
+    transform:scale(1.065);
+    filter:grayscale(0) contrast(1.06) brightness(1);
+}
+
+.project-number{
+    position:relative;
+    z-index:3;
+    margin-bottom:15px;
+    color:#85857f;
+    letter-spacing:3.5px;
+}
+
+.project-number::before{
+    width:25px;
+    background:#777;
+}
+
+.project-card .project-info{
+    left:30px;
+    right:30px;
+    bottom:30px;
+}
+
+.project-card .project-name{
+    font-size:clamp(27px,3.6vw,58px);
+    letter-spacing:-.07em;
+    text-wrap:balance;
+}
+
+.project-card .project-location{
+    margin-top:15px;
+    color:#b0afa8;
+    letter-spacing:2.5px;
+}
+
+/* --- Alternating editorial offsets --- */
+.project-group-grid .project-card:nth-child(2){
+    transform:translateY(70px);
+}
+.project-group-grid .project-card:nth-child(2):hover{
+    transform:translateY(60px);
+}
+.project-group-grid .project-card:nth-child(3){
+    transform:translateY(-25px);
+}
+.project-group-grid .project-card:nth-child(3):hover{
+    transform:translateY(-32px);
+}
+.project-group-grid .project-card:nth-child(4){
+    transform:translateY(45px);
+}
+.project-group-grid .project-card:nth-child(4):hover{
+    transform:translateY(38px);
+}
+
+/* --- Services / other content keeps same structure but gains hierarchy --- */
+.service{
+    border-top:1px solid rgba(255,255,255,.10);
+    padding:28px 0;
+    transition:padding .6s var(--ease);
+}
+
+.service:hover{
+    padding-left:18px;
+}
+
+.service-name{
+    letter-spacing:-.025em;
+}
+
+.service-number{
+    color:#666;
+}
+
+/* --- Brand statement --- */
+.brand-section{
+    min-height:75vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:160px 8vw;
+    overflow:hidden;
+}
+
+.brand-main{
+    width:100%;
+    text-align:center;
+}
+
+.brand-main h2{
+    font-size:clamp(80px,17vw,260px);
+    line-height:.75;
+    letter-spacing:-.10em;
+    font-weight:300;
+}
+
+.brand-switch{
+    margin-top:60px;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    font-family:'DM Mono',monospace;
+    font-size:7px;
+    letter-spacing:3px;
+    color:#696963;
+}
+
+.brand-switch span+span{
+    padding-left:30px;
+    border-left:1px solid #454541;
+}
+
+/* --- Contact --- */
+.contact{
+    min-height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    background:#0c0c0c;
+}
+
+.contact-title{
+    font-family:'Manrope',sans-serif;
+    font-size:clamp(55px,9vw,145px);
+    line-height:.82;
+    letter-spacing:-.085em;
+    font-weight:300;
+}
+
+.contact-title span{
+    color:#555550;
+}
+
+.contact-bottom{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    padding-top:45px;
+    border-top:1px solid rgba(255,255,255,.09);
+}
+
+.contact-item{
+    font-family:'DM Mono',monospace;
+    font-size:8px;
+    line-height:2;
+    letter-spacing:1.5px;
+    color:#aaa;
+}
+
+.contact-item strong{
+    display:block;
+    margin-bottom:8px;
+    color:#555550;
+    font-size:6px;
+    letter-spacing:3px;
+}
+
+/* --- Footer --- */
+footer{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:20px;
+    padding:28px 5vw;
+    border-top:1px solid rgba(255,255,255,.08);
+    background:#070707;
+    font-family:'DM Mono',monospace;
+    font-size:6px;
+    letter-spacing:2.5px;
+    color:#555550;
+}
+
+footer span:nth-child(2){
+    text-align:center;
+}
+
+footer span:nth-child(3){
+    text-align:right;
+}
+
+/* --- Lightbox: gallery-grade --- */
+.project-lightbox{
+    padding:35px 5vw;
+    background:rgba(3,3,3,.985);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+}
+
+.project-lightbox-stage{
+    width:min(92vw,1500px);
+    height:min(84vh,900px);
+}
+
+.project-lightbox-media img,
+.project-lightbox-media video{
+    filter:contrast(1.03);
+}
+
+.project-lightbox-caption{
+    font-family:'DM Mono',monospace;
+    letter-spacing:2.5px;
+    color:#aaa;
+}
+
+.project-lightbox-close{
+    font-weight:300;
+    transition:transform .45s var(--ease),opacity .3s ease;
+}
+
+.project-lightbox-close:hover{
+    transform:rotate(90deg);
+    opacity:.65;
+}
+
+.project-lightbox-prev,
+.project-lightbox-next{
+    opacity:.7;
+    transition:opacity .3s ease,transform .45s var(--ease);
+}
+
+.project-lightbox-prev:hover{
+    opacity:1;
+    transform:translateX(-6px);
+}
+
+.project-lightbox-next:hover{
+    opacity:1;
+    transform:translateX(6px);
+}
+
+/* --- Reveal --- */
+.reveal{
+    transform:translateY(32px);
+    opacity:0;
+    transition:
+        opacity 1s var(--ease),
+        transform 1s var(--ease);
+}
+
+.reveal.visible{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* --- Mobile --- */
+@media (max-width:900px){
+
+    body{
+        cursor:auto;
+    }
+
+    .cursor,
+    .cursor-ring,
+    .cursor-label{
+        display:none !important;
+    }
+
+    .navbar{
+        padding:20px 6vw;
+    }
+
+    .nav-links{
+        gap:17px;
+    }
+
+    .nav-links a{
+        font-size:6px;
+        letter-spacing:1.5px;
+    }
+
+    .hero{
+        min-height:100svh;
+        padding:130px 6vw 75px;
+        align-items:flex-end;
+    }
+
+    .hero-content{
+        display:block;
+    }
+
+    .hero-title{
+        font-size:clamp(58px,17vw,105px);
+        line-height:.82;
+    }
+
+    .hero-title span:nth-child(2){
+        margin-left:10vw;
+    }
+
+    .hero-description{
+        max-width:290px;
+        margin:42px 0 0 auto;
+        font-size:10px;
+        line-height:1.8;
+    }
+
+    .hero-bottom{
+        left:6vw;
+        right:6vw;
+        bottom:22px;
+    }
+
+    section{
+        padding:120px 6vw;
+    }
+
+    .manifesto{
+        min-height:auto;
+    }
+
+    .manifesto-grid{
+        display:block;
+    }
+
+    .manifesto-text{
+        font-size:20px;
+        line-height:1.55;
+    }
+
+    .manifesto-mark{
+        margin-top:55px;
+    }
+
+    .manifesto::after{
+        right:6vw;
+        top:12%;
+    }
+
+    .projects-heading{
+        display:block;
+    }
+
+    .projects-intro{
+        margin-top:35px;
+        max-width:250px;
+    }
+
+    .project-archive{
+        margin-top:85px;
+        display:block;
+    }
+
+    .project-group + .project-group{
+        margin-top:105px;
+    }
+
+    .project-group-header{
+        margin-bottom:26px;
+    }
+
+    .project-group-grid{
+        display:block;
+    }
+
+    .project-card,
+    .project-card.project-wide,
+    .project-card.project-tall{
+        display:block;
+        width:100%;
+        min-height:0;
+        margin-bottom:75px;
+        transform:none !important;
+    }
+
+    .project-card .project-image,
+    .project-card.project-wide .project-image,
+    .project-card.project-tall .project-image{
+        width:100%;
+        height:auto;
+        aspect-ratio:4 / 5;
+    }
+
+    .project-card:nth-child(even) .project-image{
+        aspect-ratio:5 / 6;
+    }
+
+    .project-card .project-info{
+        left:20px;
+        right:20px;
+        bottom:20px;
+    }
+
+    .project-card .project-name{
+        font-size:clamp(30px,10vw,55px);
+    }
+
+    .project-card .project-location{
+        font-size:6px;
+        letter-spacing:2px;
+    }
+
+    .project-group-grid .project-card:nth-child(2):hover,
+    .project-group-grid .project-card:nth-child(3):hover,
+    .project-group-grid .project-card:nth-child(4):hover{
+        transform:none !important;
+    }
+
+    .brand-section{
+        min-height:55vh;
+        padding:110px 6vw;
+    }
+
+    .brand-main h2{
+        font-size:24vw;
+    }
+
+    .brand-switch{
+        margin-top:40px;
+        flex-direction:column;
+        gap:12px;
+        align-items:center;
+    }
+
+    .brand-switch span+span{
+        padding-left:0;
+        border-left:0;
+    }
+
+    .contact{
+        min-height:75vh;
+    }
+
+    .contact-title{
+        font-size:16vw;
+    }
+
+    .contact-bottom{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    footer{
+        grid-template-columns:1fr;
+        gap:13px;
+        padding:24px 6vw;
+    }
+
+    footer span,
+    footer span:nth-child(2),
+    footer span:nth-child(3){
+        text-align:left;
+    }
+
+    .project-lightbox{
+        padding:20px 8px;
+    }
+
+    .project-lightbox-stage{
+        width:100%;
+        height:calc(100svh - 85px);
+    }
+}
+
+/* --- Small mobile --- */
+@media (max-width:520px){
+
+    .navbar{
+        align-items:center;
+    }
+
+    .logo-text{
+        font-size:10px;
+        letter-spacing:3px;
+    }
+
+    .logo-sub{
+        font-size:5px;
+    }
+
+    .nav-links{
+        gap:10px;
+    }
+
+    .nav-links li:nth-child(2){
+        display:none;
+    }
+
+    .intro-content{
+        margin-left:6vw;
+        margin-bottom:12vh;
+    }
+
+    .intro-title{
+        font-size:17vw;
+    }
+
+    .intro-small{
+        letter-spacing:3px;
+    }
+
+    .intro-sub{
+        font-size:6px;
+        letter-spacing:3px;
+    }
+
+    .hero-title{
+        font-size:17vw;
+    }
+
+    .hero-description{
+        font-size:9px;
+        max-width:250px;
+    }
+
+    section{
+        padding:100px 6vw;
+    }
+
+    .section-title{
+        font-size:16vw;
+    }
+
+    .project-card{
+        margin-bottom:58px;
+    }
+
+    .project-card .project-image,
+    .project-card.project-wide .project-image,
+    .project-card.project-tall .project-image{
+        aspect-ratio:3 / 4;
+    }
+
+    .project-card .project-name{
+        font-size:11vw;
+    }
+
+    .project-lightbox-stage{
+        height:calc(100svh - 95px);
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .project-card,
+    .project-card .project-image img,
+    .project-video,
+    .reveal,
+    .cursor-ring{
+        transition:none !important;
+    }
+}
+
 </style>
 </head>
 
@@ -3425,10 +4339,10 @@ footer {
         <div class="contact-item">
 
             <strong>
-                MİMAR / ARCHITECT
+                E-POSTA
             </strong>
 
-            Osman Kemal Tunalı
+            archituna33@gmail.com
 
         </div>
 
@@ -3439,7 +4353,7 @@ footer {
                 STÜDYO
             </strong>
 
-            Studio Tunalı Mimarlık
+            TUNALI MİMARLIK
 
         </div>
 
@@ -3450,15 +4364,7 @@ footer {
                 WEB
             </strong>
 
-            ArchiTuna.com.tr
-
-            <br><br>
-
-            <strong>
-                İLETİŞİM
-            </strong>
-
-            archituna33@gmail.com
+            ARCHITUNA.COM.TR
 
         </div>
 
